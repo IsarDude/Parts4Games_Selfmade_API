@@ -1,4 +1,4 @@
-package BussinesController;
+package business;
 
 public class GpuBussinesController {
 	

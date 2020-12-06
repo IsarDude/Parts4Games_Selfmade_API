@@ -78,5 +78,19 @@ public class GPU {
 		this.price = price;
 	}
 	
+	public String getKeywordString() {
+		String keywords = "GPU "+ frequency + "Hz " + memory + "Gb" ;
+		if(company != null) {
+			keywords = keywords +" " + company;
+		}
+		if(model != null) {
+			keywords = keywords+ " " + model;
+		}
+		if(generation != null) {
+			keywords = keywords + " "+ generation;
+		}
+		return keywords;
+	}
+	
 	
 }

@@ -1,4 +1,4 @@
-package BussinesController;
+package business;
 
 import java.util.LinkedList;
 
