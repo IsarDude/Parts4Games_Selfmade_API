@@ -4,10 +4,9 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import business.ConfigurationController;
+import data.GPU;
 
 import javax.ws.rs.*;
-
-import model.GPU;
 
 @Path("/config/{configId}/gpu")
 public class GpuService {

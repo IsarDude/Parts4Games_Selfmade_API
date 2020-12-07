@@ -2,8 +2,8 @@ package business;
 
 import java.util.LinkedList;
 
-import model.Config;
-import model.GPU;
+import data.Config;
+import data.GPU;
 
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();

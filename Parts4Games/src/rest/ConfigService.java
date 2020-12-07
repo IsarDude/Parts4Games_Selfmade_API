@@ -22,8 +22,8 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 import business.ConfigurationController;
-import model.Config;
-import model.GPU;
+import data.Config;
+import data.GPU;
 
 @Path("/config")
 public class ConfigService {
