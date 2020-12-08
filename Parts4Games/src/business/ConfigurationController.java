@@ -4,6 +4,8 @@ import java.util.LinkedList;
 
 import data.Config;
 import data.GPU;
+import data.RAM;
+import data.Ram;
 
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();
@@ -106,4 +108,64 @@ public class ConfigurationController {
 		return index;
 	}
 	
+	//Andre
+	//#####################
+	//Motherboard
+	public int addMotherboardToConfig(int configId, Motherboard aMotherboard) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedMotherboard(aMotherboard);
+		}
+		return index;
+	}
+	
+	public int changeMotherboard(int configId, Motherboard aMotherboard) {
+		int index = getConfigIndex(configId);
+			
+		
+		if(index != -1) {
+			configList.get(index).setSelectedMotherboard(aMotherboard);
+		}
+		return index;
+	}
+	
+	public int deleteMotherboard(int configId) {
+		int index = getConfigIndex(configId);
+			
+		
+		if(index != -1) {
+			configList.get(index).setSelectedMotherboard(null);  //verstehe nicht, warum "null" nicht akzeptiert wird bei den anderen Datenobjekten gehts auch 
+		}
+		return index;
+	}
+	
+	//RAM
+	public int addRAMToConfig(int configId, RAM aRam) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedRAM(aRam);
+		}
+		return index;
+	}
+	
+	public int changeRAM(int configId, RAM aRam) {
+		int index = getConfigIndex(configId);
+			
+		
+		if(index != -1) {
+			configList.get(index).setSelectedRAM(aRam);
+		}
+		return index;
+	}
+	
+	public int deleteRAM(int configId) {
+		int index = getConfigIndex(configId);
+			
+		
+		if(index != -1) {
+			configList.get(index).setSelectedRAM(null);
+		}
+		return index;
+	}
+	//#####################
 }

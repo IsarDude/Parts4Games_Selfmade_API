@@ -1,6 +1,6 @@
 package data;
 
-public class Ram {
+public class RAM {
 	private String company;
 	private String model;
 	private int capacity;
@@ -8,11 +8,11 @@ public class Ram {
 	private String stickType;
 	private String sellType;
 	
-	public Ram() {
+	public RAM() {
 		
 	}
 	
-	public Ram(String company, String model, int capacity, String stickType, String sellType, int frequency) {
+	public RAM(String company, String model, int capacity, String stickType, String sellType, int frequency) {
 		this.company = company;
 		this.model = model;
 		this.capacity = capacity;
