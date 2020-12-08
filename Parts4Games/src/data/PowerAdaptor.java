@@ -1,6 +1,6 @@
 package data;
 
-public class PowerAdaptorDO {
+public class PowerAdaptor {
 	private String company;
 	private String model;
 	private int tension;

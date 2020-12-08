@@ -21,6 +21,9 @@ public class MemoryListService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getRamList(String company, String model, int version, int capacity, int speed) {
 		try {
+			//Frage: Soll hier die REST Anfrage auf Ebay_API direkt im Code (inline) implementiert werden, oder soll der 
+			//memoryListBusinessController wiederrum eine rest_Klasse bzw. Methode innerhalb der rest_Klasse nutzen für die Anfrage
+			//an die externe API?
 			return Response.ok(memoryListBusinessController.getMemoryList(company, model, version, capacity, speed)).build();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -31,5 +34,4 @@ public class MemoryListService {
 		}
 	}
 }
-	
 

@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import data.Config;
 import data.GPU;
+import data.PowerAdaptor;
 
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();
@@ -16,12 +17,11 @@ public class ConfigurationController {
 	public int createConfig(Config newConfig) {
 		int newID = -1;
 		if(configList.size()>0) {
-			newID =	configList.getLast().configID +1;
+			newID =	configList.getLast().getConfigID() + 1;
 		}else {
-			newID= 1;
+			newID = 1;
 		}
-			
-		newConfig.configID = newID;
+		newConfig.setConfigID(newID);
 		configList.add(newConfig);
 		return newID;
 	}
@@ -29,10 +29,9 @@ public class ConfigurationController {
 	public Config getConfig(int aConfigId) {
 		Config temp = null;
 		for(Config conf : configList) {
-			if(conf.configID == aConfigId) {
+			if(conf.getConfigID() == aConfigId) {
 				temp = conf;
-			}
-			
+			}	
 		}
 		return temp;
 	}
@@ -45,17 +44,14 @@ public class ConfigurationController {
 		}else {
 			return -1;
 		}
-		
-
 	}
 	
 	public int getConfigIndex(int configId) {
 		int index = -1;
 		for(int i = 0; i< configList.size();i++) {
-			if(configList.get(i).configID == configId) {
+			if(configList.get(i).getConfigID() == configId) {
 				index = i;
 			}
-			
 		}
 		return index;
 	}
@@ -70,8 +66,6 @@ public class ConfigurationController {
 	
 	public int changeGPU(int configId, GPU aGPU) {
 		int index = getConfigIndex(configId);
-			
-		
 		if(index != -1) {
 			configList.get(index).setSelectedGpu(aGPU);
 		}
@@ -80,18 +74,15 @@ public class ConfigurationController {
 	
 	public int deleteGPU(int configId) {
 		int index = getConfigIndex(configId);
-			
-		
 		if(index != -1) {
 			configList.get(index).setSelectedGpu(null);
 		}
 		return index;
 	}
 	
-	public int createBudget(int configId, float budget) {
+	public int setBudget(int configId, float budget) {
 		int index = getConfigIndex(configId);
 		configList.get(index).setBudget(budget);
-		
 		return index;
 	}
 	
@@ -106,4 +97,51 @@ public class ConfigurationController {
 		return index;
 	}
 	
+	public int addMemoryToConfig(int configId, Memory aMemory) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedMemory(aMemory);
+		}
+		return index;
+	}
+	
+	public int changeMemory(int configId, Memory aMemory) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedMemory(aMemory);
+		}
+		return index;
+	}
+	
+	public int deleteMemory(int configId) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedMemory(null);
+		}
+		return index;
+	}
+	
+	public int addPowerAdaptorToConfig(int configId, PowerAdaptor aPowerAdaptor) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedPoweradaptor(aPowerAdaptor);
+		}
+		return index;
+	}
+	
+	public int changePowerAdaptor(int configId, PowerAdaptor aPowerAdaptor) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedPoweradaptor(aPowerAdaptor);
+		}
+		return index;
+	}
+	
+	public int deletePowerAdaptor(int configId) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedPoweradaptor(null);
+		}
+		return index;
+	}
 }

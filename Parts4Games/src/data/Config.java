@@ -14,12 +14,12 @@ public class Config {
 	private RAM selectedRAM;
 	private Motherboard selectedMotherboard;
 	private Memory selectedMemory;
-	private PowerAdapter selectedPoweradapter;
+	private PowerAdaptor selectedPoweradaptor;
 
 	
 	public void getConfig() {
 		LinkedList<Object> list = new LinkedList<>();
-		list.addAll(configID, budget,selectedGpu, selectedCpu, selectedRAM, selectedMotherboard, selectedMemory, selectedPoweradapter );
+		list.addAll(configID, budget,selectedGpu, selectedCpu, selectedRAM, selectedMotherboard, selectedMemory, selectedPoweradaptor);
 		return list;
 	}
 	
@@ -88,13 +88,13 @@ public class Config {
 		this.selectedMemory = selectedMemory;
 	}
 
-	@XmlElement(name="powerAdapter")
-	public PowerAdapter getSelectedPoweradapter() {
-		return selectedPoweradapter;
+	@XmlElement(name="powerAdaptor")
+	public PowerAdaptor getSelectedPoweradaptor() {
+		return selectedPoweradaptor;
 	}
 
-	public void setSelectedPoweradapter(PowerAdapter selectedPoweradapter) {
-		this.selectedPoweradapter = selectedPoweradapter;
+	public void setSelectedPoweradaptor(PowerAdaptor selectedPoweradaptor) {
+		this.selectedPoweradaptor = selectedPoweradaptor;
 	}
 	
 	
