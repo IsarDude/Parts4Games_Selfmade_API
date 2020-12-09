@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import model.Config;
 import model.GPU;
+import model.CPU;
 
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();
@@ -88,6 +89,46 @@ public class ConfigurationController {
 	}
 	
 	public void deleteGPU(int configId) {
+		int index = -1;
+		for(int i = 0; i< configList.size();i++) {
+			if(configList.get(i).configID == configId) {
+				index = i;
+			}
+			
+		}
+		if(index != -1) {
+			configList.get(index).setSelectedGpu(null);
+		}
+	}
+	
+	public CPU addCpuToConfig(int configId, CPU aCpu) {
+		int index = -1;
+		for(int i = 0; i< configList.size();i++) {
+			if(configList.get(i).configID == configId) {
+				index = i;
+			}
+			
+		}
+		if(index != -1) {
+			configList.get(index).setSelectedCpu(aCpu);
+		}
+		return aCpu;
+	}
+	
+	public void changeCPU(int configId, CPU aCPU) {
+		int index = -1;
+		for(int i = 0; i< configList.size();i++) {
+			if(configList.get(i).configID == configId) {
+				index = i;
+			}
+			
+		}
+		if(index != -1) {
+			configList.get(index).setSelectedCpu(aCPU);
+		}
+	}
+	
+	public void deleteCPU(int configId) {
 		int index = -1;
 		for(int i = 0; i< configList.size();i++) {
 			if(configList.get(i).configID == configId) {
