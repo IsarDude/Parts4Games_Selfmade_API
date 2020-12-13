@@ -22,9 +22,9 @@ public class MemoryService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response addMemory(@PathParam("configId") String configId, MemoryDO memoryDO) {
+	public Response addMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
-			memoryBusinessController.addMemory(memoryDO);
+			memoryBusinessController.addMemory(configId, memory);
 			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -38,9 +38,9 @@ public class MemoryService {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response changeMemory(@PathParam("configId") String configId, MemoryDO memoryDO) {
+	public Response changeMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
-			memoryBusinessController.changeMemory(memoryDO);
+			memoryBusinessController.changeMemory(configId, memory);
 			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -53,9 +53,9 @@ public class MemoryService {
 	
 	@DELETE
 	@Produces(MediaType.TEXT_PLAIN)
-	public Response changeMemory(@PathParam("configId") String configId) {
+	public Response changeMemory(@PathParam("configId") int configId) {
 		try {
-			memoryBusinessController.deleteMemory();
+			memoryBusinessController.deleteMemory(configId);
 			return Response.status(204).build();
 		}catch(Exception e) {
 			e.printStackTrace();
