@@ -6,6 +6,8 @@ import data.Config;
 import data.GPU;
 import data.Memory;
 import data.RAM;
+import data.CPU;
+import data.Motherboard;
 
 import data.PowerAdaptor;
 
@@ -56,6 +58,30 @@ public class ConfigurationController {
 			if(configList.get(i).getConfigID() == configId) {
 				index = i;
 			}
+		}
+		return index;
+	}
+	
+	public int addCpuToConfig(int configId,CPU aCpu) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedCpu(aCpu);
+		}
+		return index;
+	}
+	
+	public int changeCPU(int configId, CPU aCPU) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedCpu(aCPU);
+		}
+		return index;
+	}
+	
+	public int deleteCPU(int configId) {
+		int index = getConfigIndex(configId);
+		if(index != -1) {
+			configList.get(index).setSelectedCpu(null);
 		}
 		return index;
 	}

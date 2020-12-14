@@ -4,6 +4,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import business.ConfigurationController;
+import data.Motherboard;
 
 import javax.ws.rs.*;
 
