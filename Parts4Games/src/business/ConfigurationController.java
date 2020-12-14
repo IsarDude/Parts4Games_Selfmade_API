@@ -4,12 +4,11 @@ import java.util.LinkedList;
 
 import data.Config;
 import data.GPU;
-<<<<<<< HEAD
+import data.Memory;
 import data.RAM;
-import data.Ram;
-=======
+
 import data.PowerAdaptor;
->>>>>>> branch 'master' of https://github.com/IsarDude/Parts4Games
+
 
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();
@@ -102,10 +101,6 @@ public class ConfigurationController {
 		return index;
 	}
 	
-<<<<<<< HEAD
-	//Andre
-	//#####################
-	//Motherboard
 	public int addMotherboardToConfig(int configId, Motherboard aMotherboard) {
 		int index = getConfigIndex(configId);
 		if(index != -1) {
@@ -134,7 +129,6 @@ public class ConfigurationController {
 		return index;
 	}
 	
-	//RAM
 	public int addRAMToConfig(int configId, RAM aRam) {
 		int index = getConfigIndex(configId);
 		if(index != -1) {
@@ -162,8 +156,7 @@ public class ConfigurationController {
 		}
 		return index;
 	}
-	//#####################
-=======
+
 	public int addMemoryToConfig(int configId, Memory aMemory) {
 		int index = getConfigIndex(configId);
 		if(index != -1) {
@@ -211,5 +204,5 @@ public class ConfigurationController {
 		}
 		return index;
 	}
->>>>>>> branch 'master' of https://github.com/IsarDude/Parts4Games
+
 }

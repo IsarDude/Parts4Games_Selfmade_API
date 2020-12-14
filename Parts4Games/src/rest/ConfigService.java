@@ -1,15 +1,9 @@
 package rest;
-import java.io.StringReader;
-import java.util.List;
 
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -17,13 +11,8 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
-
 import business.ConfigurationController;
 import data.Config;
-import data.GPU;
 
 @Path("/config")
 public class ConfigService {
@@ -43,10 +32,7 @@ public class ConfigService {
 		ConfigurationController configController = ConfigurationController.getInstance();
 		Config config = configController.getConfig(configId);
 		return config;
-		
-	
 	}
-	
 	
 	@DELETE
 	@Produces( MediaType.TEXT_PLAIN ) // und als Rückmeldung produziert
@@ -56,10 +42,7 @@ public class ConfigService {
 		if(control ==-1) {
 			 return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
 		}
-		return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();
-		
+		return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
 	}
-	
-	
-	
+		
 }

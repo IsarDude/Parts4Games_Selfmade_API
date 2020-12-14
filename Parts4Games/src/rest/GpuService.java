@@ -44,8 +44,7 @@ public class GpuService {
 		return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();
 		
 		}
-		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
-		
+		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();		
 	}
 	
 	

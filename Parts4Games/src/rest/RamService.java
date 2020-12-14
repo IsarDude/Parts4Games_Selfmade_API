@@ -9,7 +9,7 @@ import data.RAM;
 import javax.ws.rs.*;
 
 @Path("/config/{configId}/ram")
-public class RAMService {
+public class RamService {
 	
 	@POST
 	@Produces( MediaType.TEXT_PLAIN )
@@ -39,13 +39,10 @@ public class RAMService {
 	public Response deleteRAM(@PathParam("configId") int configId) {
 		int control = ConfigurationController.getInstance().deleteRAM(configId);
 		if(control != -1) {
-			
-		
-		return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();
+			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();
 		
 		}
 		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
-		
 	}
 	
 	
