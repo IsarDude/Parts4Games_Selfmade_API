@@ -2,6 +2,7 @@ package business;
 
 import java.util.LinkedList;
 
+<<<<<<< HEAD
 import data.Config;
 import data.GPU;
 <<<<<<< HEAD
@@ -10,6 +11,11 @@ import data.Ram;
 =======
 import data.PowerAdaptor;
 >>>>>>> branch 'master' of https://github.com/IsarDude/Parts4Games
+=======
+import model.Config;
+import model.GPU;
+import model.CPU;
+>>>>>>> branch 'Development_nicolai' of https://github.com/IsarDude/Parts4Games.git
 
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();
@@ -85,7 +91,51 @@ public class ConfigurationController {
 		return index;
 	}
 	
+<<<<<<< HEAD
 	public int setBudget(int configId, float budget) {
+=======
+	public CPU addCpuToConfig(int configId, CPU aCpu) {
+		int index = -1;
+		for(int i = 0; i< configList.size();i++) {
+			if(configList.get(i).configID == configId) {
+				index = i;
+			}
+			
+		}
+		if(index != -1) {
+			configList.get(index).setSelectedCpu(aCpu);
+		}
+		return aCpu;
+	}
+	
+	public void changeCPU(int configId, CPU aCPU) {
+		int index = -1;
+		for(int i = 0; i< configList.size();i++) {
+			if(configList.get(i).configID == configId) {
+				index = i;
+			}
+			
+		}
+		if(index != -1) {
+			configList.get(index).setSelectedCpu(aCPU);
+		}
+	}
+	
+	public void deleteCPU(int configId) {
+		int index = -1;
+		for(int i = 0; i< configList.size();i++) {
+			if(configList.get(i).configID == configId) {
+				index = i;
+			}
+			
+		}
+		if(index != -1) {
+			configList.get(index).setSelectedGpu(null);
+		}
+	}
+	
+	public float createBudget(int configId, float budget) {
+>>>>>>> branch 'Development_nicolai' of https://github.com/IsarDude/Parts4Games.git
 		int index = getConfigIndex(configId);
 		configList.get(index).setBudget(budget);
 		return index;

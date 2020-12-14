@@ -2,6 +2,7 @@ package business;
 
 import java.util.List;
 
+<<<<<<< HEAD
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
@@ -45,6 +46,13 @@ public class GPUListBusinessController {
 	    		e.printStackTrace();
 
 	    	}
+=======
+public class GPUListBusinessController {
+	
+	public List<String> getGPUList(int frequency, int memory, String company, String model, String generation, float price){
+		//Get-request to Ebay API: Get all gpus's with specified requirements as JSON
+		//Convert JSON to List and return
+>>>>>>> branch 'Development_nicolai' of https://github.com/IsarDude/Parts4Games.git
 		return null;
 	}
 }
