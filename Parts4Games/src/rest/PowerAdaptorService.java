@@ -11,21 +11,21 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import business.ConfigurationController;
 import business.PowerAdaptorBusinessController;
 import data.PowerAdaptor;
 
 @Path("/config/{configId}/powerAdaptor")
 public class PowerAdaptorService {
 	
-	@Inject 
-	private PowerAdaptorBusinessController powerAdaptorBusinessController;
+	ConfigurationController configurationController = ConfigurationController.getInstance();
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
-			powerAdaptorBusinessController.addPowerAdaptor(configId, powerAdaptor);
+			configurationController.addPowerAdaptorToConfig(configId, powerAdaptor);
 			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class PowerAdaptorService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response changePowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
-			powerAdaptorBusinessController.changePowerAdaptor(configId, powerAdaptor);
+			configurationController.changePowerAdaptor(configId, powerAdaptor);
 			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
@@ -56,7 +56,7 @@ public class PowerAdaptorService {
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response changePowerAdaptor(@PathParam("configId") int configId) {
 		try {
-			powerAdaptorBusinessController.deletePowerAdaptor(configId);
+			configurationController.deletePowerAdaptor(configId);
 			return Response.status(204).build();
 		}catch(Exception e) {
 			e.printStackTrace();
