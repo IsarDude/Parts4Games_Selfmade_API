@@ -35,14 +35,14 @@ public class ConfigService {
 	}
 	
 	@DELETE
-	@Produces( MediaType.TEXT_PLAIN ) // und als Rückmeldung produziert
+	@Produces(MediaType.APPLICATION_JSON)  // und als Rückmeldung produziert
 	public Response deleteConfig(@PathParam("configId") int configId) {
 		ConfigurationController config = ConfigurationController.getInstance();
-		int control = config.deleteConfig(configId);
-		if(control ==-1) {
-			 return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
+		boolean isDeleted = config.deleteConfig(configId);
+		if(isDeleted) {
+			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
 		}
-		return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
+		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
 	}
 		
 }
