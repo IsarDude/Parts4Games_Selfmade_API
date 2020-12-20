@@ -35,7 +35,8 @@ public class MemoryListBusinessController {
 	        System.out.println("Output from Server .... \n");
 	        System.out.println(output);
 	        
-	        return response.getEntity();
+	      //How to return JSON?
+	        return null;
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
 	    		return null;

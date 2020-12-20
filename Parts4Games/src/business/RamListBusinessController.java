@@ -39,7 +39,7 @@ public class RamListBusinessController {
 	        System.out.println(output);
 	        
 	        //How to return JSON?
-	        return response.;
+	        return null;
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
 	    		return null;
