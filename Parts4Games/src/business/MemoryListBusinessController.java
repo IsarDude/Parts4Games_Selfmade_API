@@ -5,11 +5,45 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.JSONObject; 
+import org.json.JSONObject;
+
+import com.sun.jersey.api.client.Client;
+import com.sun.jersey.api.client.ClientResponse;
+import com.sun.jersey.api.client.WebResource; 
 
 public class MemoryListBusinessController {
 	
 	public JSONObject getMemoryList(String company, String model, int version, int capacity, int speed) throws IOException{
+		
+		try {
+	        Client client = Client.create();
+	        WebResource webResource = client.resource("https://svcs.ebay.com/services/search/FindingService/v1?");
+	        webResource.queryParam("OPERATION-NAME", "findItemsAdvanced")
+	        			.queryParam("SERVICE-VERSION", "1.0.0")
+	       				.queryParam("SECURITY-APPNAME", "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34")
+	       				.queryParam("x", "x");
+	        ClientResponse response = webResource.accept("application/json")
+                   .get(ClientResponse.class);
+	        if (response.getStatus() != 200) {
+	    	   throw new RuntimeException("Failed : HTTP error code : "
+	    			   + response.getStatus());
+	        }
+	        
+	        //Objectumwandlung um mit response arbeiten zu können überhaupt nötig? Wir befüllen mit der response ja kein Object bei uns.
+	        
+	        String output = response.getEntity(String.class);
+	        System.out.println("Output from Server .... \n");
+	        System.out.println(output);
+	        
+	        return response.getEntity();
+	    	} catch (Exception e) {
+	    		e.printStackTrace();
+	    		return null;
+	    	}
+		
+		
+		
+		/* LOW LEVEL IMPLEMENTIERUNG (deprecated)
 		//Get-request to Ebay API: Get all memories with specified requirements as JSON and return as JSON
 		
 		//Frage: Sollen wir JSON returnen oder eine List? Im Endpoint wird nämlich produces "JSON" angegeben.
@@ -61,6 +95,6 @@ public class MemoryListBusinessController {
 			return memoryList;
 		} else {
 			return null;
-		}
+		}*/
 	}
 }

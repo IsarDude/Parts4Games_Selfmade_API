@@ -20,15 +20,15 @@ public class MemoryService {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response addMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
 			configurationController.addMemoryToConfig(configId, memory);
-			return Response.status(200).build();
+			return Response.status(201).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
@@ -36,7 +36,7 @@ public class MemoryService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changeMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
 			configurationController.changeMemory(configId, memory);
@@ -44,22 +44,22 @@ public class MemoryService {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
 	}
 	
 	@DELETE
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changeMemory(@PathParam("configId") int configId) {
 		try {
 			configurationController.deleteMemory(configId);
-			return Response.status(204).build();
+			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}

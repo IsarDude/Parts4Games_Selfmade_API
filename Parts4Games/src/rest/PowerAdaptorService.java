@@ -20,15 +20,15 @@ public class PowerAdaptorService {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
 			configurationController.addPowerAdaptorToConfig(configId, powerAdaptor);
-			return Response.status(200).build();
+			return Response.status(201).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
@@ -36,7 +36,7 @@ public class PowerAdaptorService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changePowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
 			configurationController.changePowerAdaptor(configId, powerAdaptor);
@@ -44,22 +44,22 @@ public class PowerAdaptorService {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
 	}
 	
 	@DELETE
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changePowerAdaptor(@PathParam("configId") int configId) {
 		try {
 			configurationController.deletePowerAdaptor(configId);
-			return Response.status(204).build();
+			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}

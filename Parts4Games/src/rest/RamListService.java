@@ -25,7 +25,7 @@ public class RamListService {
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
