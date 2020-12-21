@@ -17,11 +17,7 @@ public class Config {
 	private PowerAdaptor selectedPoweradaptor;
 
 	
-	public void getConfig() {
-		LinkedList<Object> list = new LinkedList<>();
-		list.addAll(configID, budget,selectedGpu, selectedCpu, selectedRAM, selectedMotherboard, selectedMemory, selectedPoweradaptor);
-		return list;
-	}
+	
 	
 	public void checkBudget() {
 		
