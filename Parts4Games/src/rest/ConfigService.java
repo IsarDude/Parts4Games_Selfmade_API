@@ -18,10 +18,11 @@ import data.Config;
 public class ConfigService {
 	
 	@POST // Bei POST auf die URL der Klasse
-	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
+// wird JSON erwartet 
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
-	public int createConfig(Config newConfig) {
-	   int id = ConfigurationController.getInstance().createConfig(newConfig);
+	public int createConfig() {
+		
+	   int id = ConfigurationController.getInstance().createConfig();
 	  return id;
 	}
 	

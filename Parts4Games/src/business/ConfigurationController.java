@@ -21,8 +21,9 @@ public class ConfigurationController {
 		return instance;
 	}
 	
-	public int createConfig(Config newConfig) {
+	public int createConfig() {
 		int newID;
+		Config newConfig = new Config();
 		if(configList.size()>0) {
 			newID =	configList.getLast().getConfigID() + 1;
 		}else {
