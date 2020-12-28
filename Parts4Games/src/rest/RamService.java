@@ -43,7 +43,7 @@ public class RamService {
 	}
 	
 	@DELETE
-	@Produces( MediaType.TEXT_PLAIN ) // und als Rückmeldung produziert
+	@Produces( MediaType.TEXT_PLAIN ) // und als RÃ¼ckmeldung produziert
 	public Response deleteRAM(@PathParam("configId") int configId) {
 		try {
 			ConfigurationController.getInstance().deleteRAM(configId);
@@ -52,15 +52,6 @@ public class RamService {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 			return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
-		}
-	
-			
-		
-	
-		
-	}
-	
-	
-	
-	
+		}			
+	}	
 }
