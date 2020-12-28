@@ -1,6 +1,5 @@
 package rest;
 
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
@@ -11,26 +10,25 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import business.PowerAdaptorBusinessController;
+import business.ConfigurationController;
 import data.PowerAdaptor;
 
 @Path("/config/{configId}/powerAdaptor")
 public class PowerAdaptorService {
 	
-	@Inject 
-	private PowerAdaptorBusinessController powerAdaptorBusinessController;
+	ConfigurationController configurationController = ConfigurationController.getInstance();
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
-			powerAdaptorBusinessController.addPowerAdaptor(configId, powerAdaptor);
-			return Response.status(200).build();
+			configurationController.addPowerAdaptorToConfig(configId, powerAdaptor);
+			return Response.status(201).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
@@ -38,30 +36,30 @@ public class PowerAdaptorService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changePowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
-			powerAdaptorBusinessController.changePowerAdaptor(configId, powerAdaptor);
+			configurationController.changePowerAdaptor(configId, powerAdaptor);
 			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
 	}
 	
 	@DELETE
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changePowerAdaptor(@PathParam("configId") int configId) {
 		try {
-			powerAdaptorBusinessController.deletePowerAdaptor(configId);
-			return Response.status(204).build();
+			configurationController.deletePowerAdaptor(configId);
+			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}

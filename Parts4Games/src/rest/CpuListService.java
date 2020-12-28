@@ -8,24 +8,24 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import business.RamListBusinessController;
+import business.CpuListBusinessController;
 
-@Path("/ramList")
-public class RamListService {
+@Path("/cpuList")
+public class CpuListService {
 
 	@Inject
-	private RamListBusinessController ramListBusinessController;
+	private CpuListBusinessController CpuListBusinessController;
 	
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getRamList(String company, String model, int capacity, String type, int frequency) {
+	public Response getCPUList(int socket, int frequency, int cores, String company, String model, int generation, float price) {
 		try {
-			return Response.ok(ramListBusinessController.getRamList(company, model, capacity, type, frequency)).build();
+			return Response.ok(CpuListBusinessController.getCPUList(socket, frequency, cores, company, model, generation, price)).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.APPLICATION_JSON)
+					.type(MediaType.TEXT_PLAIN)
 					.entity(e.getMessage())
 					.build();
 		}

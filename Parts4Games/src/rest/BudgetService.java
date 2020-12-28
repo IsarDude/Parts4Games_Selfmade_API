@@ -1,5 +1,7 @@
 package rest;
 
+import java.io.IOException;
+
 import javax.ws.rs.Consumes;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -19,25 +21,32 @@ public class BudgetService {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
-	@Produces( MediaType.TEXT_PLAIN )
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response createBudget(@PathParam("configId") int configId,float budget) {
-		int control = ConfigurationController.getInstance().createBudget(configId, budget);
-		if(control != -1) {
-			return Response.status(200).entity("{\"state\":\"created\"}").type("application/json").build();
-			
+		float control;
+		try {
+			control = ConfigurationController.getInstance().setBudget(configId, budget);
+			return Response.status(201).entity("{\"state\":\"created\"}").type("application/json").build();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
 		}
-		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
+	
+		
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
-	@Produces( MediaType.TEXT_PLAIN )
 	public Response changeBudget(@PathParam("configId") int configId,float budget) {
-		int control = ConfigurationController.getInstance().changeBudget(configId, budget);
-		if(control != -1) {
-			return Response.status(200).entity("{\"state\":\"changed\"}").type("application/json").build();
-			
+		float control;
+		try {
+			control = ConfigurationController.getInstance().changeBudget(configId, budget);
+			return Response.ok().type("application.json").build();
+		} catch (IOException e) {
+			return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
 		}
-		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
+		
+		
 	}
 }

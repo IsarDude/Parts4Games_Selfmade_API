@@ -1,15 +1,17 @@
 package business;
 
+import java.io.IOException;
 import java.util.LinkedList;
 
 import data.Config;
 import data.GPU;
-<<<<<<< HEAD
+import data.Memory;
 import data.RAM;
-import data.Ram;
-=======
+import data.CPU;
+import data.Motherboard;
+
 import data.PowerAdaptor;
->>>>>>> branch 'master' of https://github.com/IsarDude/Parts4Games
+
 
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();
@@ -19,8 +21,9 @@ public class ConfigurationController {
 		return instance;
 	}
 	
-	public int createConfig(Config newConfig) {
-		int newID = -1;
+	public int createConfig() {
+		int newID;
+		Config newConfig = new Config();
 		if(configList.size()>0) {
 			newID =	configList.getLast().getConfigID() + 1;
 		}else {
@@ -41,175 +44,232 @@ public class ConfigurationController {
 		return temp;
 	}
 	
-	public int deleteConfig(int aConfigId) {
+	public boolean deleteConfig(int aConfigId) {
 		Config temp = getConfig(aConfigId);
 		if(temp != null) {
 			configList.remove(temp);
-			return 1;
+			return true;
 		}else {
-			return -1;
+			return false;
 		}
 	}
 	
-	public int getConfigIndex(int configId) {
-		int index = -1;
-		for(int i = 0; i< configList.size();i++) {
-			if(configList.get(i).getConfigID() == configId) {
-				index = i;
-			}
+	
+	
+	public CPU addCpuToConfig(int configId,CPU aCpu) throws IOException {
+		Config config = getConfig(configId);
+		if(config != null) {
+			config.setSelectedCpu(aCpu);
+			return config.getSelectedCpu();
+		}else {
+			throw new IOException();
 		}
-		return index;
+			
+		
+		
 	}
 	
-	public int addGpuToConfig(int configId, GPU aGpu) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedGpu(aGpu);
+	public CPU changeCPU(int configId, CPU aCPU) throws IOException{
+		Config config = getConfig(configId);
+		if(config != null) {
+			config.setSelectedCpu(aCPU);
+			return config.getSelectedCpu();
+		}else {
+			throw new IOException();
 		}
-		return index;
+		
+		
 	}
 	
-	public int changeGPU(int configId, GPU aGPU) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedGpu(aGPU);
+	
+	public void deleteCPU(int configId) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedCpu(null);
+			
+		}else {
+			throw new IOException();
 		}
-		return index;
+			
+		
 	}
 	
-	public int deleteGPU(int configId) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedGpu(null);
+	public GPU addGpuToConfig(int configId, GPU aGpu) throws IOException{
+		Config config = getConfig(configId);
+		if(config != null) {
+			config.setSelectedGpu(aGpu);
+			return config.getSelectedGpu();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int setBudget(int configId, float budget) {
-		int index = getConfigIndex(configId);
-		configList.get(index).setBudget(budget);
-		return index;
+	public GPU changeGPU(int configId, GPU aGPU) throws IOException {
+		Config config = getConfig(configId);
+		if(config != null) {
+			config.setSelectedGpu(aGPU);
+			return config.getSelectedGpu();
+		}else {
+			throw new IOException();
+		}
 	}
 	
-	public float getBudget(int configId) {
+	public void deleteGPU(int configId) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedGpu(null);
+			
+		}else {
+			throw new IOException();
+		}
+	}
+	
+	public float setBudget(int configId, float budget) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setBudget(budget);
+			return conf.getBudget();
+		}else {
+			throw new IOException();
+		}
+	}
+	
+	public float getBudget(int configId) throws IOException {
 		Config temp = getConfig(configId);
+		if(temp == null) {
+			throw new IOException();
+		}
 		return temp.getBudget();
 	}
 	
-	public int changeBudget(int configId, float budget) {
-		int index = getConfigIndex(configId);
-		configList.get(index).setBudget(budget);
-		return index;
+	public float changeBudget(int configId, float budget)  throws IOException {
+		Config conf = getConfig(configId);
+		if(conf != null) {
+			conf.setBudget(budget);
+			return conf.getBudget();
+		}else {
+			throw new IOException();
+		}
 	}
 	
-<<<<<<< HEAD
-	//Andre
-	//#####################
-	//Motherboard
-	public int addMotherboardToConfig(int configId, Motherboard aMotherboard) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedMotherboard(aMotherboard);
+	public Motherboard addMotherboardToConfig(int configId, Motherboard aMotherboard) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedMotherboard(aMotherboard);
+			return conf.getSelectedMotherboard();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int changeMotherboard(int configId, Motherboard aMotherboard) {
-		int index = getConfigIndex(configId);
-			
-		
-		if(index != -1) {
-			configList.get(index).setSelectedMotherboard(aMotherboard);
+	public Motherboard changeMotherboard(int configId, Motherboard aMotherboard) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedMotherboard(aMotherboard);
+			return conf.getSelectedMotherboard();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int deleteMotherboard(int configId) {
-		int index = getConfigIndex(configId);
-			
-		
-		if(index != -1) {
-			configList.get(index).setSelectedMotherboard(null);  //verstehe nicht, warum "null" nicht akzeptiert wird bei den anderen Datenobjekten gehts auch 
+	public boolean deleteMotherboard(int configId) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedMotherboard(null);
+			return true;
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	//RAM
-	public int addRAMToConfig(int configId, RAM aRam) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedRAM(aRam);
+	public RAM addRAMToConfig(int configId, RAM aRam) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedRAM(aRam);
+			return conf.getSelectedRAM();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int changeRAM(int configId, RAM aRam) {
-		int index = getConfigIndex(configId);
-			
-		
-		if(index != -1) {
-			configList.get(index).setSelectedRAM(aRam);
+	public RAM changeRAM(int configId, RAM aRam) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedRAM(aRam);
+			return conf.getSelectedRAM();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int deleteRAM(int configId) {
-		int index = getConfigIndex(configId);
-			
-		
-		if(index != -1) {
-			configList.get(index).setSelectedRAM(null);
+	public boolean deleteRAM(int configId) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedRAM(null);
+			return true;
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
-	//#####################
-=======
-	public int addMemoryToConfig(int configId, Memory aMemory) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedMemory(aMemory);
+
+	public Memory addMemoryToConfig(int configId, Memory aMemory) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedMemory(aMemory);
+			return conf.getSelectedMemory();
+		}else {
+			throw new IOException();
 		}
-		return index;
-	}
-	
-	public int changeMemory(int configId, Memory aMemory) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedMemory(aMemory);
-		}
-		return index;
 	}
 	
-	public int deleteMemory(int configId) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedMemory(null);
+	public Memory changeMemory(int configId, Memory aMemory) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedMemory(aMemory);
+			return conf.getSelectedMemory();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int addPowerAdaptorToConfig(int configId, PowerAdaptor aPowerAdaptor) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedPoweradaptor(aPowerAdaptor);
+	public boolean deleteMemory(int configId) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedRAM(null);
+			return true;
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int changePowerAdaptor(int configId, PowerAdaptor aPowerAdaptor) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedPoweradaptor(aPowerAdaptor);
+	public PowerAdaptor addPowerAdaptorToConfig(int configId, PowerAdaptor aPowerAdaptor) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedPoweradaptor(aPowerAdaptor);
+			return conf.getSelectedPoweradaptor();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
 	
-	public int deletePowerAdaptor(int configId) {
-		int index = getConfigIndex(configId);
-		if(index != -1) {
-			configList.get(index).setSelectedPoweradaptor(null);
+	public PowerAdaptor changePowerAdaptor(int configId, PowerAdaptor aPowerAdaptor) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedPoweradaptor(aPowerAdaptor);
+			return conf.getSelectedPoweradaptor();
+		}else {
+			throw new IOException();
 		}
-		return index;
 	}
->>>>>>> branch 'master' of https://github.com/IsarDude/Parts4Games
+	
+	public boolean deletePowerAdaptor(int configId) throws IOException {
+		Config conf= getConfig(configId);
+		if(conf != null) {
+			conf.setSelectedPoweradaptor(null);
+			return true;
+		}else {
+			throw new IOException();
+		}
+	}
+
 }

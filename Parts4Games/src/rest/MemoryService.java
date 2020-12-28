@@ -1,6 +1,5 @@
 package rest;
 
-import javax.inject.Inject;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.POST;
@@ -11,25 +10,25 @@ import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
-import business.MemoryBusinessController;
+import business.ConfigurationController;
+import data.Memory;
 
 @Path("/config/{configId}/memory")
 public class MemoryService {
 	
-	@Inject 
-	private MemoryBusinessController memoryBusinessController;
+	ConfigurationController configurationController = ConfigurationController.getInstance();
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response addMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
-			memoryBusinessController.addMemory(configId, memory);
-			return Response.status(200).build();
+			configurationController.addMemoryToConfig(configId, memory);
+			return Response.status(201).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
@@ -37,30 +36,30 @@ public class MemoryService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changeMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
-			memoryBusinessController.changeMemory(configId, memory);
+			configurationController.changeMemory(configId, memory);
 			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
 	}
 	
 	@DELETE
-	@Produces(MediaType.TEXT_PLAIN)
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changeMemory(@PathParam("configId") int configId) {
 		try {
-			memoryBusinessController.deleteMemory(configId);
-			return Response.status(204).build();
+			configurationController.deleteMemory(configId);
+			return Response.status(200).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
-					.type(MediaType.TEXT_PLAIN)
+					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
 		}
