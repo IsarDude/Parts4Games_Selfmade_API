@@ -5,10 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import javax.ws.rs.core.Response;
 
-import org.json.JSONObject;
+
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -16,7 +17,7 @@ import com.sun.jersey.api.client.WebResource;
 
 public class RamListBusinessController {
 	
-	public JSONObject getRamList(String company, String model, int capacity, String type, int frequency) throws IOException{
+	public List<String> getRamList(String company, String model, int capacity, String type, int frequency) throws IOException{
 		
 		try {
 	        Client client = Client.create();

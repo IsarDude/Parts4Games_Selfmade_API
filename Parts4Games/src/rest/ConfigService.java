@@ -14,16 +14,17 @@ import javax.ws.rs.core.Response;
 import business.ConfigurationController;
 import data.Config;
 
-@Path("/config")
+
 public class ConfigService {
 	
+	@Path("/config")
 	@POST // Bei POST auf die URL der Klasse
 // wird JSON erwartet 
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
 	public int createConfig() {
-		
-	   int id = ConfigurationController.getInstance().createConfig();
-	  return id;
+		return 1;
+	  // int id = ConfigurationController.getInstance().createConfig();
+	  //return id;
 	}
 	
 	@Path("/config/{configId}")

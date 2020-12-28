@@ -5,7 +5,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import org.json.JSONObject;
+import java.util.List;
+
 
 import com.sun.jersey.api.client.Client;
 import com.sun.jersey.api.client.ClientResponse;
@@ -13,7 +14,7 @@ import com.sun.jersey.api.client.WebResource;
 
 public class MemoryListBusinessController {
 	
-	public JSONObject getMemoryList(String company, String model, int version, int capacity, int speed) throws IOException{
+	public List<String> getMemoryList(String company, String model, int version, int capacity, int speed) throws IOException{
 		
 		try {
 	        Client client = Client.create();
