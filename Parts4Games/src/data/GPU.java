@@ -12,6 +12,8 @@ public class GPU {
 	private String generation;
 	private float price;
 	
+	public GPU() {}
+	
 	public GPU(int aFrequency, int aMemory, String aCompany, String aModel, String aGeneration, float aPrice) {
 		super();
 		this.frequency= aFrequency;

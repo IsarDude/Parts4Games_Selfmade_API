@@ -5,8 +5,13 @@ import java.util.LinkedList;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.glassfish.jersey.linking.InjectLink;
+
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class Config {
+	
+	
+	@InjectLink()
 	public int configID;
 	private float budget;
 	private GPU selectedGpu;

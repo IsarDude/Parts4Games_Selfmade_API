@@ -15,6 +15,7 @@ import data.CPU;
 @Path("/config/{configId}/cpu")
 public class CpuService {
 	
+	
 	@POST // Bei POST auf die URL der Klasse
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert

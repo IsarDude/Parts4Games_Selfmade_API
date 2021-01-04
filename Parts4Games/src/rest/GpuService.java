@@ -14,7 +14,8 @@ import javax.ws.rs.*;
 public class GpuService {
 	
 	@POST
-	@Produces( MediaType.TEXT_PLAIN )
+	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
+	@Produces( MediaType.APPLICATION_JSON)
 	public GPU createGPU(@PathParam("configId") int configId, GPU aGPU) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
@@ -29,8 +30,8 @@ public class GpuService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
-	@Produces( MediaType.TEXT_PLAIN )
-	public GPU changeGPU(int configId, GPU aGPU) {
+	@Produces( MediaType.APPLICATION_JSON)
+	public GPU changeGPU(@PathParam("configId") int configId, GPU aGPU) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			return conf.changeGPU(configId, aGPU);
@@ -44,7 +45,7 @@ public class GpuService {
 	}
 	
 	@DELETE
-	@Produces( MediaType.TEXT_PLAIN ) // und als Rückmeldung produziert
+	@Produces( MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
 	public Response deleteGPU(@PathParam("configId") int configId) {
 		try {
 			ConfigurationController.getInstance().deleteGPU(configId);

@@ -3,7 +3,7 @@
   <groupId>group7</groupId>
   <artifactId>Parts4Games</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>firstexample</name>
+  <name>Parts4Games</name>
   <description>Short REST Web Service introduction
 </description>
 <properties>
@@ -33,6 +33,7 @@
   </build>
   <dependencyManagement>
   	<dependencies>
+  		
   		<dependency>
   		<groupId>org.glassfish.jersey</groupId>
   			<artifactId>jersey-bom</artifactId>
@@ -44,6 +45,10 @@
   </dependencyManagement>
   
   <dependencies>
+  		<dependency>
+	    	<groupId>org.glassfish.jersey.ext</groupId>
+	    	<artifactId>jersey-declarative-linking</artifactId>
+	    	</dependency>
   		<dependency>
   		<groupId>org.glassfish.jersey</groupId>
   			<artifactId>jersey-bom</artifactId>
@@ -84,10 +89,9 @@
   		<version>1.1.1</version>
   	</dependency>
   	<dependency>
-        	<groupId>com.sun.jersey</groupId>
+        	<groupId>org.glassfish.jersey.core</groupId>
         	<artifactId>jersey-client</artifactId>
-        	<version>1.8</version>
-    	</dependency>
+        	</dependency>
   	</dependencies>
   
 </project>

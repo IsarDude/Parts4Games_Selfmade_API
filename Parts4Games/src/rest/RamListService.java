@@ -12,7 +12,7 @@ import business.RamListBusinessController;
 
 @Path("/ramList")
 public class RamListService {
-
+/*
 	@Inject
 	private RamListBusinessController ramListBusinessController;
 	
@@ -30,6 +30,7 @@ public class RamListService {
 					.build();
 		}
 	}
+	*/
 }
 	
 

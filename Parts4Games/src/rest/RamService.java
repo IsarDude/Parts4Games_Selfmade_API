@@ -14,7 +14,8 @@ import javax.ws.rs.*;
 public class RamService {
 	
 	@POST
-	@Produces( MediaType.TEXT_PLAIN )
+	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
+	@Produces( MediaType.APPLICATION_JSON)
 	public RAM createRAM(@PathParam("configId") int configId, RAM aRam) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
@@ -29,8 +30,8 @@ public class RamService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
-	@Produces( MediaType.TEXT_PLAIN )
-	public RAM changeRAM(int configId, RAM aRam) {
+	@Produces( MediaType.APPLICATION_JSON)
+	public RAM changeRAM(@PathParam("configId") int configId, RAM aRam) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			return conf.changeRAM(configId, aRam);

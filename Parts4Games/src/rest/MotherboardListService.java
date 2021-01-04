@@ -12,7 +12,7 @@ import business.MotherboardListController;;
 
 @Path("/motherboardList")
 public class MotherboardListService {
-	
+	/*
 	@Inject
 	private MotherboardListController motherboardListBusinessController;
 	
@@ -30,5 +30,5 @@ public class MotherboardListService {
 					.build();
 		}
 	}
-	
+	*/
 }

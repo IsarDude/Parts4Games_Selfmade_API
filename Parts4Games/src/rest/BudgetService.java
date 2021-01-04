@@ -38,6 +38,7 @@ public class BudgetService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response changeBudget(@PathParam("configId") int configId,float budget) {
 		float control;
 		try {
