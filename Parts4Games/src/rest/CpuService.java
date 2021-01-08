@@ -20,7 +20,7 @@ public class CpuService {
 	public CPU createCPU(@PathParam("configId") int configId , CPU aCpu) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return conf.addCpuToConfig(configId, aCPU);
+			return conf.addCpuToConfig(configId, aCpu);
 		} catch (IOException e) {
 			
 			e.printStackTrace();
@@ -31,10 +31,10 @@ public class CpuService {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
-	public Response changeCPU(@PathParam("config") int configId, CPU aCpu) {
+	public CPU changeCPU(@PathParam("configId") int configId, CPU aCpu) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return conf.changeCPU(configId, aCPU);
+			return conf.changeCPU(configId, aCpu);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			
@@ -45,7 +45,7 @@ public class CpuService {
 	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
-	public Response deleteCPU(@PathParam("config") int configId) {
+	public Response deleteCPU(@PathParam("configId") int configId) {
 		try {
 			ConfigurationController.getInstance().deleteCPU(configId);
 			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();

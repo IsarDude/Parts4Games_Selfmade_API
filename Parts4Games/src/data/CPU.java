@@ -13,6 +13,8 @@ public class CPU {
 	private int cores;
 	private float price;
 	
+	
+	public CPU () {}
 	public CPU(int aSocket, int aFrequency, int aCores, String aCompany, String aModel, int aGeneration, float aPrice) {
 		super();
 		this.frequency= aFrequency;

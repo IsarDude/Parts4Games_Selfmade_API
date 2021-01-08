@@ -15,7 +15,7 @@ public class MotherboardService {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces( MediaType.TEXT_PLAIN )
+	@Produces( MediaType.APPLICATION_JSON )
 	public Motherboard createMotherboard(@PathParam("configId") int configId, Motherboard aMotherboard) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
