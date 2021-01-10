@@ -5,70 +5,91 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class GPU {
-	private int frequency;
-	private int memory;
-	private String company;
-	private String model;
-	private String generation;
+	private String productIdEAN;
+	private String compatibleSlot;
+	private String chipsetManufacturer;
+	private String brand;
+	private String chipsetGPUModel;
+	private String fotoURL;
 	private float price;
 	
 	public GPU() {}
 	
-	public GPU(int aFrequency, int aMemory, String aCompany, String aModel, String aGeneration, float aPrice) {
+	
+	
+	
+	
+	public GPU(String productIdEAN, String compatibleSlot, String chipsetManufacturer, String brand,
+			String chipsetGPUModel, String fotoURL, float price) {
 		super();
-		this.frequency= aFrequency;
-		this.memory = aMemory;
-		this.company = aCompany;
-		this.model = aModel;
-		this.generation= aGeneration;
-		this.price=aPrice;
-		
+		this.productIdEAN = productIdEAN;
+		this.compatibleSlot = compatibleSlot;
+		this.chipsetManufacturer = chipsetManufacturer;
+		this.brand = brand;
+		this.chipsetGPUModel = chipsetGPUModel;
+		this.fotoURL = fotoURL;
+		this.price = price;
+	}
+
+
+
+
+
+	@XmlElement(name="fotoURL")
+	public String getFotoURL() {
+		return fotoURL;
+	}
+
+	public void setFotoURL(String fotoURL) {
+		this.fotoURL = fotoURL;
+	}
+
+	@XmlElement(name="ProductIdEAN")
+	public String getProductIdEAN() {
+		return productIdEAN;
+	}
+
+	public void setProductIdEAN(String productIdEAN) {
+		this.productIdEAN = productIdEAN;
+	}
+
+	@XmlElement(name="compatibleSlot")
+	public String getCompatibleSlot() {
+		return compatibleSlot;
+	}
+
+	public void setCompatibleSlot(String compatibleSlot) {
+		this.compatibleSlot = compatibleSlot;
+	}
+
+	@XmlElement(name="chipsetManufacturer")
+	public String getChipsetManufacturer() {
+		return chipsetManufacturer;
 	}
 	
-	@XmlElement(name="frequency")
-	public int getFrequency() {
-		return frequency;
-	}
-
-	public void setFrequency(int frequency) {
-		this.frequency = frequency;
+	public void setChipsetManufacturer(String chipsetManufacturer) {
+		this.chipsetManufacturer = chipsetManufacturer;
 	}
 	
-	@XmlElement(name="memory")
-	public int getMemory() {
-		return memory;
+	@XmlElement(name="Brand")
+
+	public String getBrand() {
+		return brand;
 	}
 
-	public void setMemory(int memory) {
-		this.memory = memory;
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 
-	@XmlElement(name="company")
-	public String getCompany() {
-		return company;
-	}
+
+	@XmlElement(name="chipsetGPUModel")
 	
-	
-	public void setCompany(String company) {
-		this.company = company;
-	}
-	
-	@XmlElement(name="model")
-	public String getModel() {
-		return model;
+	public String getChipsetGPUModel() {
+		return chipsetGPUModel;
 	}
 
-	public void setModel(String model) {
-		this.model = model;
-	}
-
-	@XmlElement(name="generation")
-	public String getGeneration() {
-		return generation;
-	}
-
-	public void setGeneration(String generation) {
-		this.generation = generation;
+	public void setChipsetGPUModel(String chipsetGPUModel) {
+		this.chipsetGPUModel = chipsetGPUModel;
 	}
 	
 	@XmlElement(name="price")
@@ -80,19 +101,23 @@ public class GPU {
 		this.price = price;
 	}
 	
+	
 	public String getKeywordString() {
-		String keywords = "GPU "+ frequency + "Hz " + memory + "Gb" ;
-		if(company != null) {
-			keywords = keywords +" " + company;
+		String keywords = "GPU " + "Hz " + "Gb" ;
+		if(chipsetGPUModel != null) {
+			keywords = keywords +" " + chipsetGPUModel;
 		}
-		if(model != null) {
-			keywords = keywords+ " " + model;
-		}
-		if(generation != null) {
-			keywords = keywords + " "+ generation;
+		if(brand != null) {
+			keywords = keywords+ " " + brand;
 		}
 		return keywords;
 	}
+
+
+
+
+
+	
 	
 	
 }
