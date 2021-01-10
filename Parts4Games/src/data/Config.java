@@ -1,17 +1,26 @@
 package data;
 
+import java.net.URI;
 import java.util.LinkedList;
+import java.util.List;
 
+import javax.ws.rs.core.Link;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 import org.glassfish.jersey.linking.InjectLink;
+import org.glassfish.jersey.linking.InjectLink.Style;
+import org.glassfish.jersey.linking.InjectLinks;
+import org.glassfish.jersey.linking.Binding;
+
+import rest.ConfigService;
+
 
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class Config {
 	
 	
-	@InjectLink()
+	
 	public int configID;
 	private float budget;
 	private GPU selectedGpu;
@@ -20,9 +29,24 @@ public class Config {
 	private Motherboard selectedMotherboard;
 	private Memory selectedMemory;
 	private PowerAdaptor selectedPoweradaptor;
+	
+	@InjectLinks(
+			@InjectLink(resource=Config.class, value="/{configId}", rel="self", style=Style.ABSOLUTE,
+			bindings= @Binding(name= "configId", value="${instance.configId}")))
+	List<Link> links;
+	/*
+	@InjectLink(resource=ConfigService.class, style=Style.ABSOLUTE)
+	private URI uri;
+	
+	
+	public void setUri(URI uri) {
+		this.uri = uri;
+	}
 
-	
-	
+	public URI getUri() {
+		return uri;
+	}
+	*/
 	
 	public void checkBudget() {
 		
