@@ -1,19 +1,48 @@
 package data;
 
+import java.io.Serializable;
 import java.util.LinkedList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
+
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
-public class Config {
+@Entity
+public class Config implements Serializable{
+
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5989583149926908655L;
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int configID;
+	
+	@Column
 	private float budget;
+	@Column
 	private GPU selectedGpu;
+	@Column
 	private CPU selectedCpu;
+	@Column
 	private RAM selectedRAM;
+	@Column
 	private Motherboard selectedMotherboard;
+	@Column
 	private Memory selectedMemory;
+	@Column
 	private PowerAdaptor selectedPoweradaptor;
 
 	
