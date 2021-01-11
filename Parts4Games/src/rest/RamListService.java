@@ -19,7 +19,7 @@ public class RamListService {
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getRamList(String company, String model, int capacity, String type, int frequency) {
+	public Response getRamList(String brand, String model, int totalcapacity, String type, String busSpeed, float price) {
 		try {
 			return Response.ok(ramListBusinessController.getRamList(company, model, capacity, type, frequency)).build();
 		}catch(Exception e) {

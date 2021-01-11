@@ -19,7 +19,7 @@ public class MemoryListService {
 	@GET
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getRamList(String company, String model, int version, int capacity, int speed) {
+	public Response getRamList(String brand, String model, String interFace, String formFactor, String type, float price) {
 		try {
 			return Response.ok(memoryListBusinessController.getMemoryList(company, model, version, capacity, speed)).build();
 		}catch(Exception e) {

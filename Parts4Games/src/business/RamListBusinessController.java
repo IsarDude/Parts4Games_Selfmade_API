@@ -17,7 +17,7 @@ import com.sun.jersey.api.client.WebResource;
 
 public class RamListBusinessController {
 	
-	public List<String> getRamList(String company, String model, int capacity, String type, int frequency) throws IOException{
+	public List<String> getRamList(String brand, String model, int totalcapacity, String type, String busSpeed, float price) throws IOException{
 		
 		try {
 	        Client client = Client.create();

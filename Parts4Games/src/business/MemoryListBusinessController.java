@@ -14,7 +14,7 @@ import com.sun.jersey.api.client.WebResource;
 
 public class MemoryListBusinessController {
 	
-	public List<String> getMemoryList(String company, String model, int version, int capacity, int speed) throws IOException{
+	public List<String> getMemoryList(String brand, String model, String interFace, String formFactor, String type, float price) throws IOException{
 		
 		try {
 	        Client client = Client.create();
