@@ -30,15 +30,28 @@ public class Config {
 	private Memory selectedMemory;
 	private PowerAdaptor selectedPoweradaptor;
 	
-	@InjectLinks(
-			@InjectLink(resource=Config.class, value="/{configId}", rel="self", style=Style.ABSOLUTE,
-			bindings= @Binding(name= "configId", value="${instance.configId}")))
+	/*
+	  @InjectLink(resource = ConfigService.getConfig, value="/stuff", rel="create", style = Style.ABSOLUTE),
+				@InjectLink( value="config/{configId}", rel="self", style=Style.ABSOLUTE,
+				bindings= @Binding(name= "configId", value="${instance.configID}"))
+	  */
+	 
+	@InjectLinks({})
 	List<Link> links;
+	URI uri;
 	/*
 	@InjectLink(resource=ConfigService.class, style=Style.ABSOLUTE)
 	private URI uri;
+	*/
+	@XmlElement(name="links")
+	public void setLinks(List<Link> links) {
+		this.links=links;
+	}
 	
-	
+	public List<Link> getLinks() {
+		return links;
+	}
+	@XmlElement(name="uri")
 	public void setUri(URI uri) {
 		this.uri = uri;
 	}
@@ -46,7 +59,7 @@ public class Config {
 	public URI getUri() {
 		return uri;
 	}
-	*/
+	
 	
 	public void checkBudget() {
 		
