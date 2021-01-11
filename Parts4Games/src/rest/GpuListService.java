@@ -12,7 +12,7 @@ import business.GpuListBusinessController;
 
 @Path("/gpuList")
 public class GpuListService {
-
+/*
 	@Inject
 	private GpuListBusinessController GpuListBusinessController;
 	
@@ -30,6 +30,7 @@ public class GpuListService {
 					.build();
 		}
 	}
+	*/
 }
 	
 

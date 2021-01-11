@@ -12,7 +12,7 @@ import business.CpuListBusinessController;
 
 @Path("/cpuList")
 public class CpuListService {
-
+/*
 	@Inject
 	private CpuListBusinessController CpuListBusinessController;
 	
@@ -30,6 +30,7 @@ public class CpuListService {
 					.build();
 		}
 	}
+	*/
 }
 	
 

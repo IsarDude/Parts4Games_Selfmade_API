@@ -14,7 +14,8 @@ import javax.ws.rs.*;
 public class MotherboardService {
 	
 	@POST
-	@Produces( MediaType.TEXT_PLAIN )
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces( MediaType.APPLICATION_JSON )
 	public Motherboard createMotherboard(@PathParam("configId") int configId, Motherboard aMotherboard) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
@@ -33,8 +34,8 @@ public class MotherboardService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON) // wird JSON erwartet 
-	@Produces( MediaType.TEXT_PLAIN )
-	public Motherboard changeMotherboard(int configId, Motherboard aMotherboard) {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Motherboard changeMotherboard(@PathParam("configId") int configId, Motherboard aMotherboard) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			return conf.changeMotherboard(configId, aMotherboard);
@@ -47,7 +48,7 @@ public class MotherboardService {
 	}
 	
 	@DELETE
-	@Produces( MediaType.TEXT_PLAIN ) // und als Rückmeldung produziert
+	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
 	public Response deleteMotherboard(@PathParam("configId") int configId) {
 		try {
 			ConfigurationController.getInstance().deleteMotherboard(configId);

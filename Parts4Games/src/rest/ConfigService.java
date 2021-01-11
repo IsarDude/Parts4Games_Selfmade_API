@@ -14,19 +14,33 @@ import javax.ws.rs.core.Response;
 import business.ConfigurationController;
 import data.Config;
 
+
+import org.glassfish.jersey.linking.ProvideLink;
+import org.glassfish.jersey.linking.Binding;
+
 @Path("/config")
 public class ConfigService {
 	
+	/*
+	@ProvideLink(value = Config.class, rel ="self",
+			 bindings = @Binding(name="configId", value="${instance.configId}"))
+	@ProvideLink(value = Config.class, rel="delete",
+			 bindings = @Binding(name="configId", value="${instance.configId}"))
+			 */
 	@POST // Bei POST auf die URL der Klasse
 // wird JSON erwartet 
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
-	public int createConfig() {
-		
-	   int id = ConfigurationController.getInstance().createConfig();
-	  return id;
+	public Config createConfig() {
+		return ConfigurationController.getInstance().createConfig();
+	  // int id = ConfigurationController.getInstance().createConfig();
+	  //return id;
 	}
 	
-	@Path("/config/{configId}")
+	@ProvideLink(value = Config.class, rel ="self",
+			 bindings = @Binding(name="configId", value="$configId"))
+	@ProvideLink(value = Config.class, rel="delete",
+			 bindings = @Binding(name="configId", value="$configId"))
+	@Path("/{configId}")
 	@GET
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
 	public Config getConfig(@PathParam("configId") int configId) {
@@ -35,6 +49,7 @@ public class ConfigService {
 		return config;
 	}
 	
+	@Path("/{configId}")
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)  // und als Rückmeldung produziert
 	public Response deleteConfig(@PathParam("configId") int configId) {

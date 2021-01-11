@@ -7,18 +7,20 @@ public class RAM {
 	private int frequency;
 	private String stickType;
 	private String sellType;
+	private float price;
 	
 	public RAM() {
 		
 	}
 	
-	public RAM(String company, String model, int capacity, String stickType, String sellType, int frequency) {
+	public RAM(String company, String model, int capacity, String stickType, String sellType, int frequency, float price) {
 		this.company = company;
 		this.model = model;
 		this.capacity = capacity;
 		this.stickType = stickType;
 		this.sellType = sellType;
 		this.frequency = frequency;
+		this.price = price;
 	}
 	
 	public String getCompany() {
@@ -57,4 +59,13 @@ public class RAM {
 	public void setSellType(String sellType) {
 		this.sellType = sellType;
 	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	
 }

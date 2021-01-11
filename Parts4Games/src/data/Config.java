@@ -1,52 +1,51 @@
 package data;
 
-import java.io.Serializable;
+import java.net.URI;
 import java.util.LinkedList;
+import java.util.List;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
-import javax.persistence.Table;
+import javax.ws.rs.core.Link;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+import org.glassfish.jersey.linking.InjectLink;
+import org.glassfish.jersey.linking.InjectLink.Style;
+import org.glassfish.jersey.linking.InjectLinks;
+import org.glassfish.jersey.linking.Binding;
+
+import rest.ConfigService;
 
 
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
-@Entity
-public class Config implements Serializable{
-
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 5989583149926908655L;
-
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+public class Config {
+	
+	
+	
 	public int configID;
-	
-	@Column
 	private float budget;
-	@Column
 	private GPU selectedGpu;
-	@Column
 	private CPU selectedCpu;
-	@Column
 	private RAM selectedRAM;
-	@Column
 	private Motherboard selectedMotherboard;
-	@Column
 	private Memory selectedMemory;
-	@Column
 	private PowerAdaptor selectedPoweradaptor;
-
+	
+	@InjectLinks(
+			@InjectLink(resource=Config.class, value="/{configId}", rel="self", style=Style.ABSOLUTE,
+			bindings= @Binding(name= "configId", value="${instance.configId}")))
+	List<Link> links;
+	/*
+	@InjectLink(resource=ConfigService.class, style=Style.ABSOLUTE)
+	private URI uri;
 	
 	
+	public void setUri(URI uri) {
+		this.uri = uri;
+	}
+	public URI getUri() {
+		return uri;
+	}
+	*/
 	
 	public void checkBudget() {
 		

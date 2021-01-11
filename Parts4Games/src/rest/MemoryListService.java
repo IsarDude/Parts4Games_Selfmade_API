@@ -12,7 +12,7 @@ import business.MemoryListBusinessController;
 
 @Path("/memoryList")
 public class MemoryListService {
-
+/*
 	@Inject
 	private MemoryListBusinessController memoryListBusinessController;
 	
@@ -30,5 +30,6 @@ public class MemoryListService {
 					.build();
 		}
 	}
+	*/
 }
 
