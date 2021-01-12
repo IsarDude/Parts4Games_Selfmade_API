@@ -1,6 +1,7 @@
 package business;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -9,9 +10,11 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import data.GameInfo;
+
 public class GameInfoBusinessController {
-	//Am Ende ein GameInfo Object zurückgeben
-	public String getGameInfoRec(int gameId)  throws IOException{
+
+	public List<GameInfo> getGameInfoRec(int gameId)  throws IOException{
 		
 		try {
 			String uri = "https://store.steampowered.com/api/appdetails/?appids=" + gameId;
@@ -26,7 +29,7 @@ public class GameInfoBusinessController {
 	        //GameInfo Object erstellen und füllen
 	        //Zurückgeben
 	        
-	        return responseString;
+	        return null;
 			
 		} catch (Exception e) {
 			e.printStackTrace();

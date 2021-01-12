@@ -64,7 +64,7 @@ public class Motherboard {
 		return ports;
 	}
 	
-	public void setPorts(int aPorts) {
+	public void setPorts(String aPorts) {
 		this.ports = aPorts;
 	}
 	
@@ -91,17 +91,6 @@ public class Motherboard {
 
 	public void setPrice(float price) {
 		this.price = price;
-	}
-	
-	public String getKeywordString() {
-		String keywords = "CPU " + ddrmemory + "gb";
-		if(company != null) {
-			keywords = keywords +" " + company;
-		}
-		if(model != null) {
-			keywords = keywords+ " " + model;
-		}
-		return keywords;
 	}
 	
 }

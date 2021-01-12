@@ -1,7 +1,7 @@
 package business;
 
 import java.io.IOException;
-
+import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.Invocation;
@@ -9,28 +9,29 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import data.RAM;
+
 public class RamListBusinessController {
 	
-	public String getRamList(String queryKeyword) throws IOException{
-		
-				try {
-					String uri = "open.api.ebay.com/shopping?version=1157&appid=AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34&responseencoding=JSON&"
-							+ "callname=FindProducts&QueryKeywords=" + queryKeyword + "&PageNumber=1";
-					
-					Client client = ClientBuilder.newClient();
-			        WebTarget webTarget = client.target(uri);
-			        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
-			        Response response = invocationBuilder.get(Response.class); 
-			        String responseString = response.readEntity(String.class);
-			        
-			        return responseString;
-			        
-			        //Aufbereitung der Daten. Erstelle Ram Objects stecke die in eine Ram Liste und gebe die zurück.
-					
-				} catch (Exception e) {
-					e.printStackTrace();
-					return null;
-				}
+	public List<RAM> getRamList(String queryKeyword) throws IOException{
+		try {
+			String uri = "open.api.ebay.com/shopping?version=1157&appid=AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34&responseencoding=JSON&"
+					+ "callname=FindProducts&QueryKeywords=" + queryKeyword + "&PageNumber=1";
+			
+			Client client = ClientBuilder.newClient();
+	        WebTarget webTarget = client.target(uri);
+	        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+	        Response response = invocationBuilder.get(Response.class); 
+	        String responseString = response.readEntity(String.class);
+	        
+	        //Aufbereitung der Daten. Erstelle Ram Objects stecke die in eine Ram Liste und gebe die zurück.
+	        
+	        return null;    
+	        
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 				
 				
 				

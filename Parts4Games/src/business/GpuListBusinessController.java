@@ -18,7 +18,7 @@ import com.jayway.jsonpath.JsonPath;
 import data.GPU;
 
 
-public class CpuListBusinessController {
+public class GpuListBusinessController {
 	
 	
 
