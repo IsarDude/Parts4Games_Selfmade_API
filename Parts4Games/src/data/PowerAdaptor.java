@@ -1,50 +1,73 @@
 package data;
 
 public class PowerAdaptor {
-	private String company;
-	private String model;
-	private int tension;
-	private int power;
+	private String productIdEAN;
+	private String brand;
+	private String maximumPower;
+	private String formfactor;
+	private String photoURL;
 	private float price;
 	
-	public PowerAdaptor() {}
-	public PowerAdaptor(String company, String model, int tension, int power, float price) {
-		super();
-		this.company = company;
-		this.model = model;
-		this.tension = tension;
-		this.power = power;
+	public PowerAdaptor() {
+		
+	}
+	
+	public PowerAdaptor(String productIdEAN, String brand, String maximumPower, String formfactor, String photoURL, float price) {
+		this.productIdEAN = productIdEAN;
+		this.brand = brand;
+		this.maximumPower = maximumPower;
+		this.formfactor = formfactor;
+		this.photoURL = photoURL;
 		this.price = price;
 	}
-	public String getCompany() {
-		return company;
+
+	public String getProductIdEAN() {
+		return productIdEAN;
 	}
-	public void setCompany(String company) {
-		this.company = company;
+
+	public void setProductIdEAN(String productIdEAN) {
+		this.productIdEAN = productIdEAN;
 	}
-	public String getModel() {
-		return model;
+
+	public String getBrand() {
+		return brand;
 	}
-	public void setModel(String model) {
-		this.model = model;
+
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
-	public int getTension() {
-		return tension;
+
+	public String getMaximumPower() {
+		return maximumPower;
 	}
-	public void setTension(int tension) {
-		this.tension = tension;
+
+	public void setMaximumPower(String maximumPower) {
+		this.maximumPower = maximumPower;
 	}
-	public int getPower() {
-		return power;
+
+	public String getFormfactor() {
+		return formfactor;
 	}
-	public void setPower(int power) {
-		this.power = power;
+
+	public void setFormfactor(String formfactor) {
+		this.formfactor = formfactor;
 	}
+
+	public String getPhotoURL() {
+		return photoURL;
+	}
+
+	public void setPhotoURL(String photoURL) {
+		this.photoURL = photoURL;
+	}
+
 	public float getPrice() {
 		return price;
 	}
+
 	public void setPrice(float price) {
 		this.price = price;
 	}
+	
 	
 }

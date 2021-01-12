@@ -1,52 +1,92 @@
 package data;
 
 public class Memory {
-	private String company;
+	private String productID;
+	private String brand;
 	private String model;
-	private int capacity;
-	private int speed;
-	private String version;
+	private String interFace;
+	private String type;
+	private String formFactor;
+	private String fotoURL;
+	private float price;
 	
 	public Memory() {
 		
 	}
 	
-	public Memory(String company, String model, int capacity, String version, int speed) {
-		this.company = company;
+	public Memory(String productID, String brand, String model, String interFace, String formFactor, String type, String fotoURL, float price) {
+		this.productID = productID;
+		this.brand = brand;
 		this.model = model;
-		this.capacity = capacity;
-		this.version = version;
-		this.speed = speed;
+		this.interFace = interFace;
+		this.formFactor = formFactor;
+		this.type = type;
+		this.fotoURL = fotoURL;
+		this.price = price;
 	}
-	
-	public String getCompany() {
-		return company;
+
+	public String getProductID() {
+		return productID;
 	}
-	public void setCompany(String company) {
-		this.company = company;
+
+	public void setProductID(String productID) {
+		this.productID = productID;
 	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
 	public String getModel() {
 		return model;
 	}
+
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public int getCapacity() {
-		return capacity;
+
+	public String getInterFace() {
+		return interFace;
 	}
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
+
+	public void setInterFace(String interFace) {
+		this.interFace = interFace;
 	}
-	public int getSpeed() {
-		return speed;
+
+	public String getType() {
+		return type;
 	}
-	public void setSpeed(int speed) {
-		this.speed = speed;
+
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getVersion() {
-		return version;
+
+	public String getFormFactor() {
+		return formFactor;
 	}
-	public void setVersion(String version) {
-		this.version = version;
+
+	public void setFormFactor(String formFactor) {
+		this.formFactor = formFactor;
 	}
+
+	public String getFotoURL() {
+		return fotoURL;
+	}
+
+	public void setFotoURL(String fotoURL) {
+		this.fotoURL = fotoURL;
+	}
+
+	public float getPrice() {
+		return price;
+	}
+
+	public void setPrice(float price) {
+		this.price = price;
+	}
+	
 }
