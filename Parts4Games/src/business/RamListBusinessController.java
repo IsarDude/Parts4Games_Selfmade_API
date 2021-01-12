@@ -1,25 +1,59 @@
 package business;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
-import java.util.List;
 
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-
-
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource; 
 
 public class RamListBusinessController {
 	
-	public List<String> getRamList(String company, String model, int capacity, String type, int frequency) throws IOException{
+	public String getRamList(String queryKeyword) throws IOException{
 		
-		try {
+				try {
+					String uri = "open.api.ebay.com/shopping?version=1157&appid=AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34&responseencoding=JSON&"
+							+ "callname=FindProducts&QueryKeywords=" + queryKeyword + "&PageNumber=1";
+					
+					Client client = ClientBuilder.newClient();
+			        WebTarget webTarget = client.target(uri);
+			        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+			        Response response = invocationBuilder.get(Response.class); 
+			        String responseString = response.readEntity(String.class);
+			        
+			        return responseString;
+			        
+			        //Aufbereitung der Daten. Erstelle Ram Objects stecke die in eine Ram Liste und gebe die zurück.
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					return null;
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				/*try {
 	        Client client = Client.create();
 	        WebResource webResource = client.resource("https://svcs.ebay.com/services/search/FindingService/v1?");
 	        webResource.queryParam("OPERATION-NAME", "findItemsAdvanced")
@@ -44,7 +78,7 @@ public class RamListBusinessController {
 	    	} catch (Exception e) {
 	    		e.printStackTrace();
 	    		return null;
-	    	}
+	    	}*/
 		
 		
 			
