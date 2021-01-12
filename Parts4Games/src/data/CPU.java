@@ -5,26 +5,43 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class CPU {
-	private int frequency;
 	private int socket;
-	private String company;
-	private String model;
-	private int generation;
+	private String brand;
+	private int cache;
 	private int cores;
 	private float price;
+	private String fotoUrl;
+	private int clockspeed;
 	
 	
 	public CPU () {}
-	public CPU(int aSocket, int aFrequency, int aCores, String aCompany, String aModel, int aGeneration, float aPrice) {
+	public CPU(String afotoUrl, int aclockspeed, int aSocket, int aCores, String aBrand, int aCache, float aPrice) {
 		super();
-		this.frequency= aFrequency;
+		this.clockspeed = aclockspeed;
+		this.fotoUrl = afotoUrl;
 		this.cores = aCores;
-		this.company = aCompany;
-		this.model = aModel;
-		this.generation= aGeneration;
+		this.company = aBrand;
+		this.cache = aCache;
 		this.socket = aSocket;
 		this.price=aPrice;
 		
+	}
+	@XmlElement(name="cache")
+	public int getCache() {
+		return cache;
+	}
+
+	public void setCache(int cache) {
+		this.cache = cache;
+	}
+	
+	@XmlElement(name="clockspeed")
+	public int getSocket() {
+		return clockspeed;
+	}
+
+	public void setSocket(int clockspeed) {
+		this.clockspeed = clockspeed;
 	}
 	
 	@XmlElement(name="socket")
@@ -36,15 +53,6 @@ public class CPU {
 		this.socket = socket;
 	}
 	
-	@XmlElement(name="frequency")
-	public int getFrequency() {
-		return frequency;
-	}
-
-	public void setFrequency(int frequency) {
-		this.frequency = frequency;
-	}
-	
 	@XmlElement(name="cores")
 	public int getCores() {
 		return cores;
@@ -53,15 +61,25 @@ public class CPU {
 	public void setCores(int cores) {
 		this.cores = cores;
 	}
-
-	@XmlElement(name="company")
-	public String getCompany() {
-		return company;
+	
+	@XmlElement(name="fotoUrl")
+	public String getFotoUrl() {
+		return fotoUrl;
 	}
 	
 	
-	public void setCompany(String company) {
-		this.company = company;
+	public void setFotoUrl(String fotoUrl) {
+		this.fotoUrl = fotoUrl;
+	}
+
+	@XmlElement(name="brand")
+	public String getBrand() {
+		return brand;
+	}
+	
+	
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 	
 	@XmlElement(name="model")
