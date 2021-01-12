@@ -19,7 +19,7 @@ public class Memory {
 	private String version;
 	
 	public Memory() {
-		
+		super();
 	}
 	
 	public Memory(String company, String model, int capacity, String version, int speed) {

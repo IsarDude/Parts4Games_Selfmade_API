@@ -3,6 +3,7 @@ package data;
 import java.io.Serializable;
 import java.util.LinkedList;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -11,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -33,17 +35,17 @@ public class Config implements Serializable{
 	
 	@Column
 	private float budget;
-	@JoinColumn
+	@OneToOne(cascade = CascadeType.ALL)
 	private GPU selectedGpu;
-	@JoinColumn
+	@OneToOne(cascade = CascadeType.ALL)
 	private CPU selectedCpu;
-	@JoinColumn
+	@OneToOne(cascade = CascadeType.ALL)
 	private RAM selectedRAM;
-	@JoinColumn
+	@OneToOne(cascade = CascadeType.ALL)
 	private Motherboard selectedMotherboard;
-	@JoinColumn
+	@OneToOne(cascade = CascadeType.ALL)
 	private Memory selectedMemory;
-	@JoinColumn
+	@OneToOne(cascade = CascadeType.ALL)
 	private PowerAdaptor selectedPoweradaptor;
 
 	

@@ -24,6 +24,10 @@ public class Motherboard {
 	private String ddrmemory;
 	private float price;
 	
+	public Motherboard() {
+	
+	}
+	
 	public Motherboard(int aSocket, int aFrontSideBus, String aFormfactor, String aCompany, String aModel, String aChipset, String aDdrMemory, float aPrice) {
 		super();
 		this.ddrmemory = aDdrMemory;
