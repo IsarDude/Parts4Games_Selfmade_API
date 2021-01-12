@@ -6,22 +6,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class Motherboard {
 	private String company;
-	private String model;
+	private String brand;
 	private int socket;
-	private int frontsidebus;
+	private String ports;
 	private String formfactor;
 	private String chipset;
 	private String ddrmemory;
 	private float price;
 	
 	public Motherboard() {}
-	public Motherboard(int aSocket, int aFrontSideBus, String aFormfactor, String aCompany, String aModel, String aChipset, String aDdrMemory, float aPrice) {
+	public Motherboard(int aSocket, String aPorts, String aFormfactor, String aCompany, String aBrand, String aChipset, String aDdrMemory, float aPrice) {
 		super();
 		this.ddrmemory = aDdrMemory;
-		this.frontsidebus= aFrontSideBus;
+		this.ports= aPorts;
 		this.formfactor = aFormfactor;
 		this.company = aCompany;
-		this.model = aModel;
+		this.brand = aBrand;
 		this.chipset = aChipset;
 		this.socket = aSocket;
 		this.price=aPrice;
@@ -43,12 +43,12 @@ public class Motherboard {
 		this.formfactor = formfactor;
 	}
 	
-	@XmlElement(name="model")
-	public String getModel() {
-		return model;
+	@XmlElement(name="brand")
+	public String getBrand() {
+		return brand;
 	}
-	public void setModel(String model) {
-		this.model = model;
+	public void setBrand(String brand) {
+		this.brand = brand;
 	}
 	
 	@XmlElement(name="socket")
@@ -59,13 +59,13 @@ public class Motherboard {
 		this.socket = socket;
 	}
 	
-	@XmlElement(name="frontsidebus")
-	public int getFronsidebus() {
-		return frontsidebus;
+	@XmlElement(name="ports")
+	public String getPorts() {
+		return ports;
 	}
 	
-	public void setFrontsidebus(int aFrontsidebus) {
-		this.frontsidebus = aFrontsidebus;
+	public void setPorts(int aPorts) {
+		this.ports = aPorts;
 	}
 	
 	@XmlElement(name="ddrmemory")
