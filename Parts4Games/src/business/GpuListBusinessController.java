@@ -1,50 +1,68 @@
 package business;
 
+import java.io.StringReader;
 import java.util.List;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-public class GpuListBusinessController {
+import com.jayway.jsonpath.JsonPath;
+
+import data.GPU;
+
+
+public class CpuListBusinessController {
 	
-	public List<String> getGPUList(int frequency, int memory, String company, String model, String generation, float price){
-		//Get-request to Ebay API: Get all gpus's with specified requirements as JSON
-		//Convert JSON to List and return
+	
+
+	String shoppingUrl = "http://open.api.ebay.com/shopping";
+	String version = "1157";
+	String appid = "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34";
+	String responsencoding = "JSON";
+	String callname = "FindProducts";
+	String pageNumber = "1";
+
+	public List<GPU> getGPUList(String keywords){
 		
-		try {
-
-	        Client client = Client.create();
-
-	        WebResource webResource = client.resource("https://open.api.ebay.com/shopping?");
-
-	        webResource.queryParam("callname", "FindProducts")
-	       				.queryParam("appid", "AndreSch-Parts4Ga-SBX-87cee19be-50a4120f")//invalid appid??
-	       				.queryParam("version", "1137")
-	       				.queryParam("QueryKeywords", "GPU");
-
-	        ClientResponse response = webResource.accept("application/json")
-                   .get(ClientResponse.class);
-
-	        if (response.getStatus() != 200) {
-	    	   throw new RuntimeException("Failed : HTTP error code : "
-	    			   + response.getStatus());
-	        }
-
-	        String output = response.getEntity(String.class);
-	        
-	        //Objectumwandlung um mit response arbeiten zu können 
-	       
-	       
-
-	        System.out.println("Output from Server .... \n");
-	        System.out.println(output);
-
-	    	} catch (Exception e) {
-
-	    		e.printStackTrace();
-
-	    	}
+		
+		String keyword = "Nvidia GForce 4";
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(shoppingUrl);
+		webTarget = webTarget.queryParam("version", version)
+		.queryParam("appid", appid)
+		.queryParam("responseencoding", responsencoding)
+		.queryParam("callname", callname)
+		.queryParam("QueryKeywords", keyword)
+		.queryParam("PageNumber", 1);
+		
+		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+		
+		Response response
+			= invocationBuilder.get();
+		
+		String json = response.readEntity(String.class);
+		System.out.println(json);
+		
+		GPU temp = new GPU();
+		
+		List<String> brand = JsonPath.read(json, "$..NameValueList[0].Value[0]" );
+		System.out.println(brand);
+		
+		
+		System.out.println(response);
+		if (response.getStatus() == 200) {
+		     StringReader stringReader = new StringReader(webTarget.request(MediaType.APPLICATION_JSON).get(String.class));
+		     try (JsonReader jsonReader = Json.createReader(stringReader)) {
+		        System.out.println(jsonReader.readObject());
+		     }
+	}
 		return null;
 	}
 }
