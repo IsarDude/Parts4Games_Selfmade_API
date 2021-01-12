@@ -22,7 +22,6 @@ public class CPU {
 		this.cores = aCores;
 		this.company = aBrand;
 		this.cache = aCache;
-		this.generation= aGeneration;
 		this.socket = aSocket;
 		this.price=aPrice;
 		
