@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -32,17 +33,17 @@ public class Config implements Serializable{
 	
 	@Column
 	private float budget;
-	@Column
+	@JoinColumn
 	private GPU selectedGpu;
-	@Column
+	@JoinColumn
 	private CPU selectedCpu;
-	@Column
+	@JoinColumn
 	private RAM selectedRAM;
-	@Column
+	@JoinColumn
 	private Motherboard selectedMotherboard;
-	@Column
+	@JoinColumn
 	private Memory selectedMemory;
-	@Column
+	@JoinColumn
 	private PowerAdaptor selectedPoweradaptor;
 
 	
