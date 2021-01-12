@@ -2,35 +2,39 @@ package business;
 
 import java.util.List;
 
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.Response;
 
 public class MotherboardListController {
-	public List<String> getMotherboardList(int aSocket, int aFrontSideBus, String aFormfactor, String aCompany, String aModel, String aChipset, String aDdrMemory, float aPrice){
+	public List<String> getMotherboardList(String keyword){
 		//Get-request to Ebay API: Get all motherboards with specified requirements as JSON
 		//Convert JSON to List and return
 		
+		
+		
+		//geändert nach:  https://gist.github.com/aphexmunky/11399575
 		try {
 
-	        Client client = Client.create();
+	        Client client = ClientBuilder.newClient();
 
-	        WebResource webResource = client.resource("https://open.api.ebay.com/shopping?");
+	        WebTarget target = client.target("https://open.api.ebay.com/shopping?");
 
-	        webResource.queryParam("callname", "FindProducts")
-	       				.queryParam("appid", "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34")//invalid appid??
+	        target.queryParam("callname", "FindProducts")
+	       				.queryParam("appid", "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34")
 	       				.queryParam("version", "1137")
-	       				.queryParam("QueryKeywords", "GPU");
+	       				.queryParam("QueryKeywords", "Motherboard");
 
-	        ClientResponse response = webResource.accept("application/json")
-                   .get(ClientResponse.class);
+	        Response response = target.request("application/json")
+                   .get(Response.class);
 
 	        if (response.getStatus() != 200) {
 	    	   throw new RuntimeException("Failed : HTTP error code : "
 	    			   + response.getStatus());
 	        }
 
-	        String output = response.getEntity(String.class);
+	        String output = response.readEntity(String.class);
 	        
 	        //Objectumwandlung  
 	       
