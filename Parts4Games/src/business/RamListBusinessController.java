@@ -1,6 +1,7 @@
 package business;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -9,24 +10,42 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
+
 import data.RAM;
 
 public class RamListBusinessController {
 	
 	public List<RAM> getRamList(String queryKeyword) throws IOException{
 		try {
+			String mediumRamQuery = "Corsair%20Vengeance%2016GB";
 			String uri = "open.api.ebay.com/shopping?version=1157&appid=AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34&responseencoding=JSON&"
-					+ "callname=FindProducts&QueryKeywords=" + queryKeyword + "&PageNumber=1";
+					+ "callname=FindProducts&QueryKeywords=" + mediumRamQuery + "&PageNumber=1";
 			
 			Client client = ClientBuilder.newClient();
 	        WebTarget webTarget = client.target(uri);
 	        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 	        Response response = invocationBuilder.get(Response.class); 
 	        String json = response.readEntity(String.class);
-	        
+	        Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
 	        //Aufbereitung der Daten. Erstelle Ram Objects stecke die in eine Ram Liste und gebe die zurück.
 	        
-	        return null;    
+	        List<RAM> ramList = new ArrayList<RAM>();
+	        
+	        String productID = JsonPath.read(document, "$..ProductID[?(@.Type == EAN)].Value");
+	        String brand = JsonPath.read(document, "$..NameValueList[?(@.Name == Brand)].Value.*");
+	        String model = JsonPath.read(document, "$..NameValueList[?(@.Name == Model)].Value.*");
+	        String busSpeed = JsonPath.read(document, "$..NameValueList[?(@.Name == Bus Speed)].Value.*");
+	        String type = JsonPath.read(document, "$..NameValueList[?(@.Name == Type)].Value.*");
+	        String totalcapacity = JsonPath.read(document, "$..NameValueList[?(@.Name == Total Capacity)].Value.*");
+	        String fotoURL = JsonPath.read(document, "$..StockPhotoURL");       
+	        float price = 0f;
+	        
+	        RAM mediumRam = new RAM(productID, brand, model, totalcapacity, type, busSpeed, fotoURL, price);
+	        ramList.add(mediumRam);
+	        
+	        return ramList;    
 	        
 		} catch (Exception e) {
 			e.printStackTrace();
