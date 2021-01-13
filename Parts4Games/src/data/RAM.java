@@ -1,63 +1,84 @@
 package data;
 
 public class RAM {
-	private String company;
+	private String productID;
+	private String brand;
 	private String model;
-	private int capacity;
-	private int frequency;
-	private String stickType;
-	private String sellType;
+	private String totalcapacity;
+	private String busSpeed;
+	private String type;
+	private String fotoURL;
 	private float price;
 	
 	public RAM() {
 		
 	}
 	
-	public RAM(String company, String model, int capacity, String stickType, String sellType, int frequency, float price) {
-		this.company = company;
+	public RAM(String productID, String brand, String model, String totalcapacity, String type, String busSpeed, String fotoURL,  float price) {
+		this.productID = productID;
+		this.brand = brand;
 		this.model = model;
-		this.capacity = capacity;
-		this.stickType = stickType;
-		this.sellType = sellType;
-		this.frequency = frequency;
+		this.totalcapacity = totalcapacity;
+		this.type = type;
+		this.fotoURL = fotoURL;
+		this.busSpeed = busSpeed;
 		this.price = price;
 	}
-	
-	public String getCompany() {
-		return company;
+
+	public String getProductID() {
+		return productID;
 	}
-	public void setCompany(String company) {
-		this.company = company;
+
+	public void setProductID(String productID) {
+		this.productID = productID;
 	}
+
+	public String getBrand() {
+		return brand;
+	}
+
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+
 	public String getModel() {
 		return model;
 	}
+
 	public void setModel(String model) {
 		this.model = model;
 	}
-	public int getCapacity() {
-		return capacity;
+
+	public String getTotalcapacity() {
+		return totalcapacity;
 	}
-	public void setCapacity(int capacity) {
-		this.capacity = capacity;
+
+	public void setTotalcapacity(String totalcapacity) {
+		this.totalcapacity = totalcapacity;
 	}
-	public int getFrequency() {
-		return frequency;
+
+	public String getBusSpeed() {
+		return busSpeed;
 	}
-	public void setFrequency(int frequency) {
-		this.frequency = frequency;
+
+	public void setBusSpeed(String busSpeed) {
+		this.busSpeed = busSpeed;
 	}
-	public String getStickType() {
-		return stickType;
+
+	public String getType() {
+		return type;
 	}
-	public void setStickType(String stickType) {
-		this.stickType = stickType;
+
+	public void setType(String type) {
+		this.type = type;
 	}
-	public String getSellType() {
-		return sellType;
+
+	public String getFotoURL() {
+		return fotoURL;
 	}
-	public void setSellType(String sellType) {
-		this.sellType = sellType;
+
+	public void setFotoURL(String fotoURL) {
+		this.fotoURL = fotoURL;
 	}
 
 	public float getPrice() {
