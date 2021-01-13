@@ -1,6 +1,5 @@
 package rest;
 
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,8 +11,8 @@ import business.GameListBusinessController;
 
 @Path("/gameList/{gameName}")
 public class GameListService {
-	@Inject
-	private GameListBusinessController gameListBusinessController;
+	
+	GameListBusinessController gameListBusinessController = new GameListBusinessController();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

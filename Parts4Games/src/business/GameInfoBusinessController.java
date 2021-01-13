@@ -1,6 +1,7 @@
 package business;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
@@ -14,7 +15,9 @@ import com.jayway.jsonpath.JsonPath;
 import data.GameInfo;
 
 public class GameInfoBusinessController {
-
+	private String minHardwareReq;
+	private String recHardwareReq;
+	
 	public GameInfo getGameInfoRec(int gameId) throws IOException{
 		
 		try {
@@ -30,9 +33,15 @@ public class GameInfoBusinessController {
 	        //GameInfo Object erstellen und füllen
 	        //Zurückgeben
 	        
-	        String recHardwareReq = JsonPath.read(json, "$.data.pc_requirements.recommended");
-	        GameInfo gameInfo = new GameInfo(recHardwareReq);
+	        List<String> recHardwareReqs = JsonPath.read(json, "$..data.pc_requirements.recommended");
+	        if(recHardwareReqs.size() != 0) {
+	        	recHardwareReq = recHardwareReqs.get(0);
+	        }else {
+	        	recHardwareReq = null;
+	        }
 	      
+	        GameInfo gameInfo = new GameInfo(recHardwareReq);
+	        
 	        return gameInfo;
 			
 		} catch (Exception e) {
@@ -43,8 +52,9 @@ public class GameInfoBusinessController {
 	
 	public GameInfo getGameInfoMin(int gameId) throws IOException{
 			
+		
 			try {
-				String uri = "https://store.steampowered.com/api/appdetails/?appids=" + gameId;
+				String uri = "https://store.steampowered.com/api/appdetails/?appids=" + gameId;		
 				
 				Client client = ClientBuilder.newClient();
 		        WebTarget webTarget = client.target(uri);
@@ -56,7 +66,13 @@ public class GameInfoBusinessController {
 		        //GameInfo Object erstellen und füllen
 		        //Zurückgeben
 		        
-		        String minHardwareReq = JsonPath.read(json, "$.data.pc_requirements.minimum");
+		        List<String> minHardwareReqs = JsonPath.read(json, "$..data.pc_requirements.minimum");
+		        if(minHardwareReqs.size() != 0) {
+		        	minHardwareReq = minHardwareReqs.get(0);
+		        }else {
+		        	minHardwareReq = null;
+		        }
+		        
 		        GameInfo gameInfo = new GameInfo(minHardwareReq);
 		      
 		        return gameInfo;
