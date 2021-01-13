@@ -22,7 +22,7 @@ public class RamListBusinessController {
 	        WebTarget webTarget = client.target(uri);
 	        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 	        Response response = invocationBuilder.get(Response.class); 
-	        String responseString = response.readEntity(String.class);
+	        String json = response.readEntity(String.class);
 	        
 	        //Aufbereitung der Daten. Erstelle Ram Objects stecke die in eine Ram Liste und gebe die zurück.
 	        
