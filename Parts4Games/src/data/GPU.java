@@ -107,9 +107,7 @@ public class GPU {
 		if(chipsetGPUModel != null) {
 			keywords = keywords +" " + chipsetGPUModel;
 		}
-		if(brand != null) {
-			keywords = keywords+ " " + brand;
-		}
+		
 		return keywords;
 	}
 

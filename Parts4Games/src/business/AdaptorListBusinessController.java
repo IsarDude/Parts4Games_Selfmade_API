@@ -44,9 +44,15 @@ public class AdaptorListBusinessController {
 		String json = response.readEntity(String.class);
 		System.out.println(json);
 		
+		
 		PowerAdaptor temp = new PowerAdaptor();
 		
+		
 		List<String> brand = JsonPath.read(json, "$..NameValueList[0].Value[0]" );
+		List<String> ProductEAN = JsonPath.read(json, "$..ProductID[0].Value" );
+		List<String> MaximumPower = JsonPath.read(json, "$..NameValueList[2].Value[0]" );
+		List<String> formFactor =JsonPath.read(json, "$..NameValueList[3].Value[0]" );
+		List<String> photoUrl;
 		System.out.println(brand);
 		
 		
