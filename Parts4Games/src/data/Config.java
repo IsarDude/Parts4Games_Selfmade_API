@@ -35,7 +35,7 @@ public class Config {
 				@InjectLink( value="config/{configId}", rel="self", style=Style.ABSOLUTE,
 				bindings= @Binding(name= "configId", value="${instance.configID}"))
 	  */
-	 
+	
 	@InjectLinks({})
 	List<Link> links;
 	URI uri;
@@ -55,6 +55,7 @@ public class Config {
 	public void setUri(URI uri) {
 		this.uri = uri;
 	}
+	
 
 	public URI getUri() {
 		return uri;
