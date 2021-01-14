@@ -1,52 +1,63 @@
 package business;
 
+import java.io.StringReader;
 import java.util.List;
 
+import javax.json.Json;
+import javax.json.JsonReader;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
+import data.Motherboard;
+import data.PowerAdaptor;
+
+import com.jayway.jsonpath.JsonPath;
+
 public class MotherboardListController {
-	public List<String> getMotherboardList(int aSocket, int aFrontSideBus, String aFormfactor, String aCompany, String aModel, String aChipset, String aDdrMemory, float aPrice){
-		//Get-request to Ebay API: Get all motherboards with specified requirements as JSON
-		//Convert JSON to List and return
+	
+	String shoppingUrl = "http://open.api.ebay.com/shopping";
+	String version = "1157";
+	String appid = "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34";
+	String responsencoding = "JSON";
+	String callname = "FindProducts";
+	String pageNumber = "1";
+	public List<Motherboard> getMotherboardList(String keywords){
+		String keyword = "";
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(shoppingUrl);
+		webTarget = webTarget.queryParam("version", version)
+		.queryParam("appid", appid)
+		.queryParam("responseencoding", responsencoding)
+		.queryParam("callname", callname)
+		.queryParam("QueryKeywords", keyword)
+		.queryParam("PageNumber", 1);
+		
+		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+		
+		Response response
+			= invocationBuilder.get();
+		
+		String json = response.readEntity(String.class);
+		System.out.println(json);
+		
+		PowerAdaptor temp = new PowerAdaptor();
+		
+		List<String> brand = JsonPath.read(json, "$..NameValueList[0].Value[0]" );
+		System.out.println(brand);
 		
 		
-		
-		//geändert nach:  https://gist.github.com/aphexmunky/11399575
-		try {
-
-	        Client client = ClientBuilder.newClient();
-
-	        WebTarget target = client.target("https://open.api.ebay.com/shopping?");
-
-	        target.queryParam("callname", "FindProducts")
-	       				.queryParam("appid", "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34")
-	       				.queryParam("version", "1137")
-	       				.queryParam("QueryKeywords", "GPU");
-
-	        Response response = target.request("application/json")
-                   .get(Response.class);
-
-	        if (response.getStatus() != 200) {
-	    	   throw new RuntimeException("Failed : HTTP error code : "
-	    			   + response.getStatus());
-	        }
-
-	        String output = response.readEntity(String.class);
-	        
-	        //Objectumwandlung  
-	       
-	        System.out.println("Output from Server .... \n");
-	        System.out.println(output);
-	        
-	        return null;
-
-	    	} catch (Exception e) {
-
-	    		e.printStackTrace();
-	    	}
+		System.out.println(response);
+		if (response.getStatus() == 200) {
+		     StringReader stringReader = new StringReader(webTarget.request(MediaType.APPLICATION_JSON).get(String.class));
+		     try (JsonReader jsonReader = Json.createReader(stringReader)) {
+		        System.out.println(jsonReader.readObject());
+		     }
+	}
 		return null;
 	}
+	
 }
