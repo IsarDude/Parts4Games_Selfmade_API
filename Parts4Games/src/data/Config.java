@@ -1,5 +1,6 @@
 package data;
 
+import java.io.Serializable;
 import java.net.URI;
 import java.util.LinkedList;
 import java.util.List;
@@ -28,11 +29,19 @@ import rest.ConfigService;
 
 
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
-public class Config {
+@Entity
+public class Config implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 5989583149926908655L;
 	
-	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int configID;
+	
+	@Column
 	private float budget;
 	@OneToOne(cascade = CascadeType.ALL)
 	private GPU selectedGpu;

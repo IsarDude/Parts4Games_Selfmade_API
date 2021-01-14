@@ -27,7 +27,7 @@ public class ConfigTest {
 		//Instanz von Config erstellen und mit Budget und einer GPU füllen
 		Config conf = new Config();
 		conf.setBudget(1000);
-		GPU gpu = new GPU(1000, 1000, "NVidia", "RTX 2070", "2000er", 250);
+		GPU gpu = new GPU("new", "test", "test", "NVidia", "RTX 2070", "2000er", 250);
 		conf.setSelectedGpu(gpu);
 		
 		em.persist(conf);
