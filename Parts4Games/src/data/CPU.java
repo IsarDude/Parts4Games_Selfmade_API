@@ -5,20 +5,22 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement 
 public class CPU {
-	private int socket;
+	private String productIdEAN;
+	private String socket;
 	private String brand;
-	private int cache;
-	private int cores;
+	private String cache;
+	private String cores;
 	private float price;
 	private String fotoUrl;
-	private int clockspeed;
+	private String clockspeed;
 	
 	public CPU () {
 		
 	}
 	
-	public CPU(String afotoUrl, int aclockspeed, int aSocket, int aCores, String aBrand, int aCache, float aPrice) {
+	public CPU(String aproductIdEANString afotoUrl, String aclockspeed, String aSocket, String aCores, String aBrand, String aCache, float aPrice) {
 		super();
+		this.productIdEAN = aproductIdEAN;
 		this.clockspeed = aclockspeed;
 		this.fotoUrl = afotoUrl;
 		this.cores = aCores;
@@ -34,35 +36,45 @@ public class CPU {
 		return cache;
 	}
 
-	public void setCache(int cache) {
+	public void setCache(String cache) {
 		this.cache = cache;
 	}
 	
 	@XmlElement(name="clockspeed")
-	public int getClockspeed() {
+	public String getClockspeed() {
 		return clockspeed;
 	}
 
-	public void setClockspeed(int clockspeed) {
+	public void setClockspeed(String clockspeed) {
 		this.clockspeed = clockspeed;
 	}
 	
 	@XmlElement(name="socket")
-	public int getSocket() {
+	public String getSocket() {
 		return socket;
 	}
 
-	public void setSocket(int socket) {
+	public void setSocket(String socket) {
 		this.socket = socket;
 	}
 	
 	@XmlElement(name="cores")
-	public int getCores() {
+	public String getCores() {
 		return cores;
 	}
 
 	public void setCores(int cores) {
 		this.cores = cores;
+	}
+	
+	@XmlElement(name="productIdEAN")
+	public String getProductIdEAN() {
+		return productIdEAN;
+	}
+	
+	
+	public void setProductIdEAN(String productIdEAN) {
+		this.productIdEAN = productIdEAN;
 	}
 	
 	@XmlElement(name="fotoUrl")

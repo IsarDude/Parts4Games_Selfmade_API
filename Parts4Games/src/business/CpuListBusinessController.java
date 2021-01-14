@@ -32,7 +32,7 @@ public class CpuListBusinessController {
 	public List<CPU> getCPUList(String keywords){
 		
 		
-		String keyword = "AMD Ryzen 5";
+		String keyword = "Ryzen 3600 x";
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(shoppingUrl);
 		webTarget = webTarget.queryParam("version", version)
@@ -53,6 +53,13 @@ public class CpuListBusinessController {
 		CPU temp = new CPU();
 		
 		List<String> brand = JsonPath.read(json, "$..NameValueList[0].Value[0]" );
+		List<String> ProductEAN = JsonPath.read(json, "$..ProductID[0].Value" );
+		List<String> Cache = JsonPath.read(json, "$..NameValueList[2].Value[0]" );
+		List<String> Socket = JsonPath.read(json, "$..NameValueList[4].Value[0]" );
+		List<String> NumberOfCores = JsonPath.read(json, "$..NameValueList[5].Value[0]" );
+		List<String> ClockSpeed = JsonPath.read(json, "$..NameValueList[7].Value[0]" );
+		
+		List<String> photoUrl;
 		System.out.println(brand);
 		
 		

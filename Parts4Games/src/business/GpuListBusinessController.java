@@ -32,7 +32,7 @@ public class GpuListBusinessController {
 	public List<GPU> getGPUList(String keywords){
 		
 		
-		String keyword = "Nvidia GForce 4";
+		String keyword = "gtx 1080";
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(shoppingUrl);
 		webTarget = webTarget.queryParam("version", version)
@@ -53,6 +53,13 @@ public class GpuListBusinessController {
 		GPU temp = new GPU();
 		
 		List<String> brand = JsonPath.read(json, "$..NameValueList[0].Value[0]" );
+		List<String> ProductEAN = JsonPath.read(json, "$..ProductID[0].Value" );
+		List<String> CompatibleSlot = JsonPath.read(json, "$..NameValueList[6].Value[0]" );
+		List<String> ChipsetManufacturer = JsonPath.read(json, "$..NameValueList[8].Value[0]" );
+		List<String> ChipsetSlotMemory = JsonPath.read(json, "$..NameValueList[10].Value[0]" );
+		
+		List<String> photoUrl;
+		
 		System.out.println(brand);
 		
 		
