@@ -2,7 +2,6 @@ package rest;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
@@ -17,10 +16,10 @@ public class RamListService {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getRamList(@QueryParam("brand") String brand, @QueryParam("model") String model, @QueryParam("capacity") String capacity) {
+	public Response getRamList(@QueryParam("ramCapacity") String ramCapacity, @QueryParam("budget") String budget) {
 	
 		try {
-			return Response.ok(ramListBusinessController.getRamList(brand, model, capacity)).build();	
+			return Response.ok(ramListBusinessController.getRamList(ramCapacity, budget)).build();	
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)

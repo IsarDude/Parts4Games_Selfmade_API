@@ -15,17 +15,17 @@ public class RAM {
 	private String productID;
 	private String brand;
 	private String model;
-	private int totalcapacity;
+	private String totalcapacity;
 	private String busSpeed;
 	private String type;
 	private String fotoURL;
-	private float price;
+	private String price;
 	
 	public RAM() {
 		
 	}
 	
-	public RAM(String productID, String brand, String model, int totalcapacity, String type, String busSpeed, String fotoURL,  float price) {
+	public RAM(String productID, String brand, String model, String totalcapacity, String type, String busSpeed, String fotoURL,  String price) {
 		this.productID = productID;
 		this.brand = brand;
 		this.model = model;
@@ -60,11 +60,11 @@ public class RAM {
 		this.model = model;
 	}
 
-	public int getTotalcapacity() {
+	public String getTotalcapacity() {
 		return totalcapacity;
 	}
 
-	public void setTotalcapacity(int totalcapacity) {
+	public void setTotalcapacity(String totalcapacity) {
 		this.totalcapacity = totalcapacity;
 	}
 
@@ -92,11 +92,11 @@ public class RAM {
 		this.fotoURL = fotoURL;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
 	
