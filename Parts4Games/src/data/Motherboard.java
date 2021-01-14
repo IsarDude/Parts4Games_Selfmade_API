@@ -6,7 +6,6 @@ import javax.xml.bind.annotation.XmlRootElement;
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class Motherboard {
 	private String productIdEAN;
-	private String company;
 	private String brand;
 	private int socket;
 	private String ports;
@@ -16,13 +15,12 @@ public class Motherboard {
 	private float price;
 	
 	public Motherboard() {}
-	public Motherboard(String productIdEAN, int aSocket, String aPorts, String aFormfactor, String aCompany, String aBrand, String aChipset, String aDdrMemory, float aPrice) {
+	public Motherboard(String productIdEAN, int aSocket, String aPorts, String aFormfactor, String aBrand, String aChipset, String aDdrMemory, float aPrice) {
 		super();
 		this.productIdEAN = aproductIdEAN;
 		this.ddrmemory = aDdrMemory;
 		this.ports= aPorts;
 		this.formfactor = aFormfactor;
-		this.company = aCompany;
 		this.brand = aBrand;
 		this.chipset = aChipset;
 		this.socket = aSocket;
@@ -38,13 +36,7 @@ public class Motherboard {
 		this.productIdEAN = productIdEAN;
 	}
 	
-	@XmlElement(name="company")
-	public String getCompany() {
-		return company;
-	}
-	public void setCompany(String company) {
-		this.company = company;
-	}
+	
 	@XmlElement(name="formfactor")
 	public String getFormFactor() {
 		return formfactor;
