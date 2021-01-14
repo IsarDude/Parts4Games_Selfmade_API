@@ -18,11 +18,10 @@ public class CPU {
 		
 	}
 	
-	public CPU(String photoUrl, String aproductIdEANString afotoUrl, String aclockspeed, String aSocket, String aCores, String aBrand, String aCache, float aPrice) {
+	public CPU(String photoUrl, String aproductIdEAN, String aclockspeed, String aSocket, String aCores, String aBrand, String aCache, float aPrice) {
 		super();
 		this.productIdEAN = aproductIdEAN;
 		this.clockspeed = aclockspeed;
-		this.fotoUrl = afotoUrl;
 		this.cores = aCores;
 		this.brand = aBrand;
 		this.cache = aCache;
@@ -76,16 +75,6 @@ public class CPU {
 	
 	public void setProductIdEAN(String productIdEAN) {
 		this.productIdEAN = productIdEAN;
-	}
-	
-	@XmlElement(name="fotoUrl")
-	public String getFotoUrl() {
-		return fotoUrl;
-	}
-	
-	
-	public void setFotoUrl(String fotoUrl) {
-		this.fotoUrl = fotoUrl;
 	}
 
 	@XmlElement(name="brand")
