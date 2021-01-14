@@ -12,12 +12,14 @@ public class Motherboard {
 	private String formfactor;
 	private String chipset;
 	private String ddrmemory;
+	private String photoUrl;
 	private float price;
 	
 	public Motherboard() {}
-	public Motherboard(String productIdEAN, int aSocket, String aPorts, String aFormfactor, String aBrand, String aChipset, String aDdrMemory, float aPrice) {
+	public Motherboard(String productIdEAN, String aphotoUrl, String aSocket, String aPorts, String aFormfactor, String aBrand, String aChipset, String aDdrMemory, float aPrice) {
 		super();
 		this.productIdEAN = aproductIdEAN;
+		this.photoUrl = aphotoUrl;
 		this.ddrmemory = aDdrMemory;
 		this.ports= aPorts;
 		this.formfactor = aFormfactor;
@@ -84,6 +86,14 @@ public class Motherboard {
 	}
 	public void setChipset(String chipset) {
 		this.chipset = chipset;
+	}
+	
+	@XmlElement(name="photoUrl")
+	public String getPhotoUrl() {
+		return photoUrl;
+	}
+	public void setPhotoUrl(String photoUrl) {
+		this.photoUrl = photoUrl;
 	}
 	
 	@XmlElement(name="price")
