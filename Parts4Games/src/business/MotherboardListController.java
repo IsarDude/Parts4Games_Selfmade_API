@@ -13,7 +13,6 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import data.Motherboard;
-import data.PowerAdaptor;
 
 import com.jayway.jsonpath.JsonPath;
 
@@ -44,7 +43,7 @@ public class MotherboardListController {
 		String json = response.readEntity(String.class);
 		System.out.println(json);
 		
-		PowerAdaptor temp = new PowerAdaptor();
+		Motherboard temp = new Motherboard();
 		
 		List<String> brand = JsonPath.read(json, "$..NameValueList[0].Value[0]" );
 		System.out.println(brand);
