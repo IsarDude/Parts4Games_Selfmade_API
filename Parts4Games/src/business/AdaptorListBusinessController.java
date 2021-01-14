@@ -54,7 +54,7 @@ public class AdaptorListBusinessController {
 		List<String> ProductEAN = JsonPath.read(json, "$..ProductID[0].Value" );
 		List<String> MaximumPower = JsonPath.read(json, "$..NameValueList[2].Value[0]" );
 		List<String> formFactor =JsonPath.read(json, "$..NameValueList[3].Value[0]" );
-		List<String> photoUrl = JsonPath.read(document, "$..StockPhotoURL");
+		List<String> photoUrl = JsonPath.read(json, "$..StockPhotoURL");
 		System.out.println(brand);
 		
 		

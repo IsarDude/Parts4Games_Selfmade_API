@@ -59,7 +59,7 @@ public class CpuListBusinessController {
 		List<String> NumberOfCores = JsonPath.read(json, "$..NameValueList[5].Value[0]" );
 		List<String> ClockSpeed = JsonPath.read(json, "$..NameValueList[7].Value[0]" );
 		
-		List<String> photoUrl = JsonPath.read(document, "$..StockPhotoURL");
+		List<String> photoUrl = JsonPath.read(json, "$..StockPhotoURL");
 		System.out.println(brand);
 		
 		
