@@ -1,47 +1,46 @@
 package business;
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.List;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
-
-import com.sun.jersey.api.client.Client;
-import com.sun.jersey.api.client.ClientResponse;
-import com.sun.jersey.api.client.WebResource; 
+import data.Memory;
 
 public class MemoryListBusinessController {
 	
-	public List<String> getMemoryList(String brand, String model, String interFace, String formFactor, String type, float price) throws IOException{
-		
+	public List<Memory> getMemoryList(String queryKeyword) throws IOException{
 		try {
-	        Client client = Client.create();
-	        WebResource webResource = client.resource("https://svcs.ebay.com/services/search/FindingService/v1?");
-	        webResource.queryParam("OPERATION-NAME", "findItemsAdvanced")
-	        			.queryParam("SERVICE-VERSION", "1.0.0")
-	       				.queryParam("SECURITY-APPNAME", "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34")
-	       				.queryParam("x", "x");
-	        ClientResponse response = webResource.accept("application/json")
-                   .get(ClientResponse.class);
-	        if (response.getStatus() != 200) {
-	    	   throw new RuntimeException("Failed : HTTP error code : "
-	    			   + response.getStatus());
-	        }
+			String uri = "open.api.ebay.com/shopping?version=1157&appid=AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34&responseencoding=JSON&"
+					+ "callname=FindProducts&QueryKeywords=" + queryKeyword + "&PageNumber=1";
+			
+			Client client = ClientBuilder.newClient();
+	        WebTarget webTarget = client.target(uri);
+	        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+	        Response response = invocationBuilder.get(Response.class); 
+	        String responseString = response.readEntity(String.class);
 	        
-	        //Objectumwandlung um mit response arbeiten zu können überhaupt nötig? Wir befüllen mit der response ja kein Object bei uns.
+	        //Aufbereitung der Daten. Erstelle Memory Objects stecke die in eine Memory Liste und gebe die zurück.
 	        
-	        String output = response.getEntity(String.class);
-	        System.out.println("Output from Server .... \n");
-	        System.out.println(output);
-	        
-	      //How to return JSON?
 	        return null;
-	    	} catch (Exception e) {
-	    		e.printStackTrace();
-	    		return null;
-	    	}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		
@@ -87,7 +86,6 @@ public class MemoryListBusinessController {
 					con.getInputStream()));
 			String inputLine;
 			StringBuffer response = new StringBuffer();
-
 			while ((inputLine = in.readLine()) != null) {
 				response.append(inputLine);
 			}

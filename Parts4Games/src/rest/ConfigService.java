@@ -21,12 +21,8 @@ import org.glassfish.jersey.linking.Binding;
 @Path("/config")
 public class ConfigService {
 	
-	/*
-	@ProvideLink(value = Config.class, rel ="self",
-			 bindings = @Binding(name="configId", value="${instance.configId}"))
-	@ProvideLink(value = Config.class, rel="delete",
-			 bindings = @Binding(name="configId", value="${instance.configId}"))
-			 */
+	
+	
 	@POST // Bei POST auf die URL der Klasse
 // wird JSON erwartet 
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
@@ -36,11 +32,12 @@ public class ConfigService {
 	  //return id;
 	}
 	
-	@ProvideLink(value = Config.class, rel ="self",
-			 bindings = @Binding(name="configId", value="$configId"))
-	@ProvideLink(value = Config.class, rel="delete",
-			 bindings = @Binding(name="configId", value="$configId"))
+	
 	@Path("/{configId}")
+	@ProvideLink(value = Config.class, rel ="self",
+	 bindings = @Binding(name="configId", value="${instance.configID}"))
+@ProvideLink(value = Config.class, rel="delete",
+	 bindings = @Binding(name="configId", value="${instance.configID}"))
 	@GET
 	@Produces(MediaType.APPLICATION_JSON) // und als Rückmeldung produziert
 	public Config getConfig(@PathParam("configId") int configId) {

@@ -21,32 +21,26 @@ public class MemoryService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addMemory(@PathParam("configId") int configId, Memory memory) {
+	public Memory addMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
-			configurationController.addMemoryToConfig(configId, memory);
-			return Response.status(201).build();
+			
+			return configurationController.addMemoryToConfig(configId, memory);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return Response.status(503)
-					.type(MediaType.APPLICATION_JSON)
-					.entity(e.getMessage())
-					.build();
+			return null;
 		}
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeMemory(@PathParam("configId") int configId, Memory memory) {
+	public Memory changeMemory(@PathParam("configId") int configId, Memory memory) {
 		try {
-			configurationController.changeMemory(configId, memory);
-			return Response.status(200).build();
+			
+			return configurationController.changeMemory(configId, memory);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return Response.status(503)
-					.type(MediaType.APPLICATION_JSON)
-					.entity(e.getMessage())
-					.build();
+			return null;
 		}
 	}
 	

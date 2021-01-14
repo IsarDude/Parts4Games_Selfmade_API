@@ -15,12 +15,9 @@ import javax.ws.rs.core.Response;
 
 import com.jayway.jsonpath.JsonPath;
 
-import data.CPU;
+import data.PowerAdaptor;
 
-
-public class CpuListBusinessController {
-	
-	
+public class AdaptorListBusinessController {
 
 	String shoppingUrl = "http://open.api.ebay.com/shopping";
 	String version = "1157";
@@ -28,11 +25,10 @@ public class CpuListBusinessController {
 	String responsencoding = "JSON";
 	String callname = "FindProducts";
 	String pageNumber = "1";
-
-	public List<CPU> getCPUList(String keywords){
-		
-		
-		String keyword = "Ryzen 3600 x";
+	
+	
+	public List<PowerAdaptor> getPowerAdaptorList(String keywords){
+		String keyword = "corsair rm";
 		Client client = ClientBuilder.newClient();
 		WebTarget webTarget = client.target(shoppingUrl);
 		webTarget = webTarget.queryParam("version", version)
@@ -50,15 +46,14 @@ public class CpuListBusinessController {
 		String json = response.readEntity(String.class);
 		System.out.println(json);
 		
-		CPU temp = new CPU();
+		
+		PowerAdaptor temp = new PowerAdaptor();
+		
 		
 		List<String> brand = JsonPath.read(json, "$..NameValueList[0].Value[0]" );
 		List<String> ProductEAN = JsonPath.read(json, "$..ProductID[0].Value" );
-		List<String> Cache = JsonPath.read(json, "$..NameValueList[2].Value[0]" );
-		List<String> Socket = JsonPath.read(json, "$..NameValueList[4].Value[0]" );
-		List<String> NumberOfCores = JsonPath.read(json, "$..NameValueList[5].Value[0]" );
-		List<String> ClockSpeed = JsonPath.read(json, "$..NameValueList[7].Value[0]" );
-		
+		List<String> MaximumPower = JsonPath.read(json, "$..NameValueList[2].Value[0]" );
+		List<String> formFactor =JsonPath.read(json, "$..NameValueList[3].Value[0]" );
 		List<String> photoUrl = JsonPath.read(json, "$..StockPhotoURL");
 		System.out.println(brand);
 		

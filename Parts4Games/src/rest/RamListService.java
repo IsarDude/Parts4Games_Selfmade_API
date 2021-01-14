@@ -1,10 +1,10 @@
 package rest;
 
-import javax.inject.Inject;
-import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
@@ -12,16 +12,15 @@ import business.RamListBusinessController;
 
 @Path("/ramList")
 public class RamListService {
-/*
-	@Inject
-	private RamListBusinessController ramListBusinessController;
+	
+	private RamListBusinessController ramListBusinessController = new RamListBusinessController();
 	
 	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getRamList(String brand, String model, int totalcapacity, String type, String busSpeed, float price) {
+	public Response getRamList(@QueryParam("brand") String brand, @QueryParam("model") String model, @QueryParam("capacity") String capacity) {
+	
 		try {
-			return Response.ok(ramListBusinessController.getRamList(company, model, capacity, type, frequency)).build();
+			return Response.ok(ramListBusinessController.getRamList(brand, model, capacity)).build();	
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
@@ -30,7 +29,6 @@ public class RamListService {
 					.build();
 		}
 	}
-	*/
 }
 	
 

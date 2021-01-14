@@ -21,32 +21,26 @@ public class PowerAdaptorService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
+	public PowerAdaptor addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
-			configurationController.addPowerAdaptorToConfig(configId, powerAdaptor);
-			return Response.status(201).build();
+			
+			return configurationController.addPowerAdaptorToConfig(configId, powerAdaptor);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return Response.status(503)
-					.type(MediaType.APPLICATION_JSON)
-					.entity(e.getMessage())
-					.build();
+			return null;
 		}
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changePowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
+	public PowerAdaptor changePowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
 		try {
-			configurationController.changePowerAdaptor(configId, powerAdaptor);
-			return Response.status(200).build();
+			
+			return configurationController.changePowerAdaptor(configId, powerAdaptor);
 		}catch(Exception e) {
 			e.printStackTrace();
-			return Response.status(503)
-					.type(MediaType.APPLICATION_JSON)
-					.entity(e.getMessage())
-					.build();
+			return null;
 		}
 	}
 	

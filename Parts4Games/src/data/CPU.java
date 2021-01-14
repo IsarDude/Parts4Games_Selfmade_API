@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 @Entity
 public class CPU {
