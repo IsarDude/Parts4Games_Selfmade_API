@@ -1,6 +1,17 @@
 package data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Memory {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+	
 	private String productID;
 	private String brand;
 	private String model;
@@ -11,7 +22,7 @@ public class Memory {
 	private float price;
 	
 	public Memory() {
-		
+		super();
 	}
 	
 	public Memory(String productID, String brand, String model, String interFace, String formFactor, String type, String fotoURL, float price) {

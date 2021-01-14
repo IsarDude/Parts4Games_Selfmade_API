@@ -1,10 +1,20 @@
 package data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
+@Entity
 public class Motherboard {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;	
+	
 	private String company;
 	private String model;
 	private int socket;
@@ -14,7 +24,11 @@ public class Motherboard {
 	private String ddrmemory;
 	private float price;
 	
-	public Motherboard() {}
+
+	public Motherboard() {
+		super();
+	}
+	
 	public Motherboard(int aSocket, int aFrontSideBus, String aFormfactor, String aCompany, String aModel, String aChipset, String aDdrMemory, float aPrice) {
 		super();
 		this.ddrmemory = aDdrMemory;

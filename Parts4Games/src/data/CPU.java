@@ -1,10 +1,20 @@
 package data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement //Aktiviere JSON/XML-Konvertierung 
+@Entity
 public class CPU {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+	
 	private int frequency;
 	private int socket;
 	private String company;
@@ -13,8 +23,11 @@ public class CPU {
 	private int cores;
 	private float price;
 	
-	
-	public CPU () {}
+
+	public CPU() {
+		super();
+	}
+
 	public CPU(int aSocket, int aFrequency, int aCores, String aCompany, String aModel, int aGeneration, float aPrice) {
 		super();
 		this.frequency= aFrequency;

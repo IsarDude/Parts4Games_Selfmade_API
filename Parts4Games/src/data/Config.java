@@ -5,6 +5,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.ws.rs.core.Link;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -23,11 +34,17 @@ public class Config {
 	
 	public int configID;
 	private float budget;
+	@OneToOne(cascade = CascadeType.ALL)
 	private GPU selectedGpu;
+	@OneToOne(cascade = CascadeType.ALL)
 	private CPU selectedCpu;
+	@OneToOne(cascade = CascadeType.ALL)
 	private RAM selectedRAM;
+	@OneToOne(cascade = CascadeType.ALL)
 	private Motherboard selectedMotherboard;
+	@OneToOne(cascade = CascadeType.ALL)
 	private Memory selectedMemory;
+	@OneToOne(cascade = CascadeType.ALL)
 	private PowerAdaptor selectedPoweradaptor;
 	
 	@InjectLinks(

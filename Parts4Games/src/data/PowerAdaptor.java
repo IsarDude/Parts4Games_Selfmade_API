@@ -1,13 +1,26 @@
 package data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class PowerAdaptor {
+	
+	@Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+	
 	private String company;
 	private String model;
 	private int tension;
 	private int power;
 	private float price;
 	
-	public PowerAdaptor() {}
+	public PowerAdaptor() {
+		super();
+	}
 	public PowerAdaptor(String company, String model, int tension, int power, float price) {
 		super();
 		this.company = company;
