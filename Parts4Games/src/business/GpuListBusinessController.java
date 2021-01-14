@@ -58,7 +58,7 @@ public class GpuListBusinessController {
 		List<String> ChipsetManufacturer = JsonPath.read(json, "$..NameValueList[8].Value[0]" );
 		List<String> ChipsetSlotMemory = JsonPath.read(json, "$..NameValueList[10].Value[0]" );
 		
-		List<String> photoUrl;
+		List<String> photoUrl = JsonPath.read(document, "$..StockPhotoURL");
 		
 		System.out.println(brand);
 		
