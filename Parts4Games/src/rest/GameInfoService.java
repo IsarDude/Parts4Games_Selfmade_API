@@ -1,6 +1,5 @@
 package rest;
 
-import javax.inject.Inject;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
@@ -12,8 +11,8 @@ import business.GameInfoBusinessController;
 
 @Path("/gameInfo/{gameId}")
 public class GameInfoService {
-	@Inject
-	private GameInfoBusinessController gameInfoBusinessController;
+
+	private GameInfoBusinessController gameInfoBusinessController = new GameInfoBusinessController();
 	
 	@GET
 	@Path("/rec")

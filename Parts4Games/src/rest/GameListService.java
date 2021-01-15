@@ -12,8 +12,8 @@ import business.GameListBusinessController;
 
 @Path("/gameList/{gameName}")
 public class GameListService {
-	@Inject
-	private GameListBusinessController gameListBusinessController;
+	
+	private GameListBusinessController gameListBusinessController = new GameListBusinessController();
 	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
