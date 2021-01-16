@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
@@ -26,10 +27,6 @@ public class GPU {
 	public GPU() {
 		super();
 	}
-	
-	
-	
-	
 	
 	public GPU(String productIdEAN, String compatibleSlot, String chipsetManufacturer, String brand,
 			String chipsetGPUModel, String fotoURL, float price) {

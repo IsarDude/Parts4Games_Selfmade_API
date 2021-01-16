@@ -15,6 +15,7 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlElement;
@@ -23,6 +24,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 import org.glassfish.jersey.linking.InjectLink;
 import org.glassfish.jersey.linking.InjectLink.Style;
 import org.glassfish.jersey.linking.InjectLinks;
+import org.eclipse.persistence.annotations.CascadeOnDelete;
 import org.glassfish.jersey.linking.Binding;
 
 import rest.ConfigService;
@@ -55,6 +57,7 @@ public class Config implements Serializable {
 	private Memory selectedMemory;
 	@OneToOne(cascade = CascadeType.ALL)
 	private PowerAdaptor selectedPoweradaptor;
+	
 	
 	/*
 	  @InjectLink(resource = ConfigService.getConfig, value="/stuff", rel="create", style = Style.ABSOLUTE),
