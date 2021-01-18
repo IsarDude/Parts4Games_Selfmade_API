@@ -4,38 +4,36 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import business.ConfigurationController;
-import data.Motherboard;
-
-import java.io.IOException;
+import data.RAM;
 
 import javax.ws.rs.*;
 
-@Path("/config/{configId}/motherboard")
-public class MotherboardService {
+@Path("/config/{configId}/ram")
+public class RAMService {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces( MediaType.APPLICATION_JSON )
-	public Response createMotherboard(@PathParam("configId") int configId, Motherboard aMotherboard) {
+	@Produces( MediaType.APPLICATION_JSON)
+	public Response createRAM(@PathParam("configId") int configId, RAM aRam) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.addMotherboardToConfig(configId, aMotherboard)).build();
-		} catch (IOException e) {
+			return Response.ok(conf.addRAMToConfig(configId, aRam)).build();
+		} catch (Exception e) {
 			return Response.status(503)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
-		}	
+		}
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeMotherboard(@PathParam("configId") int configId, Motherboard aMotherboard) {
+	public Response changeRAM(@PathParam("configId") int configId, RAM aRam) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.changeMotherboard(configId, aMotherboard)).build();
-		} catch (IOException e) {
+			return Response.ok(conf.changeRAM(configId, aRam)).build();
+		} catch (Exception e) {
 			return Response.status(503)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
@@ -45,9 +43,9 @@ public class MotherboardService {
 	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response deleteMotherboard(@PathParam("configId") int configId) {
+	public Response deleteRAM(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
-		boolean isDeleted = conf.deleteMotherboard(configId);
+		boolean isDeleted = conf.deleteRAM(configId);
 		if(isDeleted) {
 			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
 		}

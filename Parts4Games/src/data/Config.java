@@ -1,25 +1,13 @@
 package data;
 
 import java.net.URI;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.ws.rs.core.Link;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
 
-import org.glassfish.jersey.linking.InjectLink;
-import org.glassfish.jersey.linking.InjectLink.Style;
 import org.glassfish.jersey.linking.InjectLinks;
-import org.glassfish.jersey.linking.Binding;
 
-import rest.ConfigService;
-
-
-@XmlRootElement //Aktiviere JSON/XML-Konvertierung 
-public class Config {
-	
-	
+public class Config {	
 	
 	public int configID;
 	private float budget;
@@ -30,20 +18,10 @@ public class Config {
 	private Memory selectedMemory;
 	private PowerAdaptor selectedPoweradaptor;
 	
-	/*
-	  @InjectLink(resource = ConfigService.getConfig, value="/stuff", rel="create", style = Style.ABSOLUTE),
-				@InjectLink( value="config/{configId}", rel="self", style=Style.ABSOLUTE,
-				bindings= @Binding(name= "configId", value="${instance.configID}"))
-	  */
-	
 	@InjectLinks({})
 	List<Link> links;
 	URI uri;
-	/*
-	@InjectLink(resource=ConfigService.class, style=Style.ABSOLUTE)
-	private URI uri;
-	*/
-	@XmlElement(name="links")
+
 	public void setLinks(List<Link> links) {
 		this.links=links;
 	}
@@ -51,21 +29,19 @@ public class Config {
 	public List<Link> getLinks() {
 		return links;
 	}
-	@XmlElement(name="uri")
+
 	public void setUri(URI uri) {
 		this.uri = uri;
 	}
 	
-
 	public URI getUri() {
 		return uri;
 	}
 	
-	
 	public void checkBudget() {
 		
 	}
-	@XmlElement(name="configID")
+
 	public int getConfigID() {
 		return configID;
 	}
@@ -74,7 +50,6 @@ public class Config {
 		this.configID = configID;
 	}
 	
-	@XmlElement(name="budget")
 	public float getBudget() {
 		return budget;
 	}
@@ -83,7 +58,6 @@ public class Config {
 		this.budget = budget;
 	}
 	
-	@XmlElement(name="gpu")
 	public GPU getSelectedGpu() {
 		return selectedGpu;
 	}
@@ -92,7 +66,6 @@ public class Config {
 		this.selectedGpu = selectedGpu;
 	}
 
-	@XmlElement(name="cpus")
 	public CPU getSelectedCpu() {
 		return selectedCpu;
 	}
@@ -100,7 +73,7 @@ public class Config {
 	public void setSelectedCpu(CPU selectedCpu) {
 		this.selectedCpu = selectedCpu;
 	}
-	@XmlElement(name="ram")
+
 	public RAM getSelectedRAM() {
 		return selectedRAM;
 	}
@@ -109,7 +82,6 @@ public class Config {
 		this.selectedRAM = selectedRAM;
 	}
 	
-	@XmlElement(name="motherboard")
 	public Motherboard getSelectedMotherboard() {
 		return selectedMotherboard;
 	}
@@ -118,7 +90,6 @@ public class Config {
 		this.selectedMotherboard = selectedMotherboard;
 	}
 	
-	@XmlElement(name="memory")
 	public Memory getSelectedMemory() {
 		return selectedMemory;
 	}
@@ -127,14 +98,12 @@ public class Config {
 		this.selectedMemory = selectedMemory;
 	}
 
-	@XmlElement(name="powerAdaptor")
 	public PowerAdaptor getSelectedPoweradaptor() {
 		return selectedPoweradaptor;
 	}
 
 	public void setSelectedPoweradaptor(PowerAdaptor selectedPoweradaptor) {
 		this.selectedPoweradaptor = selectedPoweradaptor;
-	}
-	
+	}	
 	
 }

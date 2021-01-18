@@ -19,7 +19,7 @@ import com.jayway.jsonpath.JsonPath;
 
 import data.RAM;
 
-public class RamListBusinessController {
+public class RAMListBusinessController {
 	
 	private String productID;
 	private String brand;
@@ -32,9 +32,11 @@ public class RamListBusinessController {
 	private String title;
 	private String price;
 	
+	private int itemCount;
+	
 	private Map<String, String> filteredTitlesAndPrices;
 	
-	public List<RAM> getRamList(String ramCapacity, String budget) throws IOException{
+	public List<RAM> getRamList(String ramCapacity, String ramType, String brandName, String busSpeed,String budget) throws IOException{
 		/* Vorgehensweise:
 		 * filterTitlesAndPrices(getRamTitlesAndPrices())
 		 * List<RAM> erstellen
@@ -45,7 +47,7 @@ public class RamListBusinessController {
 		
 		try {
 			filteredTitlesAndPrices = new HashMap<String, String>();
-			filterTitlesAndPrices(getRamTitlesAndPrices(ramCapacity, budget));
+			filterTitlesAndPrices(getRamTitlesAndPrices(ramCapacity, ramType, brandName, busSpeed, budget));
 			List<RAM> ramList = new ArrayList<RAM>();
 			for (Map.Entry<String, String> entry : filteredTitlesAndPrices.entrySet()) {
 				RAM ramDO = JsonToObject(getRamSpecifics(entry.getKey()));
@@ -60,9 +62,22 @@ public class RamListBusinessController {
 			return null;
 		}				
 	}
-	private String getRamTitlesAndPrices(String ramCapacity, String budget) throws IOException{
+	private String getRamTitlesAndPrices(String ramCapacity, String ramType, String brandName, String busSpeed,String budget) throws IOException{
 		//Anfrage an Ebay-findItemsAdvanced-API
-
+		String goodRamType = ramType;
+		String goodBrandName = brandName;
+		String goodBusSpeed = busSpeed;
+		
+		if (goodRamType != "") {
+			goodRamType = goodRamType.replaceAll("\\s+", "%20");
+		}
+		if (goodBrandName != "") {
+			goodBrandName = goodBrandName.replaceAll("\\s+", "%20");
+		}
+		if (goodBusSpeed != "") {
+			goodBusSpeed = goodBusSpeed.replaceAll("\\s+", "%20");
+		}
+		
 		try {
 			String uri = "https://svcs.ebay.com/services/search/FindingService/v1?"
 					+ "OPERATION-NAME=findItemsAdvanced&"
@@ -78,13 +93,29 @@ public class RamListBusinessController {
 					+ "aspectFilter(0).aspectName=Total%20Capacity&"
 					+ "aspectFilter(0).aspectValueName=" + ramCapacity + "%20GB&"
 					+ "aspectFilter(1).aspectName=Number%20of%20Modules&" 
-					+ "aspectFilter(1).aspectValueName=1";
+					+ "aspectFilter(1).aspectValueName=1&"
+					+ "aspectFilter(2).aspectName=Type&" 
+					+ "aspectFilter(2).aspectValueName=" + goodRamType + "&"
+					+ "aspectFilter(3).aspectName=Brand&" 
+					+ "aspectFilter(3).aspectValueName=" + goodBrandName + "&"
+					+ "aspectFilter(4).aspectName=Bus%20Speed&" 
+					+ "aspectFilter(4).aspectValueName=" + goodBusSpeed;
 
 			Client client = ClientBuilder.newClient();
 	        WebTarget webTarget = client.target(uri);
 	        Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
 	        Response response = invocationBuilder.get(Response.class); 
 	        String ramSpecificsJSON = response.readEntity(String.class);
+	        
+	        String itemCountTemp;
+	        List<String> itemCounts = JsonPath.read(ramSpecificsJSON, "$..@count");
+	        if(itemCounts.size() != 0) {
+	        	itemCountTemp = itemCounts.get(0);
+	        }else {
+	        	itemCountTemp = "0";
+	        }
+	        itemCount = Integer.parseInt(itemCountTemp);
+
 	        return ramSpecificsJSON;
   
 		} catch (Exception e) {
@@ -101,10 +132,11 @@ public class RamListBusinessController {
 		 * Prüfen ob Titel bereits in Hashmap vorhanden ist. Falls nein, Titel/Preis hinzufügen. Falls ja, Preis vergleichen und billigeren Titel/Preis nehmen
 		 * Insgesamt sollen 10 sinnvolle RAM-Objekte in der Hashmap gespeichert werden
 		 */
+		int itemCountTemp = itemCount;
 		
 		Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
-		for (int i = 0; filteredTitlesAndPrices.size() < 10; i++) {
-			
+		for (int i = 0; filteredTitlesAndPrices.size() < 10 && itemCountTemp > 0; i++) {
+			itemCountTemp--;
 			List<String> listingTypes = JsonPath.read(document, "$..item.[" + i + "]..listingType.*");
 			String currentListingType = listingTypes.get(0);
 			String neededListingType = "FixedPrice";
@@ -130,7 +162,8 @@ public class RamListBusinessController {
 						System.out.println(" ");
 					} else { //Wenn der Titel bereits in filteredTitlesAndPrices vorhanden ist, vergleiche Preise und nimm den billigeren
 						if (comparePrices(titleForQuery, currentPrice)) {
-							System.out.println("TITEL WAR BEREITS IN HASHMAP. NEHME NIEDRIGEREN PREIS");
+							System.out.println("NEHME NIEDRIGEREN PREIS");
+							System.out.println(" ");
 							title = titleForQuery;
 							price = currentPrice;
 							filteredTitlesAndPrices.put(title, price);

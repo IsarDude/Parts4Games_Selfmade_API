@@ -20,6 +20,8 @@ public class GameListBusinessController{
 	
 	public List<GameIdentifier> getGameList(String gameName) throws IOException{ 
 		
+		String goodGameName = gameName.replaceAll("%20", " ");
+		
 		try {
 			Client client = ClientBuilder.newClient();
 	        WebTarget webTarget = client.target("https://api.steampowered.com/ISteamApps/GetAppList/v2");
@@ -31,12 +33,13 @@ public class GameListBusinessController{
 	        //GameIdentifier Objects erstellen und füllen
 	        //Diese in eine Liste packen
 	        //Zurückgeben
+	        
 	        List<GameIdentifier> gameIdentifiers = new ArrayList<GameIdentifier>();
 	        Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
 	        int arrayLength = JsonPath.read(document, "$.applist.apps.length()");
 	        for (int i = 0; i < arrayLength; i++) {
 	        	String curGameName = JsonPath.read(document, "$.applist.apps[" + i + "].name");
-	        	if (curGameName.toLowerCase().contains(gameName.toLowerCase())) {
+	        	if (curGameName.toLowerCase().contains(goodGameName.toLowerCase())) {
 	        		int gameId = JsonPath.read(document, "$.applist.apps[" + i + "].appid");
 	        		GameIdentifier gameIdentifier = new GameIdentifier(curGameName, gameId);
 	        		gameIdentifiers.add(gameIdentifier);

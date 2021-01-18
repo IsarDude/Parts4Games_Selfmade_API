@@ -1,29 +1,26 @@
 package rest;
 
-import javax.ws.rs.Consumes;
-import javax.ws.rs.DELETE;
-import javax.ws.rs.POST;
-import javax.ws.rs.PUT;
-import javax.ws.rs.Path;
-import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import business.ConfigurationController;
-import data.Memory;
+import data.GPU;
 
-@Path("/config/{configId}/memory")
-public class MemoryService {
+import java.io.IOException;
+
+import javax.ws.rs.*;
+
+@Path("/config/{configId}/gpu")
+public class GPUService {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response addMemory(@PathParam("configId") int configId, Memory memory) {
+	@Produces( MediaType.APPLICATION_JSON)
+	public Response createGPU(@PathParam("configId") int configId, GPU aGPU) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.addMemoryToConfig(configId, memory)).build();
-		}catch(Exception e) {
+			return Response.ok(conf.addGpuToConfig(configId, aGPU)).build();
+		} catch (Exception e) {
 			return Response.status(503)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
@@ -33,12 +30,12 @@ public class MemoryService {
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeMemory(@PathParam("configId") int configId, Memory memory) {
+	@Produces( MediaType.APPLICATION_JSON)
+	public Response changeGPU(@PathParam("configId") int configId, GPU aGPU) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.changeMemory(configId, memory)).build();
-		}catch(Exception e) {
+			return Response.ok(conf.changeGPU(configId, aGPU)).build();
+		} catch (IOException e) {
 			return Response.status(503)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
@@ -47,10 +44,10 @@ public class MemoryService {
 	}
 	
 	@DELETE
-	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeMemory(@PathParam("configId") int configId) {
+	@Produces( MediaType.APPLICATION_JSON)
+	public Response deleteGPU(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
-		boolean isDeleted = conf.deleteMemory(configId);
+		boolean isDeleted = conf.deleteGPU(configId);
 		if(isDeleted) {
 			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
 		}

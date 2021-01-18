@@ -4,22 +4,24 @@ public class Memory {
 	private String productID;
 	private String brand;
 	private String model;
-	private String interFace;
+	private String storageCapacity;
+	private String rotationSpeed;
 	private String type;
-	private String formFactor;
 	private String fotoURL;
-	private float price;
+	private String price;
 	
 	public Memory() {
 		
 	}
-	
-	public Memory(String productID, String brand, String model, String interFace, String formFactor, String type, String fotoURL, float price) {
+
+	public Memory(String productID, String brand, String model, String storageCapacity, String rotationSpeed,
+			String type, String fotoURL, String price) {
+		super();
 		this.productID = productID;
 		this.brand = brand;
 		this.model = model;
-		this.interFace = interFace;
-		this.formFactor = formFactor;
+		this.storageCapacity = storageCapacity;
+		this.rotationSpeed = rotationSpeed;
 		this.type = type;
 		this.fotoURL = fotoURL;
 		this.price = price;
@@ -49,12 +51,20 @@ public class Memory {
 		this.model = model;
 	}
 
-	public String getInterFace() {
-		return interFace;
+	public String getStorageCapacity() {
+		return storageCapacity;
 	}
 
-	public void setInterFace(String interFace) {
-		this.interFace = interFace;
+	public void setStorageCapacity(String storageCapacity) {
+		this.storageCapacity = storageCapacity;
+	}
+
+	public String getRotationSpeed() {
+		return rotationSpeed;
+	}
+
+	public void setRotationSpeed(String rotationSpeed) {
+		this.rotationSpeed = rotationSpeed;
 	}
 
 	public String getType() {
@@ -65,14 +75,6 @@ public class Memory {
 		this.type = type;
 	}
 
-	public String getFormFactor() {
-		return formFactor;
-	}
-
-	public void setFormFactor(String formFactor) {
-		this.formFactor = formFactor;
-	}
-
 	public String getFotoURL() {
 		return fotoURL;
 	}
@@ -81,12 +83,11 @@ public class Memory {
 		this.fotoURL = fotoURL;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	
 }

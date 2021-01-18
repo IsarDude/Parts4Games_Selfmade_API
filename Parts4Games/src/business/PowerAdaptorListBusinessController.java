@@ -2,12 +2,12 @@ package business;
 
 import java.util.List;
 
-import data.Memory;
+import data.PowerAdaptor;
 
-public class MemoryListBusinessController {
+public class PowerAdaptorListBusinessController {
 	//Nach Absprache mit Ihnen, wurde nur der RamListBusinessController repräsentativ für alle Hardware-Listen-Implementierungen realisiert.
 	
-	public List<Memory> getMemoryList(String storageCapacity, String type, String rotationSpeed, String brandName, String budget) {
+	public List<PowerAdaptor> getPowerAdaptorList(String maximumPower, String formFactor, String brandName, String budget) {
 		return null;
 	}
 }

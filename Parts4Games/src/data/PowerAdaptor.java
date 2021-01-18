@@ -1,32 +1,34 @@
 package data;
 
 public class PowerAdaptor {
-	private String productIdEAN;
+	private String productID;
 	private String brand;
 	private String maximumPower;
-	private String formfactor;
-	private String photoURL;
-	private float price;
+	private String formFactor;
+	private String fotoURL;
+	private String price;
 	
 	public PowerAdaptor() {
 		
 	}
-	
-	public PowerAdaptor(String productIdEAN, String brand, String maximumPower, String formfactor, String photoURL, float price) {
-		this.productIdEAN = productIdEAN;
+
+	public PowerAdaptor(String productID, String brand, String maximumPower, String formFactor, String fotoURL,
+			String price) {
+		super();
+		this.productID = productID;
 		this.brand = brand;
 		this.maximumPower = maximumPower;
-		this.formfactor = formfactor;
-		this.photoURL = photoURL;
+		this.formFactor = formFactor;
+		this.fotoURL = fotoURL;
 		this.price = price;
 	}
 
-	public String getProductIdEAN() {
-		return productIdEAN;
+	public String getProductID() {
+		return productID;
 	}
 
-	public void setProductIdEAN(String productIdEAN) {
-		this.productIdEAN = productIdEAN;
+	public void setProductID(String productID) {
+		this.productID = productID;
 	}
 
 	public String getBrand() {
@@ -45,29 +47,27 @@ public class PowerAdaptor {
 		this.maximumPower = maximumPower;
 	}
 
-	public String getFormfactor() {
-		return formfactor;
+	public String getFormFactor() {
+		return formFactor;
 	}
 
-	public void setFormfactor(String formfactor) {
-		this.formfactor = formfactor;
+	public void setFormFactor(String formFactor) {
+		this.formFactor = formFactor;
 	}
 
-	public String getPhotoURL() {
-		return photoURL;
+	public String getFotoURL() {
+		return fotoURL;
 	}
 
-	public void setPhotoURL(String photoURL) {
-		this.photoURL = photoURL;
+	public void setFotoURL(String fotoURL) {
+		this.fotoURL = fotoURL;
 	}
 
-	public float getPrice() {
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	
-	
 }

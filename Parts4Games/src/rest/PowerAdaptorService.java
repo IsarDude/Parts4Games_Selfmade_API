@@ -16,46 +16,44 @@ import data.PowerAdaptor;
 @Path("/config/{configId}/powerAdaptor")
 public class PowerAdaptorService {
 	
-	ConfigurationController configurationController = ConfigurationController.getInstance();
-	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PowerAdaptor addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
+	public Response addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
+		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			
-			return configurationController.addPowerAdaptorToConfig(configId, powerAdaptor);
+			return Response.ok(conf.addPowerAdaptorToConfig(configId, powerAdaptor)).build();
 		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			return Response.status(503)
+					.type(MediaType.APPLICATION_JSON)
+					.entity(e.getMessage())
+					.build();
 		}
 	}
 	
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public PowerAdaptor changePowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
+	public Response changePowerAdaptor(@PathParam("configId") int configId, PowerAdaptor powerAdaptor) {
+		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			
-			return configurationController.changePowerAdaptor(configId, powerAdaptor);
+			return Response.ok(conf.changePowerAdaptor(configId, powerAdaptor)).build();
 		}catch(Exception e) {
-			e.printStackTrace();
-			return null;
+			return Response.status(503)
+					.type(MediaType.APPLICATION_JSON)
+					.entity(e.getMessage())
+					.build();
 		}
 	}
 	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response changePowerAdaptor(@PathParam("configId") int configId) {
-		try {
-			configurationController.deletePowerAdaptor(configId);
-			return Response.status(200).build();
-		}catch(Exception e) {
-			e.printStackTrace();
-			return Response.status(503)
-					.type(MediaType.APPLICATION_JSON)
-					.entity(e.getMessage())
-					.build();
+		ConfigurationController conf = ConfigurationController.getInstance();
+		boolean isDeleted = conf.deletePowerAdaptor(configId);
+		if(isDeleted) {
+			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
 		}
+		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
 	}
 }

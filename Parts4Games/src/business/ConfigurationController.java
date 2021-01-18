@@ -12,7 +12,6 @@ import data.Motherboard;
 
 import data.PowerAdaptor;
 
-
 public class ConfigurationController {
 	LinkedList<Config> configList = new LinkedList<>();
 	static ConfigurationController instance = new ConfigurationController();
@@ -54,8 +53,6 @@ public class ConfigurationController {
 		}
 	}
 	
-	
-	
 	public CPU addCpuToConfig(int configId,CPU aCpu) throws IOException {
 		Config config = getConfig(configId);
 		if(config != null) {
@@ -63,10 +60,7 @@ public class ConfigurationController {
 			return config.getSelectedCpu();
 		}else {
 			throw new IOException();
-		}
-			
-		
-		
+		}		
 	}
 	
 	public CPU changeCPU(int configId, CPU aCPU) throws IOException{
@@ -77,21 +71,16 @@ public class ConfigurationController {
 		}else {
 			throw new IOException();
 		}
-		
-		
 	}
 	
-	
-	public void deleteCPU(int configId) throws IOException {
+	public boolean deleteCPU(int configId) {
 		Config conf= getConfig(configId);
 		if(conf != null) {
 			conf.setSelectedCpu(null);
-			
+			return true;
 		}else {
-			throw new IOException();
+			return false;
 		}
-			
-		
 	}
 	
 	public GPU addGpuToConfig(int configId, GPU aGpu) throws IOException{
@@ -114,13 +103,13 @@ public class ConfigurationController {
 		}
 	}
 	
-	public void deleteGPU(int configId) throws IOException {
+	public boolean deleteGPU(int configId) {
 		Config conf= getConfig(configId);
 		if(conf != null) {
 			conf.setSelectedGpu(null);
-			
+			return true;
 		}else {
-			throw new IOException();
+			return false;
 		}
 	}
 	
@@ -172,13 +161,13 @@ public class ConfigurationController {
 		}
 	}
 	
-	public boolean deleteMotherboard(int configId) throws IOException {
+	public boolean deleteMotherboard(int configId) {
 		Config conf= getConfig(configId);
 		if(conf != null) {
 			conf.setSelectedMotherboard(null);
 			return true;
 		}else {
-			throw new IOException();
+			return false;
 		}
 	}
 	
@@ -202,13 +191,13 @@ public class ConfigurationController {
 		}
 	}
 	
-	public boolean deleteRAM(int configId) throws IOException {
+	public boolean deleteRAM(int configId) {
 		Config conf= getConfig(configId);
 		if(conf != null) {
 			conf.setSelectedRAM(null);
 			return true;
 		}else {
-			throw new IOException();
+			return false;
 		}
 	}
 
@@ -232,13 +221,13 @@ public class ConfigurationController {
 		}
 	}
 	
-	public boolean deleteMemory(int configId) throws IOException {
+	public boolean deleteMemory(int configId) {
 		Config conf= getConfig(configId);
 		if(conf != null) {
 			conf.setSelectedRAM(null);
 			return true;
 		}else {
-			throw new IOException();
+			return false;
 		}
 	}
 	
@@ -262,14 +251,13 @@ public class ConfigurationController {
 		}
 	}
 	
-	public boolean deletePowerAdaptor(int configId) throws IOException {
+	public boolean deletePowerAdaptor(int configId) {
 		Config conf= getConfig(configId);
 		if(conf != null) {
 			conf.setSelectedPoweradaptor(null);
 			return true;
 		}else {
-			throw new IOException();
+			return false;
 		}
 	}
-
 }

@@ -1,96 +1,94 @@
 package data;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement 
 public class CPU {
-	private int socket;
+	private String productID;
 	private String brand;
-	private int cache;
-	private int cores;
-	private float price;
+	private String processorType;
+	private String socketType;
+	private String numberOfCores;
+	private String clockspeed;
 	private String fotoUrl;
-	private int clockspeed;
+	private String price;
 	
 	public CPU () {
 		
 	}
-	
-	public CPU(String afotoUrl, int aclockspeed, int aSocket, int aCores, String aBrand, int aCache, float aPrice) {
+
+	public CPU(String productID, String brand, String processorType, String socketType, String numberOfCores,
+			String clockspeed, String fotoUrl, String price) {
 		super();
-		this.clockspeed = aclockspeed;
-		this.fotoUrl = afotoUrl;
-		this.cores = aCores;
-		this.brand = aBrand;
-		this.cache = aCache;
-		this.socket = aSocket;
-		this.price=aPrice;
-		
-	}
-	
-	@XmlElement(name="cache")
-	public int getCache() {
-		return cache;
-	}
-
-	public void setCache(int cache) {
-		this.cache = cache;
-	}
-	
-	@XmlElement(name="clockspeed")
-	public int getClockspeed() {
-		return clockspeed;
-	}
-
-	public void setClockspeed(int clockspeed) {
+		this.productID = productID;
+		this.brand = brand;
+		this.processorType = processorType;
+		this.socketType = socketType;
+		this.numberOfCores = numberOfCores;
 		this.clockspeed = clockspeed;
-	}
-	
-	@XmlElement(name="socket")
-	public int getSocket() {
-		return socket;
-	}
-
-	public void setSocket(int socket) {
-		this.socket = socket;
-	}
-	
-	@XmlElement(name="cores")
-	public int getCores() {
-		return cores;
-	}
-
-	public void setCores(int cores) {
-		this.cores = cores;
-	}
-	
-	@XmlElement(name="fotoUrl")
-	public String getFotoUrl() {
-		return fotoUrl;
-	}
-	
-	
-	public void setFotoUrl(String fotoUrl) {
 		this.fotoUrl = fotoUrl;
+		this.price = price;
 	}
 
-	@XmlElement(name="brand")
+	public String getProductID() {
+		return productID;
+	}
+
+	public void setProductID(String productID) {
+		this.productID = productID;
+	}
+
 	public String getBrand() {
 		return brand;
 	}
-	
-	
+
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
 
-	@XmlElement(name="price")
-	public float getPrice() {
+	public String getProcessorType() {
+		return processorType;
+	}
+
+	public void setProcessorType(String processorType) {
+		this.processorType = processorType;
+	}
+
+	public String getSocketType() {
+		return socketType;
+	}
+
+	public void setSocketType(String socketType) {
+		this.socketType = socketType;
+	}
+
+	public String getNumberOfCores() {
+		return numberOfCores;
+	}
+
+	public void setNumberOfCores(String numberOfCores) {
+		this.numberOfCores = numberOfCores;
+	}
+
+	public String getClockspeed() {
+		return clockspeed;
+	}
+
+	public void setClockspeed(String clockspeed) {
+		this.clockspeed = clockspeed;
+	}
+
+	public String getFotoUrl() {
+		return fotoUrl;
+	}
+
+	public void setFotoUrl(String fotoUrl) {
+		this.fotoUrl = fotoUrl;
+	}
+
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
+	
 }

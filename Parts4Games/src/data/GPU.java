@@ -1,77 +1,41 @@
 package data;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class GPU {
-	private String productIdEAN;
-	private String compatibleSlot;
-	private String chipsetManufacturer;
+	private String productID;
 	private String brand;
-	private String chipsetGPUModel;
+	private String model;
+	private String chipsetManufacturer;
+	private String compatibleSlot;
+	private String memoryType;
+	private String memorySize;
 	private String fotoURL;
-	private float price;
+	private String price;
 	
-	public GPU() {}
-	
-	
-	
-	
-	
-	public GPU(String productIdEAN, String compatibleSlot, String chipsetManufacturer, String brand,
-			String chipsetGPUModel, String fotoURL, float price) {
+	public GPU() {
+		
+	}
+
+	public GPU(String productID, String brand, String model, String chipsetManufacturer, String compatibleSlot,
+			String memoryType, String memorySize, String fotoURL, String price) {
 		super();
-		this.productIdEAN = productIdEAN;
-		this.compatibleSlot = compatibleSlot;
-		this.chipsetManufacturer = chipsetManufacturer;
+		this.productID = productID;
 		this.brand = brand;
-		this.chipsetGPUModel = chipsetGPUModel;
+		this.model = model;
+		this.chipsetManufacturer = chipsetManufacturer;
+		this.compatibleSlot = compatibleSlot;
+		this.memoryType = memoryType;
+		this.memorySize = memorySize;
 		this.fotoURL = fotoURL;
 		this.price = price;
 	}
 
-
-
-
-
-	@XmlElement(name="fotoURL")
-	public String getFotoURL() {
-		return fotoURL;
+	public String getProductID() {
+		return productID;
 	}
 
-	public void setFotoURL(String fotoURL) {
-		this.fotoURL = fotoURL;
+	public void setProductID(String productID) {
+		this.productID = productID;
 	}
-
-	@XmlElement(name="ProductIdEAN")
-	public String getProductIdEAN() {
-		return productIdEAN;
-	}
-
-	public void setProductIdEAN(String productIdEAN) {
-		this.productIdEAN = productIdEAN;
-	}
-
-	@XmlElement(name="compatibleSlot")
-	public String getCompatibleSlot() {
-		return compatibleSlot;
-	}
-
-	public void setCompatibleSlot(String compatibleSlot) {
-		this.compatibleSlot = compatibleSlot;
-	}
-
-	@XmlElement(name="chipsetManufacturer")
-	public String getChipsetManufacturer() {
-		return chipsetManufacturer;
-	}
-	
-	public void setChipsetManufacturer(String chipsetManufacturer) {
-		this.chipsetManufacturer = chipsetManufacturer;
-	}
-	
-	@XmlElement(name="Brand")
 
 	public String getBrand() {
 		return brand;
@@ -81,41 +45,59 @@ public class GPU {
 		this.brand = brand;
 	}
 
-
-	@XmlElement(name="chipsetGPUModel")
-	
-	public String getChipsetGPUModel() {
-		return chipsetGPUModel;
+	public String getModel() {
+		return model;
 	}
 
-	public void setChipsetGPUModel(String chipsetGPUModel) {
-		this.chipsetGPUModel = chipsetGPUModel;
+	public void setModel(String model) {
+		this.model = model;
 	}
-	
-	@XmlElement(name="price")
-	public float getPrice() {
+
+	public String getChipsetManufacturer() {
+		return chipsetManufacturer;
+	}
+
+	public void setChipsetManufacturer(String chipsetManufacturer) {
+		this.chipsetManufacturer = chipsetManufacturer;
+	}
+
+	public String getCompatibleSlot() {
+		return compatibleSlot;
+	}
+
+	public void setCompatibleSlot(String compatibleSlot) {
+		this.compatibleSlot = compatibleSlot;
+	}
+
+	public String getMemoryType() {
+		return memoryType;
+	}
+
+	public void setMemoryType(String memoryType) {
+		this.memoryType = memoryType;
+	}
+
+	public String getMemorySize() {
+		return memorySize;
+	}
+
+	public void setMemorySize(String memorySize) {
+		this.memorySize = memorySize;
+	}
+
+	public String getFotoURL() {
+		return fotoURL;
+	}
+
+	public void setFotoURL(String fotoURL) {
+		this.fotoURL = fotoURL;
+	}
+
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	
-	
-	public String getKeywordString() {
-		String keywords = "GPU " + "Hz " + "Gb" ;
-		if(chipsetGPUModel != null) {
-			keywords = keywords +" " + chipsetGPUModel;
-		}
-		
-		return keywords;
-	}
-
-
-
-
-
-	
-	
-	
 }

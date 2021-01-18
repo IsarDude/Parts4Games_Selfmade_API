@@ -1,96 +1,103 @@
 package data;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-
-@XmlRootElement //Aktiviere JSON/XML-Konvertierung 
 public class Motherboard {
-	private String company;
+	private String productID;
 	private String brand;
-	private int socket;
-	private String ports;
-	private String formfactor;
-	private String chipset;
-	private String ddrmemory;
-	private float price;
+	private String numberOfMemorySlots;
+	private String formFactor;
+	private String socketType;
+	private String compatibleCpuBrand;
+	private String memoryType;
+	private String fotoURL;
+	private String price;
 	
-	public Motherboard() {}
-	public Motherboard(int aSocket, String aPorts, String aFormfactor, String aCompany, String aBrand, String aChipset, String aDdrMemory, float aPrice) {
-		super();
-		this.ddrmemory = aDdrMemory;
-		this.ports= aPorts;
-		this.formfactor = aFormfactor;
-		this.company = aCompany;
-		this.brand = aBrand;
-		this.chipset = aChipset;
-		this.socket = aSocket;
-		this.price=aPrice;
+	public Motherboard() {
 		
 	}
-	
-	@XmlElement(name="company")
-	public String getCompany() {
-		return company;
+
+	public Motherboard(String productID, String brand, String numberOfMemorySlots, String formFactor, String socketType,
+			String compatibleCpuBrand, String memoryType, String fotoURL, String price) {
+		super();
+		this.productID = productID;
+		this.brand = brand;
+		this.numberOfMemorySlots = numberOfMemorySlots;
+		this.formFactor = formFactor;
+		this.socketType = socketType;
+		this.compatibleCpuBrand = compatibleCpuBrand;
+		this.memoryType = memoryType;
+		this.fotoURL = fotoURL;
+		this.price = price;
 	}
-	public void setCompany(String company) {
-		this.company = company;
+
+	public String getProductID() {
+		return productID;
 	}
-	@XmlElement(name="formfactor")
-	public String getFormFactor() {
-		return formfactor;
+
+	public void setProductID(String productID) {
+		this.productID = productID;
 	}
-	public void setFormFactor(String formfactor) {
-		this.formfactor = formfactor;
-	}
-	
-	@XmlElement(name="brand")
+
 	public String getBrand() {
 		return brand;
 	}
+
 	public void setBrand(String brand) {
 		this.brand = brand;
 	}
-	
-	@XmlElement(name="socket")
-	public int getSocket() {
-		return socket;
+
+	public String getNumberOfMemorySlots() {
+		return numberOfMemorySlots;
 	}
-	public void setSocket(int socket) {
-		this.socket = socket;
+
+	public void setNumberOfMemorySlots(String numberOfMemorySlots) {
+		this.numberOfMemorySlots = numberOfMemorySlots;
 	}
-	
-	@XmlElement(name="ports")
-	public String getPorts() {
-		return ports;
+
+	public String getFormFactor() {
+		return formFactor;
 	}
-	
-	public void setPorts(String aPorts) {
-		this.ports = aPorts;
+
+	public void setFormFactor(String formFactor) {
+		this.formFactor = formFactor;
 	}
-	
-	@XmlElement(name="ddrmemory")
-	public String getddrmemory() {
-		return ddrmemory;
+
+	public String getSocketType() {
+		return socketType;
 	}
-	public void setDDRmemory(String ddrmemory) {
-		this.ddrmemory = ddrmemory;
+
+	public void setSocketType(String socketType) {
+		this.socketType = socketType;
 	}
-	
-	@XmlElement(name="chipset")
-	public String getChipset() {
-		return chipset;
+
+	public String getCompatibleCpuBrand() {
+		return compatibleCpuBrand;
 	}
-	public void setChipset(String chipset) {
-		this.chipset = chipset;
+
+	public void setCompatibleCpuBrand(String compatibleCpuBrand) {
+		this.compatibleCpuBrand = compatibleCpuBrand;
 	}
-	
-	@XmlElement(name="price")
-	public float getPrice() {
+
+	public String getMemoryType() {
+		return memoryType;
+	}
+
+	public void setMemoryType(String memoryType) {
+		this.memoryType = memoryType;
+	}
+
+	public String getFotoURL() {
+		return fotoURL;
+	}
+
+	public void setFotoURL(String fotoURL) {
+		this.fotoURL = fotoURL;
+	}
+
+	public String getPrice() {
 		return price;
 	}
 
-	public void setPrice(float price) {
+	public void setPrice(String price) {
 		this.price = price;
 	}
-	
 }
