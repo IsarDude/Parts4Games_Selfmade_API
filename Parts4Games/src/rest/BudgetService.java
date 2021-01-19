@@ -20,9 +20,12 @@ public class BudgetService {
 	public Response createBudget(@PathParam("configId") int configId, @PathParam("newBudget") float budget) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
+			if(configId <= 0) {
+		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		    }
 			return Response.ok(conf.setBudget(configId, budget)).build();
 		} catch (IOException e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
@@ -34,10 +37,13 @@ public class BudgetService {
 	public Response changeBudget(@PathParam("configId") int configId, @PathParam("newBudget")float budget) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
+			if(configId <= 0) {
+		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		    }
 			return Response.ok(conf.changeBudget(configId, budget)).build();
 			
 		} catch (IOException e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();

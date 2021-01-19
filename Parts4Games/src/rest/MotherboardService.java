@@ -15,13 +15,20 @@ public class MotherboardService {
 	
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	@Produces( MediaType.APPLICATION_JSON )
+	@Produces(MediaType.APPLICATION_JSON)
 	public Response createMotherboard(@PathParam("configId") int configId, Motherboard aMotherboard) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.addMotherboardToConfig(configId, aMotherboard)).build();
+			if(configId <= 0) {
+		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		    }
+			Motherboard motherboard = conf.addMotherboardToConfig(configId, aMotherboard);
+			if(motherboard == null) {
+		        return Response.status(422).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"422 Unprocessable Entity. Check Motherboard Object\"}").build();
+		    }
+			return Response.ok(motherboard).build();
 		} catch (IOException e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
@@ -34,23 +41,40 @@ public class MotherboardService {
 	public Response changeMotherboard(@PathParam("configId") int configId, Motherboard aMotherboard) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.changeMotherboard(configId, aMotherboard)).build();
+			if(configId <= 0) {
+		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		    }
+			Motherboard motherboard = conf.changeMotherboard(configId, aMotherboard);
+			if(motherboard == null) {
+		        return Response.status(422).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"422 Unprocessable Entity. Check Motherboard Object\"}").build();
+		    }
+			return Response.ok(motherboard).build();
 		} catch (IOException e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
-		}
+		}	
 	}
 	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteMotherboard(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
-		boolean isDeleted = conf.deleteMotherboard(configId);
-		if(isDeleted) {
-			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
-		}
-		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
+		try {
+			if(configId <= 0) {
+				return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+			}
+			boolean isDeleted = conf.deleteMotherboard(configId);
+			if(isDeleted) {
+				return Response.status(200).entity("{\"state\":\" 200 Deleted\"}").type(MediaType.APPLICATION_JSON).build();	
+			}
+			return Response.status(404).entity("{\"state\":\"404 Config Not Found for ID: " + configId + "\"}").type(MediaType.APPLICATION_JSON).build();
+			} catch (Exception e) {
+				return Response.status(500)
+						.type(MediaType.APPLICATION_JSON)
+						.entity(e.getMessage())
+						.build();
+			}
 	}
 }

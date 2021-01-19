@@ -26,7 +26,7 @@ public class ConfigService {
 		try {
 			return Response.ok(conf.createConfig()).build();
 		} catch (Exception e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
@@ -42,10 +42,17 @@ public class ConfigService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getConfig(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
+		Config config = conf.getConfig(configId);
 		try {
-			return Response.ok(conf.getConfig(configId)).build();
+			if(configId <= 0) {
+		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		    }
+			if(config == null) {
+		        return Response.status(404).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"404 Config Not Found for ID: " + configId + "\"}").build();
+		    }
+			return Response.ok(config).build();
 		} catch (Exception e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
@@ -57,10 +64,20 @@ public class ConfigService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response deleteConfig(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
+		try {
+		if(configId <= 0) {
+		    return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		}
 		boolean isDeleted = conf.deleteConfig(configId);
 		if(isDeleted) {
-			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
+			return Response.status(200).entity("{\"state\":\" 200 Deleted\"}").type(MediaType.APPLICATION_JSON).build();	
 		}
-		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
+		return Response.status(404).entity("{\"state\":\"404 Config Not Found for ID: " + configId + "\"}").type(MediaType.APPLICATION_JSON).build();
+		} catch (Exception e) {
+			return Response.status(500)
+					.type(MediaType.APPLICATION_JSON)
+					.entity(e.getMessage())
+					.build();
+		}
 	}	
 }

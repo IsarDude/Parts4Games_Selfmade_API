@@ -19,12 +19,19 @@ public class MemoryService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addMemory(@PathParam("configId") int configId, Memory memory) {
+	public Response addMemory(@PathParam("configId") int configId, Memory aMemory) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.addMemoryToConfig(configId, memory)).build();
+			if(configId <= 0) {
+		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		    }
+			Memory memory = conf.addMemoryToConfig(configId, aMemory);
+			if(memory == null) {
+		        return Response.status(422).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"422 Unprocessable Entity. Check Memory Object\"}").build();
+		    }
+			return Response.ok(memory).build();
 		}catch(Exception e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
@@ -34,12 +41,19 @@ public class MemoryService {
 	@PUT
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeMemory(@PathParam("configId") int configId, Memory memory) {
+	public Response changeMemory(@PathParam("configId") int configId, Memory aMemory) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
-			return Response.ok(conf.changeMemory(configId, memory)).build();
+			if(configId <= 0) {
+		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+		    }
+			Memory memory = conf.changeMemory(configId, aMemory);
+			if(memory == null) {
+		        return Response.status(422).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"422 Unprocessable Entity. Check Memory Object\"}").build();
+		    }
+			return Response.ok(memory).build();
 		}catch(Exception e) {
-			return Response.status(503)
+			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
 					.entity(e.getMessage())
 					.build();
@@ -50,10 +64,20 @@ public class MemoryService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response changeMemory(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
-		boolean isDeleted = conf.deleteMemory(configId);
-		if(isDeleted) {
-			return Response.status(200).entity("{\"state\":\"deleted\"}").type("application/json").build();	
-		}
-		return Response.status(404).entity("{\"state\":\"Config Not Found\"}").type("application/json").build();
+		try {
+			if(configId <= 0) {
+				return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
+			}
+			boolean isDeleted = conf.deleteMemory(configId);
+			if(isDeleted) {
+				return Response.status(200).entity("{\"state\":\" 200 Deleted\"}").type(MediaType.APPLICATION_JSON).build();	
+			}
+			return Response.status(404).entity("{\"state\":\"404 Config Not Found for ID: " + configId + "\"}").type(MediaType.APPLICATION_JSON).build();
+			} catch (Exception e) {
+				return Response.status(500)
+						.type(MediaType.APPLICATION_JSON)
+						.entity(e.getMessage())
+						.build();
+			}
 	}
 }
