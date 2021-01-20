@@ -1,0 +1,178 @@
+{
+    "info": {
+        "name": "RESTer",
+        "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+        {
+            "name": "RESTfull-Team7",
+            "item": [
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/config/1",
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    },
+                    "id": "rester-17",
+                    "name": "DELETEconfig"
+                },
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/config/1/ram",
+                        "method": "DELETE",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "   {\n    }\n    "
+                        }
+                    },
+                    "id": "rester-23",
+                    "name": "DELETEram"
+                },
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/config/1",
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    },
+                    "id": "rester-18",
+                    "name": "GETconfig"
+                },
+                {
+                    "request": {
+                        "url": "https://store.steampowered.com/api/appdetails/?appids=565622",
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    },
+                    "id": "rester-19",
+                    "name": "GETGameInfo"
+                },
+                {
+                    "request": {
+                        "url": "https://api.steampowered.com/ISteamApps/GetAppList/v2",
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    },
+                    "id": "rester-20",
+                    "name": "GETGameList"
+                },
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/ramList?ramCapacity=8&ramType&brandName&busSpeed&budget=100",
+                        "method": "GET",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    },
+                    "id": "rester-16",
+                    "name": "GETramList"
+                },
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/config/1/budget/200",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "   {\n       \n        \n     \n    }\n    "
+                        }
+                    },
+                    "id": "rester-11",
+                    "name": "postBudget"
+                },
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/config",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ]
+                    },
+                    "id": "rester-21",
+                    "name": "POSTconfig"
+                },
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/config/1/ram",
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "   {\n        \"productID\": \"123456\"\n        \"brand\": \"corsair\",\n        \"model\": \"ddr4xyz\",\n        \"totalcapacity\": \"8\",\n        \"busSpeed\": \"20\",\n        \"type\":\"DDR4\",\n        \"fotoURL\": \"https://aURL\",\n        \"price\": \"29\"\n        \n     \n    }\n    "
+                        }
+                    },
+                    "id": "rester-9",
+                    "name": "POSTram"
+                },
+                {
+                    "request": {
+                        "url": "localhost:8080/Parts4Games/config/1/ram",
+                        "method": "PUT",
+                        "header": [
+                            {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                            }
+                        ],
+                        "body": {
+                            "mode": "raw",
+                            "raw": "   {\n        \"productID\": \"123456\"\n        \"brand\": \"corsair\",\n        \"model\": \"ddr4xyz\",\n        \"totalcapacity\": \"8\",\n        \"busSpeed\": \"20\",\n        \"type\":\"DDR4\",\n        \"fotoURL\": \"https://aURL\",\n        \"price\": \"29\"\n        \n     \n    }\n    "
+                        }
+                    },
+                    "id": "rester-22",
+                    "name": "PUTram"
+                },
+                {
+                    "request": {
+                        "url": "open.api.ebay.com/shopping?version=1157&appid=AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34&responseencoding=JSON&callname=FindProducts&QueryKeywords=corsair rm&MaxEntries=3",
+                        "method": "GET",
+                        "header": []
+                    },
+                    "id": "rester-13",
+                    "name": "shoppingAPI"
+                }
+            ]
+        }
+    ]
+}
