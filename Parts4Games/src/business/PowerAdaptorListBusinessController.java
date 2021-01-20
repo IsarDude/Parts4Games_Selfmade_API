@@ -1,13 +1,106 @@
 package business;
 
+import java.io.StringReader;
+import java.util.LinkedList;
 import java.util.List;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
+import javax.ws.rs.client.Client;
+import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Invocation;
+import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
+
+import com.jayway.jsonpath.Configuration;
+import com.jayway.jsonpath.JsonPath;
+
 import data.PowerAdaptor;
+//Diese Klasse ist nicht vollständig funktionstüchtig, für den funktionierenden Use-Case bitte die RAM-Liste benutzen
 
 public class PowerAdaptorListBusinessController {
-	//Nach Absprache mit Ihnen, wurde nur der RamListBusinessController repräsentativ für alle Hardware-Listen-Implementierungen realisiert.
+
+	String shoppingUrl = "http://open.api.ebay.com/shopping";
+	String version = "1157";
+	String appid = "AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34";
+	String responsencoding = "JSON";
+	String callname = "FindProducts";
+	String pageNumber = "1";
+	public List<PowerAdaptor> getPowerAdaptorList(String keywords){
+		List<PowerAdaptor> adaptorList = new LinkedList<PowerAdaptor>();
+		
+		String expensive = "corsair rm";
+		String medium = "corsair rmx";
+		String lowbudget= "EVGA Supernova 650W";
+		
+		adaptorList.add(
+				JsonToObject(
+						MakeRequestToEbay(expensive)
+						));
+		adaptorList.add(
+				JsonToObject(
+						MakeRequestToEbay(medium)
+						));
+		adaptorList.add(
+				JsonToObject(
+						MakeRequestToEbay(lowbudget)
+						));
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
-	public List<PowerAdaptor> getPowerAdaptorList(String maximumPower, String formFactor, String brandName, String budget) {
-		return null;
+		
+		
+		return adaptorList;
+	}
+	
+	private String MakeRequestToEbay(String keywords) {
+		Client client = ClientBuilder.newClient();
+		WebTarget webTarget = client.target(shoppingUrl);
+		webTarget = webTarget.queryParam("version", version)
+		.queryParam("appid", appid)
+		.queryParam("responseencoding", responsencoding)
+		.queryParam("callname", callname)
+		.queryParam("QueryKeywords", keywords)
+		.queryParam("PageNumber", 1);
+		
+		Invocation.Builder invocationBuilder = webTarget.request(MediaType.APPLICATION_JSON);
+		
+		Response response
+			= invocationBuilder.get();
+		
+		String json = response.readEntity(String.class);
+		return json;
+	}
+	
+	public PowerAdaptor JsonToObject(String json) {
+		PowerAdaptor temp = new PowerAdaptor();
+		Object document = Configuration.defaultConfiguration().jsonProvider().parse(json);
+		List<String> brand = JsonPath.read(document, "$..NameValueList[?(@.Name == 'Brand')].Value[0]");
+		List<String> maximumPower = JsonPath.read(document, "$..NameValueList[?(@.Name == 'Maximum Power')].Value[0]");
+		List<String> formFactor = JsonPath.read(document, "$..NameValueList[?(@.Name == 'Form Factor')].Value[0]");
+		List<String> productIdEAN = JsonPath.read(document, "$..ProductID[?(@.Type == 'EAN')].Value");
+		if(brand.size()> 0) {
+			temp.setBrand(brand.get(0));
+		}
+
+		if(maximumPower.size()> 0) {
+			temp.setMaximumPower(maximumPower.get(0));
+		}
+		if(formFactor.size()>0) {
+			temp.setFormFactor(formFactor.get(0));
+		}
+		if(productIdEAN.size()>0) {
+			temp.setProductID(productIdEAN.get(0));
+		}
+		return temp;
 	}
 }
