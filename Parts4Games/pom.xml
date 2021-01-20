@@ -33,7 +33,6 @@
   </build>
   <dependencyManagement>
   	<dependencies>
-  		
   		<dependency>
   		<groupId>org.glassfish.jersey</groupId>
   			<artifactId>jersey-bom</artifactId>
@@ -45,17 +44,17 @@
   </dependencyManagement>
   
   <dependencies>
-  		<dependency>
-	    	<groupId>org.glassfish.jersey.ext</groupId>
-	    	<artifactId>jersey-declarative-linking</artifactId>
-	    	</dependency>
-  		<dependency>
+  	<dependency>
+	    <groupId>org.glassfish.jersey.ext</groupId>
+	    <artifactId>jersey-declarative-linking</artifactId>
+	</dependency>
+  	<dependency>
   		<groupId>org.glassfish.jersey</groupId>
-  			<artifactId>jersey-bom</artifactId>
-  			<version>${jersey.version}</version>
-  			<type>pom</type>
-  			<scope>import</scope>
-  		</dependency>
+  		<artifactId>jersey-bom</artifactId>
+  		<version>${jersey.version}</version>
+  		<type>pom</type>
+  		<scope>import</scope>
+  	</dependency>
   	<dependency>
   		<groupId>org.glassfish.jersey.containers</groupId>
   		<artifactId>jersey-container-servlet</artifactId>
@@ -89,14 +88,19 @@
   		<version>1.1.1</version>
   	</dependency>
   	<dependency>
-        	<groupId>org.glassfish.jersey.core</groupId>
-        	<artifactId>jersey-client</artifactId>
-        	</dependency>
+        <groupId>org.glassfish.jersey.core</groupId>
+        <artifactId>jersey-client</artifactId>
+        </dependency>
     <dependency>
 	    <groupId>com.jayway.jsonpath</groupId>
 	    <artifactId>json-path</artifactId>
-    <version>2.5.0</version>
-</dependency>
-  	</dependencies>
-   
+    	<version>2.5.0</version>
+	</dependency>
+	<dependency>
+    	<groupId>org.glassfish.jersey.security</groupId>
+    	<artifactId>oauth2-client</artifactId>
+    	<version>2.33</version>
+	</dependency>
+  </dependencies>
+    
 </project>
