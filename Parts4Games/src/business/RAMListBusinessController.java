@@ -204,6 +204,24 @@ public class RAMListBusinessController {
 		
 		
 		if ((Character.isDigit(titlePart1.charAt(0)) || Character.isLetter(titlePart1.charAt(0)) ||  Character.isLetterOrDigit(titlePart1.charAt(titlePart1.lastIndexOf(titlePart1.substring(titlePart1.length() - 1))))) && (Character.isDigit(titlePart2.charAt(0)) || Character.isLetter(titlePart2.charAt(0))) ||  Character.isLetterOrDigit(titlePart2.charAt(titlePart2.lastIndexOf(titlePart2.substring(titlePart2.length() - 1))))) {
+			
+			//Check if there is any kind of whitespace in the Title. Return false, if so
+			for (int i = 0; i < titlePart1.length(); i++){
+			    char c = titlePart1.charAt(i);
+			    String curCharAsString = String.valueOf(c);
+			    if(curCharAsString.matches("[\\s\\xA0]+")) {
+			    	return false;
+			    }
+			}
+			//Check if there is any kind of whitespace in the Title. Return false, if so
+			for (int i = 0; i < titlePart2.length(); i++){
+			    char c = titlePart2.charAt(i);
+			    String curCharAsString = String.valueOf(c);
+			    if(curCharAsString.matches("[\\s\\xA0]+")) {
+			    	return false;
+			    }
+			}
+			
 			System.out.println("PASSED FIRST TEST");
 			if (titlePart1.toLowerCase().contains(featuredBrand1.toLowerCase()) || 
 				titlePart1.toLowerCase().contains(featuredBrand2.toLowerCase()) || 
@@ -268,7 +286,8 @@ public class RAMListBusinessController {
 	
 	private String getRamSpecifics(String ramIdentifier) throws IOException{
 		//Anfrage an Ebay-FindProducts-API
-		
+		System.out.println("");
+		System.out.println("RAMIDENTIFIERRAW: " + ramIdentifier);
 		String goodRamIdentifier = ramIdentifier.replaceAll("\\s+", "%20");
 		System.out.println("");
 		System.out.println("RAMIDENTIFIER: " + goodRamIdentifier);
