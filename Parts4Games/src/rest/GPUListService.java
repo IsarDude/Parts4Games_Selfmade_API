@@ -1,5 +1,7 @@
 package rest;
 
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -8,6 +10,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import business.GPUListBusinessController;
+import data.GPU;
 
 @Path("/gpuList")
 public class GPUListService {
@@ -21,7 +24,11 @@ public class GPUListService {
 			@QueryParam("budget") String budget) {
 	
 		try {
-			return Response.ok(gpuListBusinessController.getGPUList(chipsetManufacturer, compatibleSlot, memoryType, memorySize, brandName, budget)).build();	
+			List<GPU> gpuList = gpuListBusinessController.getGPUList(chipsetManufacturer, compatibleSlot, memoryType, memorySize, brandName, budget);
+			if(gpuList.size() == 0) {
+				return Response.status(404).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"404 No GPUs Found. Check Query Param Values.\"}").build();
+			}
+			return Response.ok(gpuList).build();	
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)

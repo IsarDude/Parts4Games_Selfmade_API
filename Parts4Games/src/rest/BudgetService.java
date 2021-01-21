@@ -17,13 +17,13 @@ public class BudgetService {
 
 	@POST
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response createBudget(@PathParam("configId") int configId, @PathParam("newBudget") float budget) {
+	public Response createBudget(@PathParam("configId") int configId, @PathParam("newBudget") float newBudget) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			if(configId <= 0) {
 		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
 		    }
-			return Response.ok(conf.setBudget(configId, budget)).build();
+			return Response.ok(conf.setBudget(configId, newBudget)).build();
 		} catch (IOException e) {
 			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)
@@ -34,14 +34,13 @@ public class BudgetService {
 	
 	@PUT
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeBudget(@PathParam("configId") int configId, @PathParam("newBudget")float budget) {
+	public Response changeBudget(@PathParam("configId") int configId, @PathParam("newBudget")float newBudget) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			if(configId <= 0) {
 		        return Response.status(400).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"400 Config starts at index 1\"}").build();
 		    }
-			return Response.ok(conf.changeBudget(configId, budget)).build();
-			
+			return Response.ok(conf.changeBudget(configId, newBudget)).build();
 		} catch (IOException e) {
 			return Response.status(500)
 					.type(MediaType.APPLICATION_JSON)

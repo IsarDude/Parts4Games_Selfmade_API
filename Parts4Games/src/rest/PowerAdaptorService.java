@@ -19,7 +19,7 @@ public class PowerAdaptorService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor aPowerAdaptor) {
+	public Response createPowerAdaptor(@PathParam("configId") int configId, PowerAdaptor aPowerAdaptor) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			if(configId <= 0) {
@@ -62,7 +62,7 @@ public class PowerAdaptorService {
 	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changePowerAdaptor(@PathParam("configId") int configId) {
+	public Response deletePowerAdaptor(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			if(configId <= 0) {

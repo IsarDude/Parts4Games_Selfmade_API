@@ -19,7 +19,7 @@ public class MemoryService {
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response addMemory(@PathParam("configId") int configId, Memory aMemory) {
+	public Response createMemory(@PathParam("configId") int configId, Memory aMemory) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			if(configId <= 0) {
@@ -62,7 +62,7 @@ public class MemoryService {
 	
 	@DELETE
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response changeMemory(@PathParam("configId") int configId) {
+	public Response deleteMemory(@PathParam("configId") int configId) {
 		ConfigurationController conf = ConfigurationController.getInstance();
 		try {
 			if(configId <= 0) {

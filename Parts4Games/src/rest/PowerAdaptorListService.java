@@ -1,6 +1,7 @@
 package rest;
 
-import javax.ws.rs.Consumes;
+import java.util.List;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -9,20 +10,24 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import business.PowerAdaptorListBusinessController;
+import data.PowerAdaptor;
 
-@Path("/AdaptorList")
+@Path("/powerAdaptorList")
 public class PowerAdaptorListService {
 	
 	private PowerAdaptorListBusinessController PowerAdaptorListBusinessController = new PowerAdaptorListBusinessController();
 	
 	@GET
-	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.APPLICATION_JSON)
-	public Response getRamList(@QueryParam("maximumPower") String maximumPower,
+	public Response getPowerAdaptorList(@QueryParam("maximumPower") String maximumPower,
 			@QueryParam("formFactor") String formFactor, @QueryParam("brandName") String brandName,
 			@QueryParam("budget") String budget) {
 		try {
-			return Response.ok(PowerAdaptorListBusinessController.getPowerAdaptorList(maximumPower, formFactor, brandName, budget)).build();
+			List<PowerAdaptor> powerAdaptorList = PowerAdaptorListBusinessController.getPowerAdaptorList(maximumPower, formFactor, brandName, budget);
+			if(powerAdaptorList.size() == 0) {
+				return Response.status(404).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"404 No Power Adaptors Found. Check Query Param Values\"}").build();
+			}
+			return Response.ok(powerAdaptorList).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)

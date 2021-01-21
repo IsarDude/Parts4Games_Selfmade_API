@@ -8,6 +8,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import business.GameInfoBusinessController;
+import data.GameInfo;
 
 @Path("/gameInfo/{gameId}")
 public class GameInfoService {
@@ -19,7 +20,11 @@ public class GameInfoService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getGameListReq(@PathParam("gameId") int gameId) {
 		try {
-			return Response.ok(gameInfoBusinessController.getGameInfoRec(gameId)).build();
+			GameInfo gameInfo = gameInfoBusinessController.getGameInfoRec(gameId);
+			if(gameInfo.getHardwareRequirements() == null) {
+				return Response.status(404).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"404 No Game Info Found for ID: " + gameId + "\"}").build();
+			}
+			return Response.ok(gameInfo).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)
@@ -34,7 +39,11 @@ public class GameInfoService {
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response getGameListMin(@PathParam("gameId") int gameId) {
 		try {
-			return Response.ok(gameInfoBusinessController.getGameInfoMin(gameId)).build();
+			GameInfo gameInfo = gameInfoBusinessController.getGameInfoMin(gameId);
+			if(gameInfo.getHardwareRequirements() == null) {
+				return Response.status(404).type(MediaType.APPLICATION_JSON).entity("{\"state\":\"404 No Game Info Found for ID: " + gameId + "\"}").build();
+			}
+			return Response.ok(gameInfo).build();
 		}catch(Exception e) {
 			e.printStackTrace();
 			return Response.status(503)

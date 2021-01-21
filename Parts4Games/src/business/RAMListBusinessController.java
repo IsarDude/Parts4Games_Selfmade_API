@@ -37,13 +37,6 @@ public class RAMListBusinessController {
 	private Map<String, String> filteredTitlesAndPrices;
 	
 	public List<RAM> getRamList(String ramCapacity, String ramType, String brandName, String busSpeed,String budget) throws IOException{
-		/* Vorgehensweise:
-		 * filterTitlesAndPrices(getRamTitlesAndPrices())
-		 * List<RAM> erstellen
-		 * Mit jedem key aus der Hashmap jetzt ram = JsonToObject(getRamSpecifics(key)) UND ram.setPrice(map.getValue(key))
-		 * List<RAM> mit ram füllen
-		 * Liste returnen
-		 */
 		
 		try {
 			filteredTitlesAndPrices = new HashMap<String, String>();
@@ -64,10 +57,16 @@ public class RAMListBusinessController {
 	}
 	private String getRamTitlesAndPrices(String ramCapacity, String ramType, String brandName, String busSpeed,String budget) throws IOException{
 		//Anfrage an Ebay-findItemsAdvanced-API
+		String goodRamCapacity = ramCapacity;
 		String goodRamType = ramType;
 		String goodBrandName = brandName;
 		String goodBusSpeed = busSpeed;
+		String goodBudget = budget;
+		String goodBudgetFilter = "";
 		
+		if (goodRamCapacity != "" && goodRamCapacity != null && goodRamCapacity.length() != 0) {
+			goodRamCapacity += "%20GB";
+		}
 		if (goodRamType != "") {
 			goodRamType = goodRamType.replaceAll("\\s+", "%20");
 		}
@@ -77,6 +76,9 @@ public class RAMListBusinessController {
 		if (goodBusSpeed != "") {
 			goodBusSpeed = goodBusSpeed.replaceAll("\\s+", "%20");
 		}
+		if (goodBudget != "" && goodBudget != null && goodBudget.length() != 0) {
+			goodBudgetFilter = "itemFilter(0).name=MaxPrice&itemFilter(0).value=" + budget + ".00&itemFilter(0).paramName=Currency&itemFilter(0).paramValue=EUR&";
+		}
 		
 		try {
 			String uri = "https://svcs.ebay.com/services/search/FindingService/v1?"
@@ -84,14 +86,11 @@ public class RAMListBusinessController {
 					+ "SERVICE-VERSION=1.0.0&"
 					+ "SECURITY-APPNAME=AndreSch-Parts4Ga-PRD-ff78dd8ce-c7680d34&"
 					+ "RESPONSE-DATA-FORMAT=JSON&"
-					+ "categoryId=170083&"
+					+ "categoryId=170083&" //Category for RAMs
 					+ "descriptionSearch=false&" 
-					+ "itemFilter(0).name=MaxPrice&"
-					+ "itemFilter(0).value=" + budget + ".00&" //Format: 200.00
-					+ "itemFilter(0).paramName=Currency&"
-					+ "itemFilter(0).paramValue=EUR&"
+					+ goodBudgetFilter
 					+ "aspectFilter(0).aspectName=Total%20Capacity&"
-					+ "aspectFilter(0).aspectValueName=" + ramCapacity + "%20GB&"
+					+ "aspectFilter(0).aspectValueName=" + goodRamCapacity + "&"
 					+ "aspectFilter(1).aspectName=Number%20of%20Modules&" 
 					+ "aspectFilter(1).aspectValueName=1&"
 					+ "aspectFilter(2).aspectName=Type&" 
@@ -144,6 +143,10 @@ public class RAMListBusinessController {
 				List<String> titles = JsonPath.read(document, "$..item.[" + i + "].title.*");
 				String currentTitle = titles.get(0);
 				System.out.println("CURRENTTITLE: "+ currentTitle);
+				boolean currentTitleHasWhiteSpaces = checkForWhiteSpaces(currentTitle);
+				if(!currentTitleHasWhiteSpaces) { //Nur Titel nehmen, welche sich in 2 Teile splitten lassen
+					continue;
+				}
 				String[] currentTitleSplitted = currentTitle.split("\\s+"); //Nur die ersten 2 Wörter aus dem Gesamttitel benutzen für weiteres Vorgehen
 				String titlePartOne = currentTitleSplitted[0].replaceAll("\\s+", "");
 				String titlePartTwo = currentTitleSplitted[1].replaceAll("\\s+", "");
@@ -197,30 +200,26 @@ public class RAMListBusinessController {
 		String featuredBrand10 = "Ramaxel";
 		String featuredBrand11 = "HyperX";
 		
+		
+		boolean titlePart1HasWhiteSpaces = checkForWhiteSpaces(titlePart1);
+		boolean titlePart2HasWhiteSpaces = checkForWhiteSpaces(titlePart2);
+		//Check if there is any kind of whitespace in the Title. Return false, if so
+		if(titlePart1HasWhiteSpaces || titlePart2HasWhiteSpaces) {
+			return false;
+		}
+		
+		//Check if Title is empty. Return false, if so
+		if(titlePart1.length() == 0 || titlePart2.length() == 0) {
+			return false;
+		}
+		
 		//string.substring(string.length() - 1) letzte Char vom String als String
 		//int lastIndexOf(String substring) gibt index von diesem Char
-		//Character.isLetterOrDigit(string.charAt(i)) checkt of Stelle i ein Buchstabe oder Zahl ist
+		//Character.isLetterOrDigit(string.charAt(i)) checkt ob Stelle i ein Buchstabe oder Zahl ist
 		//Vereint: Character.isLetterOrDigit(titlePart1.charAt(titlePart1.lastIndexOf(titlePart1.substring(titlePart1.length() - 1))))
 		
 		
 		if ((Character.isDigit(titlePart1.charAt(0)) || Character.isLetter(titlePart1.charAt(0)) ||  Character.isLetterOrDigit(titlePart1.charAt(titlePart1.lastIndexOf(titlePart1.substring(titlePart1.length() - 1))))) && (Character.isDigit(titlePart2.charAt(0)) || Character.isLetter(titlePart2.charAt(0))) ||  Character.isLetterOrDigit(titlePart2.charAt(titlePart2.lastIndexOf(titlePart2.substring(titlePart2.length() - 1))))) {
-			
-			//Check if there is any kind of whitespace in the Title. Return false, if so
-			for (int i = 0; i < titlePart1.length(); i++){
-			    char c = titlePart1.charAt(i);
-			    String curCharAsString = String.valueOf(c);
-			    if(curCharAsString.matches("[\\s\\xA0]+")) {
-			    	return false;
-			    }
-			}
-			//Check if there is any kind of whitespace in the Title. Return false, if so
-			for (int i = 0; i < titlePart2.length(); i++){
-			    char c = titlePart2.charAt(i);
-			    String curCharAsString = String.valueOf(c);
-			    if(curCharAsString.matches("[\\s\\xA0]+")) {
-			    	return false;
-			    }
-			}
 			
 			System.out.println("PASSED FIRST TEST");
 			if (titlePart1.toLowerCase().contains(featuredBrand1.toLowerCase()) || 
@@ -257,6 +256,20 @@ public class RAMListBusinessController {
 		return false;
 	}
 	
+	private boolean checkForWhiteSpaces(String string) {
+		/*true falls:
+		 * der übergebene String keinen Whitespace beinhaltet
+		 */
+		for (int i = 0; i < string.length(); i++){
+		    char c = string.charAt(i);
+		    String curCharAsString = String.valueOf(c);
+		    if(curCharAsString.matches("[\\s\\xA0]+")) {
+		    	return true;
+		    }
+		}
+		return false;
+	}
+	
 	private boolean compareTitles(String key) {
 		/*true falls:
 		 * der übergebene key noch nicht in filteredTitlesAndPrices vorhanden ist 
@@ -286,8 +299,6 @@ public class RAMListBusinessController {
 	
 	private String getRamSpecifics(String ramIdentifier) throws IOException{
 		//Anfrage an Ebay-FindProducts-API
-		System.out.println("");
-		System.out.println("RAMIDENTIFIERRAW: " + ramIdentifier);
 		String goodRamIdentifier = ramIdentifier.replaceAll("\\s+", "%20");
 		System.out.println("");
 		System.out.println("RAMIDENTIFIER: " + goodRamIdentifier);
