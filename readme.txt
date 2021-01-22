@@ -7,6 +7,9 @@
 	Duy-An Benjamin Tran
 	Lukas Fritsch
 
+## Parts4GamesAPI Link:
+	https://gitlab.hof-university.de/lfritsch2/parts4gamesapi.git
+
 ## Parts4GamesCilent Gitlab Link:
 	
 	https: https://gitlab.hof-university.de/restfull-team-7/pars4gamesclient.git

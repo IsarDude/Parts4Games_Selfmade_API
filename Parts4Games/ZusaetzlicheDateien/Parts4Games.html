@@ -1,0 +1,2575 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Parts4Games</title>
+    <style type="text/css">
+      body {
+	font-family: Trebuchet MS, sans-serif;
+	font-size: 15px;
+	color: #444;
+	margin-right: 24px;
+}
+
+h1	{
+	font-size: 25px;
+}
+h2	{
+	font-size: 20px;
+}
+h3	{
+	font-size: 16px;
+	font-weight: bold;
+}
+hr	{
+	height: 1px;
+	border: 0;
+	color: #ddd;
+	background-color: #ddd;
+}
+
+.app-desc {
+  clear: both;
+  margin-left: 20px;
+}
+.param-name {
+  width: 100%;
+}
+.license-info {
+  margin-left: 20px;
+}
+
+.license-url {
+  margin-left: 20px;
+}
+
+.model {
+  margin: 0 0 0px 20px;
+}
+
+.method {
+  margin-left: 20px;
+}
+
+.method-notes	{
+	margin: 10px 0 20px 0;
+	font-size: 90%;
+	color: #555;
+}
+
+pre {
+  padding: 10px;
+  margin-bottom: 2px;
+}
+
+.http-method {
+ text-transform: uppercase;
+}
+
+pre.get {
+  background-color: #0f6ab4;
+}
+
+pre.post {
+  background-color: #10a54a;
+}
+
+pre.put {
+  background-color: #c5862b;
+}
+
+pre.delete {
+  background-color: #a41e22;
+}
+
+.huge	{
+	color: #fff;
+}
+
+pre.example {
+  background-color: #f3f3f3;
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+code {
+  white-space: pre;
+}
+
+.nickname {
+  font-weight: bold;
+}
+
+.method-path {
+  font-size: 1.5em;
+  background-color: #0f6ab4;
+}
+
+.up {
+  float:right;
+}
+
+.parameter {
+  width: 500px;
+}
+
+.param {
+  width: 500px;
+  padding: 10px 0 0 20px;
+  font-weight: bold;
+}
+
+.param-desc {
+  width: 700px;
+  padding: 0 0 0 20px;
+  color: #777;
+}
+
+.param-type {
+  font-style: italic;
+}
+
+.param-enum-header {
+width: 700px;
+padding: 0 0 0 60px;
+color: #777;
+font-weight: bold;
+}
+
+.param-enum {
+width: 700px;
+padding: 0 0 0 80px;
+color: #777;
+font-style: italic;
+}
+
+.field-label {
+  padding: 0;
+  margin: 0;
+  clear: both;
+}
+
+.field-items	{
+	padding: 0 0 15px 0;
+	margin-bottom: 15px;
+}
+
+.return-type {
+  clear: both;
+  padding-bottom: 10px;
+}
+
+.param-header {
+  font-weight: bold;
+}
+
+.method-tags {
+  text-align: right;
+}
+
+.method-tag {
+  background: none repeat scroll 0% 0% #24A600;
+  border-radius: 3px;
+  padding: 2px 10px;
+  margin: 2px;
+  color: #FFF;
+  display: inline-block;
+  text-decoration: none;
+}
+
+    </style>
+  </head>
+  <body>
+  <h1>Parts4Games</h1>
+    <div class="app-desc">This is a an application to help you build your own computer. The hardware is chosen to fit the requirements of a specific game you want to play.</div>
+    <div class="app-desc">More information: <a href="https://helloreverb.com">https://helloreverb.com</a></div>
+    <div class="app-desc">Contact Info: <a href="duy-an.tran@hof-university.de">duy-an.tran@hof-university.de</a></div>
+    <div class="app-desc">Version: 1.0.0</div>
+    <div class="app-desc">BasePath:/Parts4Games/</div>
+    <div class="license-info">All rights reserved</div>
+    <div class="license-url">http://apache.org/licenses/LICENSE-2.0.html</div>
+  <h2>Access</h2>
+
+  <h2><a name="__Methods">Methods</a></h2>
+  [ Jump to <a href="#__Models">Models</a> ]
+
+  <h3>Table of Contents </h3>
+  <div class="method-summary"></div>
+  <h4><a href="#Budget">Budget</a></h4>
+  <ul>
+  <li><a href="#changeBudget"><code><span class="http-method">put</span> /config/{configId}/budget/{newBudget}</code></a></li>
+  <li><a href="#createBudget"><code><span class="http-method">post</span> /config/{configId}/budget/{newBudget}</code></a></li>
+  </ul>
+  <h4><a href="#Config">Config</a></h4>
+  <ul>
+  <li><a href="#createConfig"><code><span class="http-method">post</span> /config</code></a></li>
+  <li><a href="#deleteConfig"><code><span class="http-method">delete</span> /config/{configId}</code></a></li>
+  <li><a href="#getConfig"><code><span class="http-method">get</span> /config/{configId}</code></a></li>
+  </ul>
+  <h4><a href="#Cpu">Cpu</a></h4>
+  <ul>
+  <li><a href="#changeCPU"><code><span class="http-method">put</span> /config/{configId}/cpu</code></a></li>
+  <li><a href="#createCPU"><code><span class="http-method">post</span> /config/{configId}/cpu</code></a></li>
+  <li><a href="#deleteCPU"><code><span class="http-method">delete</span> /config/{configId}/cpu</code></a></li>
+  </ul>
+  <h4><a href="#CpuList">CpuList</a></h4>
+  <ul>
+  <li><a href="#getCPUList"><code><span class="http-method">get</span> /cpuList</code></a></li>
+  </ul>
+  <h4><a href="#GameInfo">GameInfo</a></h4>
+  <ul>
+  <li><a href="#getGameListMin"><code><span class="http-method">get</span> /gameInfo/{gameId}/min</code></a></li>
+  <li><a href="#getGameListReq"><code><span class="http-method">get</span> /gameInfo/{gameId}/rec</code></a></li>
+  </ul>
+  <h4><a href="#GameList">GameList</a></h4>
+  <ul>
+  <li><a href="#getGameList"><code><span class="http-method">get</span> /gameList/{gameName}</code></a></li>
+  </ul>
+  <h4><a href="#Gpu">Gpu</a></h4>
+  <ul>
+  <li><a href="#changeGpu"><code><span class="http-method">put</span> /config/{configId}/gpu</code></a></li>
+  <li><a href="#createGpu"><code><span class="http-method">post</span> /config/{configId}/gpu</code></a></li>
+  <li><a href="#deleteGPU"><code><span class="http-method">delete</span> /config/{configId}/gpu</code></a></li>
+  </ul>
+  <h4><a href="#GpuList">GpuList</a></h4>
+  <ul>
+  <li><a href="#getGPUList"><code><span class="http-method">get</span> /gpuList</code></a></li>
+  </ul>
+  <h4><a href="#Memory">Memory</a></h4>
+  <ul>
+  <li><a href="#changeMemory"><code><span class="http-method">put</span> /config/{configId}/memory</code></a></li>
+  <li><a href="#createMemory"><code><span class="http-method">post</span> /config/{configId}/memory</code></a></li>
+  <li><a href="#deleteMemory"><code><span class="http-method">delete</span> /config/{configId}/memory</code></a></li>
+  </ul>
+  <h4><a href="#MemoryList">MemoryList</a></h4>
+  <ul>
+  <li><a href="#getMemoryList"><code><span class="http-method">get</span> /memoryList</code></a></li>
+  </ul>
+  <h4><a href="#Motherboard">Motherboard</a></h4>
+  <ul>
+  <li><a href="#changeMotherboard"><code><span class="http-method">put</span> /config/{configId}/motherboard</code></a></li>
+  <li><a href="#createMotherboard"><code><span class="http-method">post</span> /config/{configId}/motherboard</code></a></li>
+  <li><a href="#deleteMotherboard"><code><span class="http-method">delete</span> /config/{configId}/motherboard</code></a></li>
+  </ul>
+  <h4><a href="#MotherboardList">MotherboardList</a></h4>
+  <ul>
+  <li><a href="#getMotherboardList"><code><span class="http-method">get</span> /motherboardList</code></a></li>
+  </ul>
+  <h4><a href="#PowerAdaptor">PowerAdaptor</a></h4>
+  <ul>
+  <li><a href="#changePowerAdaptor"><code><span class="http-method">put</span> /config/{configId}/powerAdaptor</code></a></li>
+  <li><a href="#createPowerAdaptor"><code><span class="http-method">post</span> /config/{configId}/powerAdaptor</code></a></li>
+  <li><a href="#deletePowerAdaptor"><code><span class="http-method">delete</span> /config/{configId}/powerAdaptor</code></a></li>
+  </ul>
+  <h4><a href="#PowerAdaptorList">PowerAdaptorList</a></h4>
+  <ul>
+  <li><a href="#getPowerAdaptorList"><code><span class="http-method">get</span> /powerAdaptorList</code></a></li>
+  </ul>
+  <h4><a href="#Ram">Ram</a></h4>
+  <ul>
+  <li><a href="#changeRAM"><code><span class="http-method">put</span> /config/{configId}/ram</code></a></li>
+  <li><a href="#createRAM"><code><span class="http-method">post</span> /config/{configId}/ram</code></a></li>
+  <li><a href="#deleteRAM"><code><span class="http-method">delete</span> /config/{configId}/ram</code></a></li>
+  </ul>
+  <h4><a href="#RamList">RamList</a></h4>
+  <ul>
+  <li><a href="#getRamList"><code><span class="http-method">get</span> /ramList</code></a></li>
+  </ul>
+
+  <h1><a name="Budget">Budget</a></h1>
+  <div class="method"><a name="changeBudget"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /config/{configId}/budget/{newBudget}</code></pre></div>
+    <div class="method-summary">Changes the budget in the configuration with new budget (<span class="nickname">changeBudget</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where budget needs to be changed </div><div class="param">newBudget (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Budget size of user </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Budget">Budget</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ }</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Budget">Budget</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createBudget"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config/{configId}/budget/{newBudget}</code></pre></div>
+    <div class="method-summary">Set budget in the configuration for ID (<span class="nickname">createBudget</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where budget needs to be set </div><div class="param">newBudget (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Budget size of user </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Budget">Budget</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{ }</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Budget">Budget</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Config">Config</a></h1>
+  <div class="method"><a name="createConfig"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config</code></pre></div>
+    <div class="method-summary">Creates a new configuration for your PC build (<span class="nickname">createConfig</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Config">Config</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "PowerAdapter" : {
+    "fotoURL" : "fotoURL",
+    "productID" : "productID",
+    "formFactor" : "formFactor",
+    "price" : "price",
+    "maximumPower" : "maximumPower",
+    "brand" : "brand"
+  },
+  "configID" : 0,
+  "Motherboard" : {
+    "socketType" : "socketType",
+    "fotoURL" : "fotoURL",
+    "numberOfMemorySlots" : "numberOfMemorySlots",
+    "productID" : "productID",
+    "formFactor" : "formFactor",
+    "price" : "price",
+    "memoryType" : "memoryType",
+    "compatibleCpuBrand" : "compatibleCpuBrand",
+    "brand" : "brand"
+  },
+  "Memory" : {
+    "fotoURL" : "fotoURL",
+    "productID" : "productID",
+    "price" : "price",
+    "rotationSpeed" : "rotationSpeed",
+    "model" : "model",
+    "storageCapacity" : "storageCapacity",
+    "type" : "type",
+    "brand" : "brand"
+  },
+  "Cpu" : {
+    "socketType" : "socketType",
+    "fotoUrl" : "fotoUrl",
+    "productID" : "productID",
+    "processorType" : "processorType",
+    "price" : "price",
+    "clockspeed" : "clockspeed",
+    "numberOfCores" : "numberOfCores",
+    "brand" : "brand"
+  },
+  "Gpu" : {
+    "fotoURL" : "fotoURL",
+    "memorySize" : "memorySize",
+    "productID" : "productID",
+    "price" : "price",
+    "chipsetManufacturer" : "chipsetManufacturer",
+    "memoryType" : "memoryType",
+    "model" : "model",
+    "brand" : "brand",
+    "compatibleSlot" : "compatibleSlot"
+  },
+  "budget" : 6.02745618307040320615897144307382404804229736328125,
+  "RAM" : {
+    "totalcapacity" : "totalcapacity",
+    "fotoURL" : "fotoURL",
+    "productID" : "productID",
+    "price" : "price",
+    "busSpeed" : "busSpeed",
+    "model" : "model",
+    "type" : "type",
+    "brand" : "brand"
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Config">Config</a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteConfig"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /config/{configId}</code></pre></div>
+    <div class="method-summary">Delete the configuration for ID (<span class="nickname">deleteConfig</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config which needs to be deleted </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 Deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config Not Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getConfig"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /config/{configId}</code></pre></div>
+    <div class="method-summary">Returns the current configuration of your PC build for ID (<span class="nickname">getConfig</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config which needs to be returned </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Config">Config</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "PowerAdapter" : {
+    "fotoURL" : "fotoURL",
+    "productID" : "productID",
+    "formFactor" : "formFactor",
+    "price" : "price",
+    "maximumPower" : "maximumPower",
+    "brand" : "brand"
+  },
+  "configID" : 0,
+  "Motherboard" : {
+    "socketType" : "socketType",
+    "fotoURL" : "fotoURL",
+    "numberOfMemorySlots" : "numberOfMemorySlots",
+    "productID" : "productID",
+    "formFactor" : "formFactor",
+    "price" : "price",
+    "memoryType" : "memoryType",
+    "compatibleCpuBrand" : "compatibleCpuBrand",
+    "brand" : "brand"
+  },
+  "Memory" : {
+    "fotoURL" : "fotoURL",
+    "productID" : "productID",
+    "price" : "price",
+    "rotationSpeed" : "rotationSpeed",
+    "model" : "model",
+    "storageCapacity" : "storageCapacity",
+    "type" : "type",
+    "brand" : "brand"
+  },
+  "Cpu" : {
+    "socketType" : "socketType",
+    "fotoUrl" : "fotoUrl",
+    "productID" : "productID",
+    "processorType" : "processorType",
+    "price" : "price",
+    "clockspeed" : "clockspeed",
+    "numberOfCores" : "numberOfCores",
+    "brand" : "brand"
+  },
+  "Gpu" : {
+    "fotoURL" : "fotoURL",
+    "memorySize" : "memorySize",
+    "productID" : "productID",
+    "price" : "price",
+    "chipsetManufacturer" : "chipsetManufacturer",
+    "memoryType" : "memoryType",
+    "model" : "model",
+    "brand" : "brand",
+    "compatibleSlot" : "compatibleSlot"
+  },
+  "budget" : 6.02745618307040320615897144307382404804229736328125,
+  "RAM" : {
+    "totalcapacity" : "totalcapacity",
+    "fotoURL" : "fotoURL",
+    "productID" : "productID",
+    "price" : "price",
+    "busSpeed" : "busSpeed",
+    "model" : "model",
+    "type" : "type",
+    "brand" : "brand"
+  }
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Config">Config</a>
+    <h4 class="field-label">304</h4>
+    304 Not Modified
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config not found for ID
+        <a href="#"></a>
+    <h4 class="field-label">412</h4>
+    412 Precondition Failed
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Cpu">Cpu</a></h1>
+  <div class="method"><a name="changeCPU"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /config/{configId}/cpu</code></pre></div>
+    <div class="method-summary">Replaces the CPU in the configuration with new CPU Object for ID (<span class="nickname">changeCPU</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the config where CPU needs to be changed </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aCpu <a href="#CPU">CPU</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; CPU object that should replace the current one in the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CPU">CPU</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "socketType" : "socketType",
+  "fotoUrl" : "fotoUrl",
+  "productID" : "productID",
+  "processorType" : "processorType",
+  "price" : "price",
+  "clockspeed" : "clockspeed",
+  "numberOfCores" : "numberOfCores",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#CPU">CPU</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check CPU Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createCPU"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config/{configId}/cpu</code></pre></div>
+    <div class="method-summary">Add CPU to the configuration for ID (<span class="nickname">createCPU</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where CPU needs to be added </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aCpu <a href="#CPU">CPU</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; CPU object that needs to be added to the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#CPU">CPU</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "socketType" : "socketType",
+  "fotoUrl" : "fotoUrl",
+  "productID" : "productID",
+  "processorType" : "processorType",
+  "price" : "price",
+  "clockspeed" : "clockspeed",
+  "numberOfCores" : "numberOfCores",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#CPU">CPU</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check CPU Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteCPU"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /config/{configId}/cpu</code></pre></div>
+    <div class="method-summary">Deletes the CPU in the configuration for ID (<span class="nickname">deleteCPU</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where CPU needs to be deleted </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 Deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config Not Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="CpuList">CpuList</a></h1>
+  <div class="method"><a name="getCPUList"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /cpuList</code></pre></div>
+    <div class="method-summary">Returns list of CPUs fitting the requirements (<span class="nickname">getCPUList</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">processorType (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Processor Type of CPU </div><div class="param">socketType (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Socket Type of CPU </div><div class="param">numberOfCores (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Amount of CPU cores </div><div class="param">clockSpeed (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Clock Speed of CPU </div><div class="param">brandName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Brand Name of CPU </div><div class="param">budget (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Available Budget </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#CPU">CPU</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "socketType" : "socketType",
+  "fotoUrl" : "fotoUrl",
+  "productID" : "productID",
+  "processorType" : "processorType",
+  "price" : "price",
+  "clockspeed" : "clockspeed",
+  "numberOfCores" : "numberOfCores",
+  "brand" : "brand"
+}, {
+  "socketType" : "socketType",
+  "fotoUrl" : "fotoUrl",
+  "productID" : "productID",
+  "processorType" : "processorType",
+  "price" : "price",
+  "clockspeed" : "clockspeed",
+  "numberOfCores" : "numberOfCores",
+  "brand" : "brand"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        
+    <h4 class="field-label">404</h4>
+    404 No CPUs Found. Check Query Param Values.
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service not available
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="GameInfo">GameInfo</a></h1>
+  <div class="method"><a name="getGameListMin"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /gameInfo/{gameId}/min</code></pre></div>
+    <div class="method-summary">Returns minimal hardware requirements of steam title for ID (<span class="nickname">getGameListMin</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">gameId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of steam title where info needs to be returned </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GameInfo">GameInfo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "hardwareRequirements" : "hardwareRequirements"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#GameInfo">GameInfo</a>
+    <h4 class="field-label">404</h4>
+    404 No Game Info Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service Unavailable
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="getGameListReq"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /gameInfo/{gameId}/rec</code></pre></div>
+    <div class="method-summary">Returns recommended hardware requirements of steam title for ID (<span class="nickname">getGameListReq</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">gameId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of steam title where info needs to be returned </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GameInfo">GameInfo</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "hardwareRequirements" : "hardwareRequirements"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#GameInfo">GameInfo</a>
+    <h4 class="field-label">404</h4>
+    404 No Game Info Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service Unavailable
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="GameList">GameList</a></h1>
+  <div class="method"><a name="getGameList"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /gameList/{gameName}</code></pre></div>
+    <div class="method-summary">Returns a list of steam titles with game names and IDs that contain the game name (<span class="nickname">getGameList</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">gameName (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; Name of steam title where game name and ID needs to be returned </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GameIdentifier">GameIdentifier</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "gameId" : 0,
+  "gameName" : "gameName"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#GameIdentifier">GameIdentifier</a>
+    <h4 class="field-label">404</h4>
+    404 No Game Found With Name
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service Unavailable
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Gpu">Gpu</a></h1>
+  <div class="method"><a name="changeGpu"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /config/{configId}/gpu</code></pre></div>
+    <div class="method-summary">Replaces the GPU in the configuration with new GPU Object for ID (<span class="nickname">changeGpu</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the config where GPU needs to be changed </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aGPU <a href="#GPU">GPU</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; GPU object that should replace the current one in the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GPU">GPU</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "fotoURL" : "fotoURL",
+  "memorySize" : "memorySize",
+  "productID" : "productID",
+  "price" : "price",
+  "chipsetManufacturer" : "chipsetManufacturer",
+  "memoryType" : "memoryType",
+  "model" : "model",
+  "brand" : "brand",
+  "compatibleSlot" : "compatibleSlot"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#GPU">GPU</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check GPU Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createGpu"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config/{configId}/gpu</code></pre></div>
+    <div class="method-summary">Add GPU to the configuration for ID (<span class="nickname">createGpu</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where GPU needs to be added </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aGPU <a href="#GPU">GPU</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; GPU object that needs to be added to the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#GPU">GPU</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "fotoURL" : "fotoURL",
+  "memorySize" : "memorySize",
+  "productID" : "productID",
+  "price" : "price",
+  "chipsetManufacturer" : "chipsetManufacturer",
+  "memoryType" : "memoryType",
+  "model" : "model",
+  "brand" : "brand",
+  "compatibleSlot" : "compatibleSlot"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#GPU">GPU</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check GPU Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteGPU"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /config/{configId}/gpu</code></pre></div>
+    <div class="method-summary">Deletes the GPU in the configuration for ID (<span class="nickname">deleteGPU</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where GPU needs to be deleted </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 Deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config Not Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="GpuList">GpuList</a></h1>
+  <div class="method"><a name="getGPUList"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /gpuList</code></pre></div>
+    <div class="method-summary">Returns list of GPUs fitting the requirements (<span class="nickname">getGPUList</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">chipsetManufacturer (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Name of GPU Manufacturer </div><div class="param">compatibleSlot (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Compatible Slot of GPU </div><div class="param">memoryType (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Memory Type of GPU </div><div class="param">memorySize (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Memory Size of GPU </div><div class="param">brandName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Brand Name of GPU </div><div class="param">budget (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Available Budget </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#GPU">GPU</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "fotoURL" : "fotoURL",
+  "memorySize" : "memorySize",
+  "productID" : "productID",
+  "price" : "price",
+  "chipsetManufacturer" : "chipsetManufacturer",
+  "memoryType" : "memoryType",
+  "model" : "model",
+  "brand" : "brand",
+  "compatibleSlot" : "compatibleSlot"
+}, {
+  "fotoURL" : "fotoURL",
+  "memorySize" : "memorySize",
+  "productID" : "productID",
+  "price" : "price",
+  "chipsetManufacturer" : "chipsetManufacturer",
+  "memoryType" : "memoryType",
+  "model" : "model",
+  "brand" : "brand",
+  "compatibleSlot" : "compatibleSlot"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        
+    <h4 class="field-label">404</h4>
+    404 No GPUs Found. Check Query Param Values.
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service not available
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Memory">Memory</a></h1>
+  <div class="method"><a name="changeMemory"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /config/{configId}/memory</code></pre></div>
+    <div class="method-summary">Replaces the Memory in the configuration with new Memory Object for ID (<span class="nickname">changeMemory</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the config where Memory needs to be changed </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aMemory <a href="#Memory">Memory</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Memory object that should replace the current one in the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Memory">Memory</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "rotationSpeed" : "rotationSpeed",
+  "model" : "model",
+  "storageCapacity" : "storageCapacity",
+  "type" : "type",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Memory">Memory</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check Memory Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createMemory"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config/{configId}/memory</code></pre></div>
+    <div class="method-summary">Add Memory to the configuration for ID (<span class="nickname">createMemory</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where Memory needs to be added </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aMemory <a href="#Memory">Memory</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Memory object that needs to be added to the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Memory">Memory</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "rotationSpeed" : "rotationSpeed",
+  "model" : "model",
+  "storageCapacity" : "storageCapacity",
+  "type" : "type",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Memory">Memory</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check Memory Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteMemory"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /config/{configId}/memory</code></pre></div>
+    <div class="method-summary">Deletes the Memory in the configuration for ID (<span class="nickname">deleteMemory</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where Memory needs to be deleted </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 Deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config Not Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="MemoryList">MemoryList</a></h1>
+  <div class="method"><a name="getMemoryList"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /memoryList</code></pre></div>
+    <div class="method-summary">Returns list of Memories fitting the requirements (<span class="nickname">getMemoryList</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">storageCapacity (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Total Capacity of Memory </div><div class="param">type (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Memory Type </div><div class="param">rotationSpeed (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Rotation Speed of Memory </div><div class="param">brandName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Brand Name of Memory </div><div class="param">budget (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Available Budget </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Memory">Memory</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "rotationSpeed" : "rotationSpeed",
+  "model" : "model",
+  "storageCapacity" : "storageCapacity",
+  "type" : "type",
+  "brand" : "brand"
+}, {
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "rotationSpeed" : "rotationSpeed",
+  "model" : "model",
+  "storageCapacity" : "storageCapacity",
+  "type" : "type",
+  "brand" : "brand"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        
+    <h4 class="field-label">404</h4>
+    404 No Memories Found. Check Query Param Values.
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service not available
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Motherboard">Motherboard</a></h1>
+  <div class="method"><a name="changeMotherboard"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /config/{configId}/motherboard</code></pre></div>
+    <div class="method-summary">Replaces the Motherboard in the configuration with new Motherboard Object for ID (<span class="nickname">changeMotherboard</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the config where Motherboard needs to be changed </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aMotherboard <a href="#Motherboard">Motherboard</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Motherboard object that should replace the current one in the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Motherboard">Motherboard</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "socketType" : "socketType",
+  "fotoURL" : "fotoURL",
+  "numberOfMemorySlots" : "numberOfMemorySlots",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "memoryType" : "memoryType",
+  "compatibleCpuBrand" : "compatibleCpuBrand",
+  "brand" : "brand"
+}</code></pre>
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Motherboard">Motherboard</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check Motherboard Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createMotherboard"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config/{configId}/motherboard</code></pre></div>
+    <div class="method-summary">Add Motherboard to the configuration for ID (<span class="nickname">createMotherboard</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where Motherboard needs to be added </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aMotherboard <a href="#Motherboard">Motherboard</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Motherboard object that needs to be added to the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#Motherboard">Motherboard</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "socketType" : "socketType",
+  "fotoURL" : "fotoURL",
+  "numberOfMemorySlots" : "numberOfMemorySlots",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "memoryType" : "memoryType",
+  "compatibleCpuBrand" : "compatibleCpuBrand",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#Motherboard">Motherboard</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check Motherboard Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteMotherboard"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /config/{configId}/motherboard</code></pre></div>
+    <div class="method-summary">Deletes the Motherboard in the configuration for ID (<span class="nickname">deleteMotherboard</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where Motherboard needs to be deleted </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 Deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config Not Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="MotherboardList">MotherboardList</a></h1>
+  <div class="method"><a name="getMotherboardList"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /motherboardList</code></pre></div>
+    <div class="method-summary">Returns list of Motherboards fitting the requirements (<span class="nickname">getMotherboardList</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">formFactor (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Form Factor of Motherboard </div><div class="param">socketType (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Socket Type of Motherboard </div><div class="param">memoryType (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Memory Type of Motherboard </div><div class="param">numberOfMemorySlots (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Amount of Memory Slots available </div><div class="param">brandName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Brand Name of Motherboard </div><div class="param">budget (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Available Budget </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#Motherboard">Motherboard</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "socketType" : "socketType",
+  "fotoURL" : "fotoURL",
+  "numberOfMemorySlots" : "numberOfMemorySlots",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "memoryType" : "memoryType",
+  "compatibleCpuBrand" : "compatibleCpuBrand",
+  "brand" : "brand"
+}, {
+  "socketType" : "socketType",
+  "fotoURL" : "fotoURL",
+  "numberOfMemorySlots" : "numberOfMemorySlots",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "memoryType" : "memoryType",
+  "compatibleCpuBrand" : "compatibleCpuBrand",
+  "brand" : "brand"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        
+    <h4 class="field-label">404</h4>
+    404 No Motherboards Found. Check Query Param Values.
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service not available
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="PowerAdaptor">PowerAdaptor</a></h1>
+  <div class="method"><a name="changePowerAdaptor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /config/{configId}/powerAdaptor</code></pre></div>
+    <div class="method-summary">Replaces the Power Adaptor in the configuration with new Power Adaptor Object for ID (<span class="nickname">changePowerAdaptor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the config where Power Adaptor needs to be changed </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aPowerAdaptor <a href="#PowerAdaptor">PowerAdaptor</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Power Adaptor object that should replace the current one in the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#PowerAdaptor">PowerAdaptor</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "maximumPower" : "maximumPower",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#PowerAdaptor">PowerAdaptor</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check Power Adaptor Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createPowerAdaptor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config/{configId}/powerAdaptor</code></pre></div>
+    <div class="method-summary">Add Power Adaptor to the configuration for ID (<span class="nickname">createPowerAdaptor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where Power Adaptor needs to be added </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aPowerAdapter <a href="#PowerAdaptor">PowerAdaptor</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; Power Adaptor object that needs to be added to the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#PowerAdaptor">PowerAdaptor</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "maximumPower" : "maximumPower",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#PowerAdaptor">PowerAdaptor</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check Power Adaptor Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deletePowerAdaptor"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /config/{configId}/powerAdaptor</code></pre></div>
+    <div class="method-summary">Deletes the Power Adaptor in the configuration for ID (<span class="nickname">deletePowerAdaptor</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where Power Adaptor needs to be deleted </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 Deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config Not Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="PowerAdaptorList">PowerAdaptorList</a></h1>
+  <div class="method"><a name="getPowerAdaptorList"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /powerAdaptorList</code></pre></div>
+    <div class="method-summary">Returns list of Power Adaptors fitting the requirements (<span class="nickname">getPowerAdaptorList</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">maximumPower (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Maximum Power of Power Adaptor </div><div class="param">formFactor (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Form Factor of Power Adaptor </div><div class="param">brandName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Brand Name of Power Adaptor </div><div class="param">budget (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Available Budget </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#PowerAdaptor">PowerAdaptor</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "maximumPower" : "maximumPower",
+  "brand" : "brand"
+}, {
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "formFactor" : "formFactor",
+  "price" : "price",
+  "maximumPower" : "maximumPower",
+  "brand" : "brand"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        
+    <h4 class="field-label">404</h4>
+    404 No Power Adaptors Found. Check Query Param Values.
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service not available
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="Ram">Ram</a></h1>
+  <div class="method"><a name="changeRAM"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="put"><code class="huge"><span class="http-method">put</span> /config/{configId}/ram</code></pre></div>
+    <div class="method-summary">Replaces the RAM in the configuration with new RAM Object for ID (<span class="nickname">changeRAM</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of the config where RAM needs to be changed </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aRam <a href="#RAM">RAM</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; RAM object that should replace the current one in the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#RAM">RAM</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "totalcapacity" : "totalcapacity",
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "busSpeed" : "busSpeed",
+  "model" : "model",
+  "type" : "type",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#RAM">RAM</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check RAM Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="createRAM"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="post"><code class="huge"><span class="http-method">post</span> /config/{configId}/ram</code></pre></div>
+    <div class="method-summary">Add RAM to the configuration for ID (<span class="nickname">createRAM</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where RAM needs to be added </div>
+    </div>  <!-- field-items -->
+
+    <h3 class="field-label">Consumes</h3>
+    This API call consumes the following media types via the <span class="header">Content-Type</span> request header:
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Request body</h3>
+    <div class="field-items">
+      <div class="param">aRam <a href="#RAM">RAM</a> (required)</div>
+
+      <div class="param-desc"><span class="param-type">Body Parameter</span> &mdash; RAM object that needs to be added to the configuration </div>
+
+    </div>  <!-- field-items -->
+
+
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      <a href="#RAM">RAM</a>
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>{
+  "totalcapacity" : "totalcapacity",
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "busSpeed" : "busSpeed",
+  "model" : "model",
+  "type" : "type",
+  "brand" : "brand"
+}</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        <a href="#RAM">RAM</a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">422</h4>
+    422 Unprocessable Entity. Check RAM Object
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <div class="method"><a name="deleteRAM"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="delete"><code class="huge"><span class="http-method">delete</span> /config/{configId}/ram</code></pre></div>
+    <div class="method-summary">Deletes the RAM in the configuration for ID (<span class="nickname">deleteRAM</span>)</div>
+    <div class="method-notes"></div>
+
+    <h3 class="field-label">Path parameters</h3>
+    <div class="field-items">
+      <div class="param">configId (required)</div>
+
+      <div class="param-desc"><span class="param-type">Path Parameter</span> &mdash; ID of config where RAM needs to be deleted </div>
+    </div>  <!-- field-items -->
+
+
+
+
+
+
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 Deleted
+        <a href="#"></a>
+    <h4 class="field-label">400</h4>
+    400 Config starts at index 1
+        <a href="#"></a>
+    <h4 class="field-label">404</h4>
+    404 Config Not Found for ID
+        <a href="#"></a>
+    <h4 class="field-label">500</h4>
+    500 Internal Server Error
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+  <h1><a name="RamList">RamList</a></h1>
+  <div class="method"><a name="getRamList"/>
+    <div class="method-path">
+    <a class="up" href="#__Methods">Up</a>
+    <pre class="get"><code class="huge"><span class="http-method">get</span> /ramList</code></pre></div>
+    <div class="method-summary">Returns list of RAMs fitting the requirements (<span class="nickname">getRamList</span>)</div>
+    <div class="method-notes"></div>
+
+
+
+
+
+    <h3 class="field-label">Query parameters</h3>
+    <div class="field-items">
+      <div class="param">ramCapacity (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Total Capacity of RAM </div><div class="param">ramType (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; RAM Type </div><div class="param">brandName (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Brand Name of RAM </div><div class="param">busSpeed (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Bus Speed of RAM </div><div class="param">budget (optional)</div>
+
+      <div class="param-desc"><span class="param-type">Query Parameter</span> &mdash; Available Budget </div>
+    </div>  <!-- field-items -->
+
+
+    <h3 class="field-label">Return type</h3>
+    <div class="return-type">
+      array[<a href="#RAM">RAM</a>]
+      
+    </div>
+
+    <!--Todo: process Response Object and its headers, schema, examples -->
+
+    <h3 class="field-label">Example data</h3>
+    <div class="example-data-content-type">Content-Type: application/json</div>
+    <pre class="example"><code>[ {
+  "totalcapacity" : "totalcapacity",
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "busSpeed" : "busSpeed",
+  "model" : "model",
+  "type" : "type",
+  "brand" : "brand"
+}, {
+  "totalcapacity" : "totalcapacity",
+  "fotoURL" : "fotoURL",
+  "productID" : "productID",
+  "price" : "price",
+  "busSpeed" : "busSpeed",
+  "model" : "model",
+  "type" : "type",
+  "brand" : "brand"
+} ]</code></pre>
+
+    <h3 class="field-label">Produces</h3>
+    This API call produces the following media types according to the <span class="header">Accept</span> request header;
+    the media type will be conveyed by the <span class="header">Content-Type</span> response header.
+    <ul>
+      <li><code>application/json</code></li>
+    </ul>
+
+    <h3 class="field-label">Responses</h3>
+    <h4 class="field-label">200</h4>
+    200 OK
+        
+    <h4 class="field-label">404</h4>
+    404 No RAMs Found. Check Query Param Values.
+        <a href="#"></a>
+    <h4 class="field-label">503</h4>
+    503 Service not available
+        <a href="#"></a>
+  </div> <!-- method -->
+  <hr/>
+
+  <h2><a name="__Models">Models</a></h2>
+  [ Jump to <a href="#__Methods">Methods</a> ]
+
+  <h3>Table of Contents</h3>
+  <ol>
+    <li><a href="#Budget"><code>Budget</code> - </a></li>
+    <li><a href="#CPU"><code>CPU</code> - </a></li>
+    <li><a href="#Config"><code>Config</code> - </a></li>
+    <li><a href="#GPU"><code>GPU</code> - </a></li>
+    <li><a href="#GameIdentifier"><code>GameIdentifier</code> - </a></li>
+    <li><a href="#GameInfo"><code>GameInfo</code> - </a></li>
+    <li><a href="#Memory"><code>Memory</code> - </a></li>
+    <li><a href="#Motherboard"><code>Motherboard</code> - </a></li>
+    <li><a href="#PowerAdaptor"><code>PowerAdaptor</code> - </a></li>
+    <li><a href="#RAM"><code>RAM</code> - </a></li>
+    <li><a href="#User"><code>User</code> - </a></li>
+  </ol>
+
+  <div class="model">
+    <h3><a name="Budget"><code>Budget</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+          </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="CPU"><code>CPU</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">productID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">brand (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">processorType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">socketType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">numberOfCores (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">clockspeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fotoUrl (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Config"><code>Config</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">configID (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+<div class="param">budget (optional)</div><div class="param-desc"><span class="param-type"><a href="#number">BigDecimal</a></span>  </div>
+<div class="param">Gpu (optional)</div><div class="param-desc"><span class="param-type"><a href="#GPU">GPU</a></span>  </div>
+<div class="param">Cpu (optional)</div><div class="param-desc"><span class="param-type"><a href="#CPU">CPU</a></span>  </div>
+<div class="param">RAM (optional)</div><div class="param-desc"><span class="param-type"><a href="#RAM">RAM</a></span>  </div>
+<div class="param">Motherboard (optional)</div><div class="param-desc"><span class="param-type"><a href="#Motherboard">Motherboard</a></span>  </div>
+<div class="param">Memory (optional)</div><div class="param-desc"><span class="param-type"><a href="#Memory">Memory</a></span>  </div>
+<div class="param">PowerAdapter (optional)</div><div class="param-desc"><span class="param-type"><a href="#PowerAdaptor">PowerAdaptor</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="GPU"><code>GPU</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">productID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">brand (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">model (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">chipsetManufacturer (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">compatibleSlot (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">memoryType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">memorySize (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fotoURL (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="GameIdentifier"><code>GameIdentifier</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">gameName (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">gameId (optional)</div><div class="param-desc"><span class="param-type"><a href="#integer">Integer</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="GameInfo"><code>GameInfo</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">hardwareRequirements (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Memory"><code>Memory</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">productID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">brand (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">model (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">storageCapacity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">rotationSpeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fotoURL (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="Motherboard"><code>Motherboard</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">productID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">brand (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">numberOfMemorySlots (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">formFactor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">socketType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">compatibleCpuBrand (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">memoryType (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fotoURL (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="PowerAdaptor"><code>PowerAdaptor</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">productID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">brand (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">maximumPower (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">formFactor (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fotoURL (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="RAM"><code>RAM</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">productID (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">brand (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">model (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">totalcapacity (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">busSpeed (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">type (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">fotoURL (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">price (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  <div class="model">
+    <h3><a name="User"><code>User</code> - </a> <a class="up" href="#__Models">Up</a></h3>
+    <div class='model-description'></div>
+    <div class="field-items">
+      <div class="param">name (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">surname (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+<div class="param">mail (optional)</div><div class="param-desc"><span class="param-type"><a href="#string">String</a></span>  </div>
+    </div>  <!-- field-items -->
+  </div>
+  </body>
+</html>
