@@ -1,0 +1,1157 @@
+---
+swagger: "2.0"
+info:
+  description: This is a an application to help you build your own computer. The hardware is chosen to fit the requirements of a specific game you want to play.
+  version: 1.0.0
+  title: Parts4Games
+  contact:
+    name: Team7
+    email: duy-an.tran@hof-university.de
+host: localhost:8080
+basePath: /Parts4Games/
+schemes:
+- https
+paths:
+  /gameList/{gameName}:
+    get:
+      tags:
+      - gameList
+      summary: Returns a list of steam titles with game names and IDs that contain the game name
+      operationId: getGameList
+      produces:
+      - application/json
+      parameters:
+      - name: gameName
+        in: path
+        description: Name of steam title where game name and ID needs to be returned
+        required: true
+        type: string
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/GameIdentifier'
+        "404":
+          description: 404 No Game Found With Name
+        "503":
+          description: 503 Service Unavailable
+  /gameInfo/{gameId}/rec:
+    get:
+      tags:
+      - gameInfo
+      summary: Returns recommended hardware requirements of steam title for ID
+      operationId: getGameListReq
+      produces:
+      - application/json
+      parameters:
+      - name: gameId
+        in: path
+        description: ID of steam title where info needs to be returned
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/GameInfo'
+        "404":
+          description: 404 No Game Info Found for ID
+        "503":
+          description: 503 Service Unavailable
+  /gameInfo/{gameId}/min:
+    get:
+      tags:
+      - gameInfo
+      summary: Returns minimal hardware requirements of steam title for ID
+      operationId: getGameListMin
+      produces:
+      - application/json
+      parameters:
+      - name: gameId
+        in: path
+        description: ID of steam title where info needs to be returned
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/GameInfo'
+        "404":
+          description: 404 No Game Info Found for ID
+        "503":
+          description: 503 Service Unavailable
+  /config:
+    post:
+      tags:
+      - config
+      summary: Creates a new configuration for your PC build
+      operationId: createConfig
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Config'
+        "500":
+          description: 500 Internal Server Error
+  /config/{configId}:
+    get:
+      tags:
+      - config
+      summary: Returns the current configuration of your PC build for ID
+      operationId: getConfig
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config which needs to be returned
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Config'
+        "304":
+          description: 304 Not Modified
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config not found for ID
+        "412":
+          description: 412 Precondition Failed
+        "500":
+          description: 500 Internal Server Error
+    delete:
+      tags:
+      - config
+      summary: Delete the configuration for ID
+      operationId: deleteConfig
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config which needs to be deleted
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 Deleted
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config Not Found for ID
+        "500":
+          description: 500 Internal Server Error
+  /config/{configId}/budget/{newBudget}:
+    post:
+      tags:
+      - budget
+      summary: Set budget in the configuration for ID
+      operationId: createBudget
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where budget needs to be set
+        required: true
+        type: integer
+      - name: newBudget
+        in: path
+        description: Budget size of user
+        required: true
+        type: number
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Budget'
+        "400":
+          description: 400 Config starts at index 1
+        "500":
+          description: 500 Internal Server Error
+    put:
+      tags:
+      - budget
+      summary: Changes the budget in the configuration with new budget
+      operationId: changeBudget
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where budget needs to be changed
+        required: true
+        type: integer
+      - name: newBudget
+        in: path
+        description: Budget size of user
+        required: true
+        type: number
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Budget'
+        "400":
+          description: 400 Config starts at index 1
+        "500":
+          description: 500 Internal Server Error
+  /config/{configId}/gpu:
+    post:
+      tags:
+      - gpu
+      summary: Add GPU to the configuration for ID
+      operationId: createGpu
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where GPU needs to be added
+        required: true
+        type: integer
+      - in: body
+        name: aGPU
+        description: GPU object that needs to be added to the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/GPU'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/GPU'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check GPU Object
+        "500":
+          description: 500 Internal Server Error
+    put:
+      tags:
+      - gpu
+      summary: Replaces the GPU in the configuration with new GPU Object for ID
+      operationId: changeGpu
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of the config where GPU needs to be changed
+        required: true
+        type: integer
+      - in: body
+        name: aGPU
+        description: GPU object that should replace the current one in the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/GPU'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/GPU'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check GPU Object
+        "500":
+          description: 500 Internal Server Error
+    delete:
+      tags:
+      - gpu
+      summary: Deletes the GPU in the configuration for ID
+      operationId: deleteGPU
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where GPU needs to be deleted
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 Deleted
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config Not Found for ID
+        "500":
+          description: 500 Internal Server Error
+  /gpuList:
+    get:
+      tags:
+      - gpuList
+      summary: Returns list of GPUs fitting the requirements
+      operationId: getGPUList
+      produces:
+      - application/json
+      parameters:
+      - name: chipsetManufacturer
+        in: query
+        description: Name of GPU Manufacturer
+        required: false
+        type: string
+      - name: compatibleSlot
+        in: query
+        description: Compatible Slot of GPU
+        required: false
+        type: string
+      - name: memoryType
+        in: query
+        description: Memory Type of GPU
+        required: false
+        type: string
+      - name: memorySize
+        in: query
+        description: Memory Size of GPU
+        required: false
+        type: string
+      - name: brandName
+        in: query
+        description: Brand Name of GPU
+        required: false
+        type: string
+      - name: budget
+        in: query
+        description: Available Budget
+        required: false
+        type: string
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/GPU'
+        "404":
+          description: 404 No GPUs Found. Check Query Param Values.
+        "503":
+          description: 503 Service not available
+  /config/{configId}/cpu:
+    post:
+      tags:
+      - cpu
+      summary: Add CPU to the configuration for ID
+      operationId: createCPU
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where CPU needs to be added
+        required: true
+        type: integer
+      - in: body
+        name: aCpu
+        description: CPU object that needs to be added to the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/CPU'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/CPU'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check CPU Object
+        "500":
+          description: 500 Internal Server Error
+    put:
+      tags:
+      - cpu
+      summary: Replaces the CPU in the configuration with new CPU Object for ID
+      operationId: changeCPU
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of the config where CPU needs to be changed
+        required: true
+        type: integer
+      - in: body
+        name: aCpu
+        description: CPU object that should replace the current one in the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/CPU'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/CPU'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check CPU Object
+        "500":
+          description: 500 Internal Server Error
+    delete:
+      tags:
+      - cpu
+      summary: Deletes the CPU in the configuration for ID
+      operationId: deleteCPU
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where CPU needs to be deleted
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 Deleted
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config Not Found for ID
+        "500":
+          description: 500 Internal Server Error
+  /cpuList:
+    get:
+      tags:
+      - cpuList
+      summary: Returns list of CPUs fitting the requirements
+      operationId: getCPUList
+      produces:
+      - application/json
+      parameters:
+      - name: processorType
+        in: query
+        description: Processor Type of CPU
+        required: false
+        type: string
+      - name: socketType
+        in: query
+        description: Socket Type of CPU
+        required: false
+        type: string
+      - name: numberOfCores
+        in: query
+        description: Amount of CPU cores
+        required: false
+        type: string
+      - name: clockSpeed
+        in: query
+        description: Clock Speed of CPU
+        required: false
+        type: string
+      - name: brandName
+        in: query
+        description: Brand Name of CPU
+        required: false
+        type: string
+      - name: budget
+        in: query
+        description: Available Budget
+        required: false
+        type: string
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/CPU'
+        "404":
+          description: 404 No CPUs Found. Check Query Param Values.
+        "503":
+          description: 503 Service not available
+  /config/{configId}/motherboard:
+    post:
+      tags:
+      - motherboard
+      summary: Add Motherboard to the configuration for ID
+      operationId: createMotherboard
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where Motherboard needs to be added
+        required: true
+        type: integer
+      - in: body
+        name: aMotherboard
+        description: Motherboard object that needs to be added to the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/Motherboard'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Motherboard'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check Motherboard Object
+        "500":
+          description: 500 Internal Server Error
+    put:
+      tags:
+      - motherboard
+      summary: Replaces the Motherboard in the configuration with new Motherboard Object for ID
+      operationId: changeMotherboard
+      parameters:
+      - name: configId
+        in: path
+        description: ID of the config where Motherboard needs to be changed
+        required: true
+        type: integer
+      - in: body
+        name: aMotherboard
+        description: Motherboard object that should replace the current one in the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/Motherboard'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Motherboard'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check Motherboard Object
+        "500":
+          description: 500 Internal Server Error
+    delete:
+      tags:
+      - motherboard
+      summary: Deletes the Motherboard in the configuration for ID
+      operationId: deleteMotherboard
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where Motherboard needs to be deleted
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 Deleted
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config Not Found for ID
+        "500":
+          description: 500 Internal Server Error
+  /motherboardList:
+    get:
+      tags:
+      - motherboardList
+      summary: Returns list of Motherboards fitting the requirements
+      operationId: getMotherboardList
+      produces:
+      - application/json
+      parameters:
+      - name: formFactor
+        in: query
+        description: Form Factor of Motherboard
+        required: false
+        type: string
+      - name: socketType
+        in: query
+        description: Socket Type of Motherboard
+        required: false
+        type: string
+      - name: memoryType
+        in: query
+        description: Memory Type of Motherboard
+        required: false
+        type: string
+      - name: numberOfMemorySlots
+        in: query
+        description: Amount of Memory Slots available
+        required: false
+        type: string
+      - name: brandName
+        in: query
+        description: Brand Name of Motherboard
+        required: false
+        type: string
+      - name: budget
+        in: query
+        description: Available Budget
+        required: false
+        type: string
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Motherboard'
+        "404":
+          description: 404 No Motherboards Found. Check Query Param Values.
+        "503":
+          description: 503 Service not available
+  /config/{configId}/ram:
+    post:
+      tags:
+      - ram
+      summary: Add RAM to the configuration for ID
+      operationId: createRAM
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where RAM needs to be added
+        required: true
+        type: integer
+      - in: body
+        name: aRam
+        description: RAM object that needs to be added to the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/RAM'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/RAM'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check RAM Object
+        "500":
+          description: 500 Internal Server Error
+    put:
+      tags:
+      - ram
+      summary: Replaces the RAM in the configuration with new RAM Object for ID
+      operationId: changeRAM
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of the config where RAM needs to be changed
+        required: true
+        type: integer
+      - in: body
+        name: aRam
+        description: RAM object that should replace the current one in the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/RAM'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/RAM'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check RAM Object
+        "500":
+          description: 500 Internal Server Error
+    delete:
+      tags:
+      - ram
+      summary: Deletes the RAM in the configuration for ID
+      operationId: deleteRAM
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where RAM needs to be deleted
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 Deleted
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config Not Found for ID
+        "500":
+          description: 500 Internal Server Error
+  /ramList:
+    get:
+      tags:
+      - ramList
+      summary: Returns list of RAMs fitting the requirements
+      operationId: getRamList
+      produces:
+      - application/json
+      parameters:
+      - name: ramCapacity
+        in: query
+        description: Total Capacity of RAM
+        required: false
+        type: string
+      - name: ramType
+        in: query
+        description: RAM Type
+        required: false
+        type: string
+      - name: brandName
+        in: query
+        description: Brand Name of RAM
+        required: false
+        type: string
+      - name: busSpeed
+        in: query
+        description: Bus Speed of RAM
+        required: false
+        type: string
+      - name: budget
+        in: query
+        description: Available Budget
+        required: false
+        type: string
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/RAM'
+        "404":
+          description: 404 No RAMs Found. Check Query Param Values.
+        "503":
+          description: 503 Service not available
+  /config/{configId}/memory:
+    post:
+      tags:
+      - memory
+      summary: Add Memory to the configuration for ID
+      operationId: createMemory
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where Memory needs to be added
+        required: true
+        type: integer
+      - in: body
+        name: aMemory
+        description: Memory object that needs to be added to the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/Memory'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Memory'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check Memory Object
+        "500":
+          description: 500 Internal Server Error
+    put:
+      tags:
+      - memory
+      summary: Replaces the Memory in the configuration with new Memory Object for ID
+      operationId: changeMemory
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of the config where Memory needs to be changed
+        required: true
+        type: integer
+      - in: body
+        name: aMemory
+        description: Memory object that should replace the current one in the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/Memory'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/Memory'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check Memory Object
+        "500":
+          description: 500 Internal Server Error
+    delete:
+      tags:
+      - memory
+      summary: Deletes the Memory in the configuration for ID
+      operationId: deleteMemory
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where Memory needs to be deleted
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 Deleted
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config Not Found for ID
+        "500":
+          description: 500 Internal Server Error
+  /memoryList:
+    get:
+      tags:
+      - memoryList
+      summary: Returns list of Memories fitting the requirements
+      operationId: getMemoryList
+      produces:
+      - application/json
+      parameters:
+      - name: storageCapacity
+        in: query
+        description: Total Capacity of Memory
+        required: false
+        type: string
+      - name: type
+        in: query
+        description: Memory Type
+        required: false
+        type: string
+      - name: rotationSpeed
+        in: query
+        description: Rotation Speed of Memory
+        required: false
+        type: string
+      - name: brandName
+        in: query
+        description: Brand Name of Memory
+        required: false
+        type: string
+      - name: budget
+        in: query
+        description: Available Budget
+        required: false
+        type: string
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Memory'
+        "404":
+          description: 404 No Memories Found. Check Query Param Values.
+        "503":
+          description: 503 Service not available
+  /config/{configId}/powerAdaptor:
+    post:
+      tags:
+      - powerAdaptor
+      summary: Add Power Adaptor to the configuration for ID
+      operationId: createPowerAdaptor
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where Power Adaptor needs to be added
+        required: true
+        type: integer
+      - in: body
+        name: aPowerAdapter
+        description: Power Adaptor object that needs to be added to the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/PowerAdaptor'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/PowerAdaptor'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check Power Adaptor Object
+        "500":
+          description: 500 Internal Server Error
+    put:
+      tags:
+      - powerAdaptor
+      summary: Replaces the Power Adaptor in the configuration with new Power Adaptor Object for ID
+      operationId: changePowerAdaptor
+      produces:
+      - application/json
+      consumes:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of the config where Power Adaptor needs to be changed
+        required: true
+        type: integer
+      - in: body
+        name: aPowerAdaptor
+        description: Power Adaptor object that should replace the current one in the configuration
+        required: true
+        schema:
+          $ref: '#/definitions/PowerAdaptor'
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            $ref: '#/definitions/PowerAdaptor'
+        "400":
+          description: 400 Config starts at index 1
+        "422":
+          description: 422 Unprocessable Entity. Check Power Adaptor Object
+        "500":
+          description: 500 Internal Server Error
+    delete:
+      tags:
+      - powerAdaptor
+      summary: Deletes the Power Adaptor in the configuration for ID
+      operationId: deletePowerAdaptor
+      produces:
+      - application/json
+      parameters:
+      - name: configId
+        in: path
+        description: ID of config where Power Adaptor needs to be deleted
+        required: true
+        type: integer
+      responses:
+        "200":
+          description: 200 Deleted
+        "400":
+          description: 400 Config starts at index 1
+        "404":
+          description: 404 Config Not Found for ID
+        "500":
+          description: 500 Internal Server Error
+  /powerAdaptorList:
+    get:
+      tags:
+      - powerAdaptorList
+      summary: Returns list of Power Adaptors fitting the requirements
+      operationId: getPowerAdaptorList
+      produces:
+      - application/json
+      parameters:
+      - name: maximumPower
+        in: query
+        description: Maximum Power of Power Adaptor
+        required: false
+        type: string
+      - name: formFactor
+        in: query
+        description: Form Factor of Power Adaptor
+        required: false
+        type: string
+      - name: brandName
+        in: query
+        description: Brand Name of Power Adaptor
+        required: false
+        type: string
+      - name: budget
+        in: query
+        description: Available Budget
+        required: false
+        type: string
+      responses:
+        "200":
+          description: 200 OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/PowerAdaptor'
+        "404":
+          description: 404 No Power Adaptors Found. Check Query Param Values.
+        "503":
+          description: 503 Service not available
+definitions:
+  GameIdentifier:
+    type: object
+    properties:
+      gameName:
+        type: string
+      gameId:
+        type: integer
+  GameInfo:
+    type: object
+    properties:
+      hardwareRequirements:
+        type: string
+  Budget:
+    type: number
+  GPU:
+    type: object
+    properties:
+      productID:
+        type: string
+      brand:
+        type: string
+      model:
+        type: string
+      chipsetManufacturer:
+        type: string
+      compatibleSlot:
+        type: string
+      memoryType:
+        type: string
+      memorySize:
+        type: string
+      fotoURL:
+        type: string
+      price:
+        type: string
+  CPU:
+    type: object
+    properties:
+      productID:
+        type: string
+      brand:
+        type: string
+      processorType:
+        type: string
+      socketType:
+        type: string
+      numberOfCores:
+        type: string
+      clockspeed:
+        type: string
+      fotoUrl:
+        type: string
+      price:
+        type: string
+  Motherboard:
+    type: object
+    properties:
+      productID:
+        type: string
+      brand:
+        type: string
+      numberOfMemorySlots:
+        type: string
+      formFactor:
+        type: string
+      socketType:
+        type: string
+      compatibleCpuBrand:
+        type: string
+      memoryType:
+        type: string
+      fotoURL:
+        type: string
+      price:
+        type: string
+  Memory:
+    type: object
+    properties:
+      productID:
+        type: string
+      brand:
+        type: string
+      model:
+        type: string
+      storageCapacity:
+        type: string
+      rotationSpeed:
+        type: string
+      type:
+        type: string
+      fotoURL:
+        type: string
+      price:
+        type: string
+  PowerAdaptor:
+    type: object
+    properties:
+      productID:
+        type: string
+      brand:
+        type: string
+      maximumPower:
+        type: string
+      formFactor:
+        type: string
+      fotoURL:
+        type: string
+      price:
+        type: string
+  RAM:
+    type: object
+    properties:
+      productID:
+        type: string
+      brand:
+        type: string
+      model:
+        type: string
+      totalcapacity:
+        type: string
+      busSpeed:
+        type: string
+      type:
+        type: string
+      fotoURL:
+        type: string
+      price:
+        type: string
+  User:
+    type: object
+    properties:
+      name:
+        type: string
+      surname:
+        type: string
+      mail:
+        type: string
+  Config:
+    type: object
+    properties:
+      configID:
+        type: integer
+      budget:
+        type: number
+      Gpu:
+        $ref: '#/definitions/GPU'
+      Cpu:
+        $ref: '#/definitions/CPU'
+      RAM:
+        $ref: '#/definitions/RAM'
+      Motherboard:
+        $ref: '#/definitions/Motherboard'
+      Memory:
+        $ref: '#/definitions/Memory'
+      PowerAdapter:
+        $ref: '#/definitions/PowerAdaptor'
