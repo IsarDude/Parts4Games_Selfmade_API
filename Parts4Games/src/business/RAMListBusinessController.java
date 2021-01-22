@@ -147,9 +147,9 @@ public class RAMListBusinessController {
 				if(!currentTitleHasWhiteSpaces) { //Nur Titel nehmen, welche sich in 2 Teile splitten lassen
 					continue;
 				}
-				String[] currentTitleSplitted = currentTitle.split("\\s+"); //Nur die ersten 2 Wörter aus dem Gesamttitel benutzen für weiteres Vorgehen
-				String titlePartOne = currentTitleSplitted[0].replaceAll("\\s+", "");
-				String titlePartTwo = currentTitleSplitted[1].replaceAll("\\s+", "");
+				String[] currentTitleSplitted = currentTitle.split("[\\s\\xA0]+"); //Nur die ersten 2 Wörter aus dem Gesamttitel benutzen für weiteres Vorgehen
+				String titlePartOne = currentTitleSplitted[0].replaceAll("[\\s\\xA0]+", "");
+				String titlePartTwo = currentTitleSplitted[1].replaceAll("[\\s\\xA0]+", "");
 				String titleForQuery = titlePartOne + " " + titlePartTwo;
 				System.out.println("TITLEFORQUERY: "+ titleForQuery);
 				List<String> prices = JsonPath.read(document, "$..item.[" + i + "].sellingStatus.*.currentPrice.*.__value__");
